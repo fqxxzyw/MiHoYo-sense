@@ -576,7 +576,8 @@ def prepare_batch_game(game, raw_root):
 
 
 def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
-              max_pages=5, max_sub_pages=2, max_floors=3, raw_root=None, max_discovery_pages=1):
+              max_pages=5, max_sub_pages=2, max_floors=3, raw_root=None, max_discovery_pages=1,
+              discovery_batch_pages=20):
     """任务清单 → 逐帖采集 → 批次进度。上限均按累计数量计算，恢复不轮换帖子。
 
     batches 字典保存游戏，tasks 列表保持发现顺序；每个帖子仍使用原单帖断点。
@@ -590,6 +591,9 @@ def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
     for limit in (max_posts, max_pages, max_sub_pages, max_floors, max_discovery_pages):
         if limit is not None and (isinstance(limit, bool) or not isinstance(limit, int) or limit < 0):
             raise ValueError("上限必须是非负整数或 None。")
+    if (isinstance(discovery_batch_pages, bool) or not isinstance(discovery_batch_pages, int)
+            or discovery_batch_pages < 1):
+        raise ValueError("每批发现页数必须为正整数。")
     raw_root = project_path(raw_root if raw_root is not None else RAW_DIR.parent)
     batch_dir = project_path(batch_dir)
     path = batch_dir / "batch_manifest.json"
@@ -610,7 +614,8 @@ def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
             }
         attempt = {"started_at": utc_now(), "max_posts_per_game": max_posts,
                    "max_pages": max_pages, "max_sub_pages": max_sub_pages, "max_floors": max_floors,
-                   "max_discovery_pages": max_discovery_pages}
+                   "max_discovery_pages": max_discovery_pages,
+                   "discovery_batch_pages": discovery_batch_pages}
         batch["attempts"].append(attempt)
         batch.update(status="running", completed=False)
         batch.pop("error", None)
@@ -633,77 +638,109 @@ def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
                 if ([t["post_id"] for t in group["tasks"][:len(expected)]] != seed_ids
                         or [t["source"] for t in group["tasks"][:len(expected)]] != expected):
                     raise ValueError("批次任务与发现快照不一致。")
-                if max_discovery_pages != 1 or group.get("paged_discovery"):
-                    discovery, candidates = discover_home_pages(
-                        game, raw_root / game, max_discovery_pages, request_json,
-                        build_discovery_tasks, seed_dir=discovery_dir,
-                    )
-                    known = {task["post_id"]: task for task in group["tasks"]}
-                    trusted = {t["post_id"]: t for t in expected}
-                    eligible_candidates = []
-                    excluded_ids = {t["post_id"] for t in group["excluded"]}
-                    for candidate in candidates:
-                        post_id = validate_post_id(candidate["post_id"])
-                        if str(candidate["game_id"]) != str(GAMES[game]):
-                            if post_id not in excluded_ids:
-                                group["excluded"].append(dict(candidate, reason="返回 game_id 与当前游戏不符"))
-                                excluded_ids.add(post_id)
+                # 已有分页断点时先复用本地页并采评论，不能先继续向后翻页。
+                discovery_path = raw_root / game / "_discovery/home_pages/discovery_manifest.json"
+                target_pages = 1 if discovery_path.exists() else discovery_batch_pages
+                if max_discovery_pages is not None:
+                    target_pages = min(target_pages, max_discovery_pages)
+                verified_this_run = set()
+                while True:
+                    if max_discovery_pages != 1 or group.get("paged_discovery"):
+                        batch.update(phase="discovery", discovery_target_pages=target_pages)
+                        save_json(batch, path)
+                        print(f"{game} 首页批次：发现列表累计目标 {target_pages} 页；每批 {discovery_batch_pages} 页。", flush=True)
+                        discovery, candidates = discover_home_pages(
+                            game, raw_root / game, target_pages, request_json,
+                            build_discovery_tasks, seed_dir=discovery_dir,
+                        )
+                        known = {task["post_id"]: task for task in group["tasks"]}
+                        trusted = {t["post_id"]: t for t in expected}
+                        eligible_candidates = []
+                        excluded_ids = {t["post_id"] for t in group["excluded"]}
+                        for candidate in candidates:
+                            post_id = validate_post_id(candidate["post_id"])
+                            if str(candidate["game_id"]) != str(GAMES[game]):
+                                if post_id not in excluded_ids:
+                                    group["excluded"].append(dict(candidate, reason="返回 game_id 与当前游戏不符"))
+                                    excluded_ids.add(post_id)
+                                continue
+                            eligible_candidates.append(post_id)
+                            trusted.setdefault(post_id, candidate)
+                            if post_id not in known:
+                                task = {
+                                    "post_id": post_id, "subject": candidate["subject"], "game_id": GAMES[game],
+                                    "source": candidate, "status": "pending", "completed": False,
+                                    "run_dir": (Path(game) / post_id / "full_collection").as_posix(),
+                                }
+                                group["tasks"].append(task)
+                                known[post_id] = task
+                        expected_ids = seed_ids + [pid for pid in eligible_candidates if pid not in set(seed_ids)]
+                        if ([t["post_id"] for t in group["tasks"]] != expected_ids
+                                or any(t["source"] != trusted[t["post_id"]] for t in group["tasks"])):
+                            raise ValueError("追加后的批次任务与原始发现页不一致。")
+                        group["paged_discovery"] = {
+                            "manifest": f"{game}/_discovery/home_pages/discovery_manifest.json",
+                            "status": discovery["status"], "pages_saved": len(discovery["pages"]),
+                            "stop_reason": discovery["stop_reason"], "exhausted": discovery["exhausted"],
+                        }
+                        batch["pagination_verified"] = True
+                        batch["completion_scope"] = "仅已发现的首页推荐页及当前接口条件下评论，不代表全站所有帖子"
+                        save_json(batch, path)
+                        print(f"{game} 批次候选：{len(group['tasks'])} 帖；"
+                              f"帖子发现状态：{discovery['status']}，{discovery['stop_reason']}", flush=True)
+                    elif [t["source"] for t in group["tasks"]] != expected:
+                        raise ValueError("批次任务与发现快照不一致。")
+                    batch["phase"] = "collection"
+                    save_json(batch, path)
+                    print(f"{game} 首页批次：开始采集正文和评论，候选 {len(group['tasks'])} 帖。", flush=True)
+                    for index, task in enumerate(group["tasks"]):
+                        current = None
+                        # 上限是固定顺序中的前 N 个；不会每次跳过已完成帖而再选 N 个。
+                        if max_posts is not None and index >= max_posts:
+                            if task["status"] in ("pending", "deferred"):
+                                task.update(status="deferred", stop_reason="达到本游戏累计帖子数上限")
                             continue
-                        eligible_candidates.append(post_id)
-                        trusted.setdefault(post_id, candidate)
-                        if post_id not in known:
-                            task = {
-                                "post_id": post_id, "subject": candidate["subject"], "game_id": GAMES[game],
-                                "source": candidate, "status": "pending", "completed": False,
-                                "run_dir": (Path(game) / post_id / "full_collection").as_posix(),
-                            }
-                            group["tasks"].append(task)
-                            known[post_id] = task
-                    expected_ids = seed_ids + [pid for pid in eligible_candidates if pid not in set(seed_ids)]
-                    if ([t["post_id"] for t in group["tasks"]] != expected_ids
-                            or any(t["source"] != trusted[t["post_id"]] for t in group["tasks"])):
-                        raise ValueError("追加后的批次任务与原始发现页不一致。")
-                    group["paged_discovery"] = {
-                        "manifest": f"{game}/_discovery/home_pages/discovery_manifest.json",
-                        "status": discovery["status"], "pages_saved": len(discovery["pages"]),
-                        "stop_reason": discovery["stop_reason"], "exhausted": discovery["exhausted"],
-                    }
-                    batch["pagination_verified"] = True
-                    batch["completion_scope"] = "仅已发现的首页推荐页及当前接口条件下评论，不代表全站所有帖子"
-                    save_json(batch, path)
-                    print(f"{game} 批次候选：{len(group['tasks'])} 帖；"
-                          f"帖子发现状态：{discovery['status']}，{discovery['stop_reason']}", flush=True)
-                elif [t["source"] for t in group["tasks"]] != expected:
-                    raise ValueError("批次任务与发现快照不一致。")
-                for index, task in enumerate(group["tasks"]):
+                        current = task
+                        post_id = validate_post_id(task["source"]["post_id"])
+                        expected_dir = (Path(game) / post_id / "full_collection").as_posix()
+                        if task["post_id"] != post_id or task["run_dir"] != expected_dir:
+                            raise ValueError("批次的帖子 ID 或输出路径与来源不一致。")
+                        # 本次运行已经完成并核验的帖子不在下一轮重复扫描；重启后仍重新核验。
+                        if post_id in verified_this_run and task["completed"]:
+                            continue
+                        task.update(status="running", completed=False)
+                        task.pop("error", None)
+                        save_json(batch, path)
+                        state = run_collection(
+                            raw_root / expected_dir, max_pages, max_sub_pages, max_floors,
+                            game=game, post_id=post_id,
+                        )
+                        task.update(
+                            status=state["status"], completed=state["completed"],
+                            stop_reason=state["stop_reason"], updated_at=utc_now(),
+                            top_unique_comments=state["tasks"]["top"]["unique_comments"],
+                            sub_unique_comments=sum(t["unique_comments"] for k, t in state["tasks"].items()
+                                                    if k.startswith("floor_")),
+                            discovered_floors=sum(k.startswith("floor_") for k in state["tasks"]),
+                        )
+                        if state["completed"]:
+                            verified_this_run.add(post_id)
+                        save_json(batch, path)
                     current = None
-                    # 上限是固定顺序中的前 N 个；不会每次跳过已完成帖而再选 N 个。
-                    if max_posts is not None and index >= max_posts:
-                        if task["status"] in ("pending", "deferred"):
-                            task.update(status="deferred", stop_reason="达到本游戏累计帖子数上限")
-                        continue
-                    current = task
-                    post_id = validate_post_id(task["source"]["post_id"])
-                    expected_dir = (Path(game) / post_id / "full_collection").as_posix()
-                    if task["post_id"] != post_id or task["run_dir"] != expected_dir:
-                        raise ValueError("批次的帖子 ID 或输出路径与来源不一致。")
-                    task.update(status="running", completed=False)
-                    task.pop("error", None)
-                    save_json(batch, path)
-                    state = run_collection(
-                        raw_root / expected_dir, max_pages, max_sub_pages, max_floors,
-                        game=game, post_id=post_id,
-                    )
-                    task.update(
-                        status=state["status"], completed=state["completed"],
-                        stop_reason=state["stop_reason"], updated_at=utc_now(),
-                        top_unique_comments=state["tasks"]["top"]["unique_comments"],
-                        sub_unique_comments=sum(t["unique_comments"] for k, t in state["tasks"].items()
-                                                if k.startswith("floor_")),
-                        discovered_floors=sum(k.startswith("floor_") for k in state["tasks"]),
-                    )
-                    save_json(batch, path)
-                current = None
+                    # 未完成当前候选（受帖子/评论/楼层上限影响）时先停止，不再堆积新任务。
+                    if not all(task["completed"] for task in group["tasks"]):
+                        break
+                    progress = group.get("paged_discovery")
+                    if not progress or progress["status"] in ("exhausted", "stalled"):
+                        break
+                    if max_posts is not None and len(group["tasks"]) >= max_posts:
+                        break
+                    pages_saved = progress["pages_saved"]
+                    if max_discovery_pages is not None and pages_saved >= max_discovery_pages:
+                        break
+                    target_pages = pages_saved + discovery_batch_pages
+                    if max_discovery_pages is not None:
+                        target_pages = min(target_pages, max_discovery_pages)
             all_tasks = [t for group in batch["batches"].values() for t in group["tasks"]]
             nonempty = all(group["tasks"] for group in batch["batches"].values())
             batch["discovery_finished"] = all(
@@ -752,7 +789,8 @@ def main():
     mode.add_argument("--discover-more", action="store_true", help="分页发现更多帖子，不启动评论采集")
     mode.add_argument("--discover-news", action="store_true",
                       help="只发现原神官方资讯 type=3，默认最多 2 页，不启动评论采集")
-    mode.add_argument("--batch", action="store_true", help="分页发现更多帖子，追加已有批次并续采")
+    mode.add_argument("--batch", action="store_true", help="按游戏分批采集：原神资讯，星铁/绝区零首页")
+    mode.add_argument("--batch-home", action="store_true", help="显式使用旧首页来源及其原批次目录")
     mode.add_argument("--batch-news", action="store_true",
                       help="原神官方资讯发现及正文/评论续采，复用旧原神批次的候选和单帖断点")
     parser.add_argument("--game", choices=[*GAMES, "all"], default="genshin")
@@ -767,6 +805,8 @@ def main():
     parser.add_argument("--max-floors", type=optional_limit, default=argparse.SUPPRESS)
     parser.add_argument("--max-discovery-pages", type=optional_limit, default=argparse.SUPPRESS,
                         help="累计帖子发现页数上限；默认读取 discovery.max_pages")
+    parser.add_argument("--discovery-batch-pages", type=optional_limit, default=argparse.SUPPRESS,
+                        help="每发现多少页就先采评论；默认 discovery.batch_pages=20，必须为正整数")
     mode.add_argument("--verify-only", action="store_true", help="只读核验原始页与断点，不发请求")
     # 没有传入任何参数时，默认批量采集三个游戏。
     # 如果传入了参数，就完全按照传入的参数执行。
@@ -787,6 +827,10 @@ def main():
                 setattr(args, name, value)
         if not hasattr(args, "max_discovery_pages"):
             args.max_discovery_pages = 2 if args.discover_news else config.discovery["max_pages"]
+        if not hasattr(args, "discovery_batch_pages"):
+            args.discovery_batch_pages = config.discovery["batch_pages"]
+        if args.discovery_batch_pages is None or args.discovery_batch_pages < 1:
+            parser.error("--discovery-batch-pages 必须为正整数，不能为 None。")
         if args.max_discovery_pages == 0:
             parser.error("--max-discovery-pages 必须至少为 1，或设为 None。")
         for name in ("run_dir", "batch_dir", "seed_run"):
@@ -795,12 +839,14 @@ def main():
     except (OSError, ValueError) as error:
         parser.error(str(error))
     games = list(GAMES) if args.game == "all" else [args.game]
-    if (args.batch or args.batch_news or args.discover_posts or args.discover_more or args.discover_news) and (args.post_id or args.run_dir or args.seed_run):
+    if (args.batch or args.batch_home or args.batch_news or args.discover_posts or args.discover_more or args.discover_news) and (args.post_id or args.run_dir or args.seed_run):
         parser.error("发现/批次模式不接受 --post-id、--run-dir 或 --seed-run。")
     if (args.discover_news or args.batch_news) and args.game != "genshin":
         parser.error("官方资讯模式本阶段只验证原神，请使用 --game genshin。")
-    if args.batch_dir and not (args.batch or args.batch_news):
-        parser.error("--batch-dir 仅用于 --batch 或 --batch-news。")
+    if args.batch_dir and not (args.batch or args.batch_home or args.batch_news):
+        parser.error("--batch-dir 仅用于批次模式。")
+    if args.batch and args.game == "all" and args.batch_dir:
+        parser.error("自动三游戏模式使用各自批次目录；自定义 --batch-dir 请指定单个游戏，旧混合批次可用 --batch-home。")
     print("配置文件：", config.source, flush=True)
     print("米游社原始数据目录：", raw_root or RAW_DIR.parent, flush=True)
     print(f"请求间隔：{REQUEST_INTERVAL} 秒；连接/读取超时参数：{REQUEST_TIMEOUT} 秒", flush=True)
@@ -811,6 +857,7 @@ def main():
             game_root, request_json, run_collection,
             max_discovery_pages=args.max_discovery_pages, max_posts=args.max_posts,
             max_pages=args.max_pages, max_sub_pages=args.max_sub_pages, max_floors=args.max_floors,
+            discovery_batch_pages=args.discovery_batch_pages,
         )
     elif args.discover_news:
         discover_news_pages("genshin", game_raw_dir("genshin", raw_root),
@@ -830,13 +877,28 @@ def main():
             print(f"{game} 已发现 {len(tasks)} 个不同帖子 ID，状态 {state['status']}；"
                   "未启动评论采集。", flush=True)
     elif args.batch:
+        # 三游戏入口与各单游戏入口共用各自批次；原神明确接入官方资讯来源。
+        # 原混合批次文件保留；每个帖子仍从相同 full_collection 目录续采。
+        for game in games:
+            game_root = game_raw_dir(game, raw_root)
+            batch_dir = args.batch_dir or game_root.parent / "_batches" / game
+            options = dict(max_posts=args.max_posts, max_pages=args.max_pages,
+                           max_sub_pages=args.max_sub_pages, max_floors=args.max_floors,
+                           max_discovery_pages=args.max_discovery_pages,
+                           discovery_batch_pages=args.discovery_batch_pages)
+            if game == "genshin":
+                run_news_batch(batch_dir, game_root, request_json, run_collection, **options)
+            else:
+                run_batch(batch_dir, [game], raw_root=raw_root, **options)
+    elif args.batch_home:
         batch_dir = args.batch_dir or (raw_root or RAW_DIR.parent) / "_batches" / "_".join(games)
         run_batch(batch_dir, games, max_posts=args.max_posts, max_pages=args.max_pages,
                   max_sub_pages=args.max_sub_pages, max_floors=args.max_floors, raw_root=raw_root,
-                  max_discovery_pages=args.max_discovery_pages)
+                  max_discovery_pages=args.max_discovery_pages,
+                  discovery_batch_pages=args.discovery_batch_pages)
     else:
         if args.game == "all":
-            parser.error("--game all 仅用于 --discover-posts、--discover-more 或 --batch。")
+            parser.error("--game all 仅用于 --discover-posts、--discover-more、--batch-home 或 --batch。")
         if args.game != "genshin" and not args.post_id:
             parser.error("星穹铁道/绝区零单帖模式需要 --post-id。")
         post_id = args.post_id or POST_ID

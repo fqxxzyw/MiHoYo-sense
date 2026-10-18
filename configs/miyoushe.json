@@ -10,6 +10,10 @@
     "interval_seconds": 2,
     "timeout_seconds": 60
   },
+  "discovery": {
+    "max_pages": null,
+    "batch_pages": 20
+  },
   "collection": {
     "max_posts": null,
     "max_pages": null,

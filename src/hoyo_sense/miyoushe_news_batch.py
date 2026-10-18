@@ -59,6 +59,11 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
         raise ValueError("每批资讯发现页数必须为正整数。")
     game_root, batch_dir = Path(game_root).resolve(), Path(batch_dir).resolve()
     legacy_path = game_root.parent / "_batches/genshin/batch_manifest.json"
+    # 原三游戏混合批次可能是唯一旧索引；读取其原神候选，但不改写该文件。
+    if not legacy_path.exists():
+        combined_path = game_root.parent / "_batches/genshin_starrail_zzz/batch_manifest.json"
+        if combined_path.exists():
+            legacy_path = combined_path
     manifest_path = batch_dir / "batch_manifest.json"
     with run_lock(batch_dir):
         envelope = None
@@ -71,7 +76,13 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                 "scope": "当前官方资讯 type=3 与继承的首页候选，评论按热门接口遍历；非全站全部历史数据",
             }
             if legacy is not None:
-                sources = [task["source"] for task in legacy["batches"]["genshin"]["tasks"]]
+                previous_news = legacy.get("news_collection")
+                if previous_news is None and legacy.get("kind") == "news_collection_batch":
+                    previous_news = legacy
+                if previous_news is not None:
+                    sources = [source for task in previous_news["tasks"] for source in task["sources"]]
+                else:
+                    sources = [task["source"] for task in legacy["batches"]["genshin"]["tasks"]]
                 append_candidates(result, sources)
                 result["legacy_batch"] = str(legacy_path)
                 result["legacy_candidate_count"] = len(sources)
@@ -85,6 +96,8 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                 envelope["news_collection"] = batch
                 envelope["active_collection"] = "news_collection"
                 envelope["status"] = batch["status"]
+                envelope["completed"] = batch["completed"]
+                envelope["phase"] = batch.get("phase")
                 envelope["updated_at"] = batch.get("updated_at", utc_now())
                 envelope["active_game"] = "genshin" if batch["status"] == "running" else None
                 save_json(envelope, manifest_path)
@@ -132,9 +145,12 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
             discovery_path = game_root / "_discovery/news_type_3/discovery_manifest.json"
             # 旧程序可能已发现很多页却尚未采评论。恢复时只读取并核验已保存页，
             # 不再向后发现；先把这些页的帖子加入队列。待请求 raw 的恢复仍由发现器负责。
+            if discovery_path.exists():
+                print("原神资讯批次：先核验本地已保存列表并采集其评论，此阶段不请求新列表页。", flush=True)
             target_pages = 1 if discovery_path.exists() else discovery_batch_pages
             if max_discovery_pages is not None:
                 target_pages = min(target_pages, max_discovery_pages)
+            verified_this_run = set()
             while True:
                 batch.update(phase="discovery", active_post_id=None,
                              discovery_target_pages=target_pages)
@@ -157,6 +173,7 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                       f"已完成 {batch['posts_completed']} 帖。", flush=True)
                 # tasks 是去重后的有序列表；同一帖子出现在后续资讯页时不会重复排队。
                 for index, task in enumerate(batch["tasks"]):
+                    current = None
                     if max_posts is not None and index >= max_posts:
                         if not task["completed"]:
                             task.update(status="limited", stop_reason="达到累计帖子数上限")
@@ -169,6 +186,9 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                         raise ValueError("批次候选缺少发现来源。")
                     if any(post_id_string(source["post_id"]) != post_id for source in task["sources"]):
                         raise ValueError("批次帖子 ID 与发现来源不一致。")
+                    # 每次启动仍核验旧断点；同一次运行后续轮次不反复扫描已核验完成的帖子。
+                    if post_id in verified_this_run and task["completed"]:
+                        continue
                     # 仍调用原采集器核验已完成的本地断点，成功页不会再次请求。
                     task.update(status="running", completed=False)
                     task.pop("error", None)
@@ -191,6 +211,8 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                         sub_unique_comments=sum(value["unique_comments"] for key, value in state["tasks"].items()
                                                 if key.startswith("floor_")),
                     )
+                    if state["completed"]:
+                        verified_this_run.add(post_id)
                     checkpoint()
                     if state["status"] == "interrupted":
                         raise RuntimeError(f"帖子 {post_id} 采集异常中断：{state['stop_reason']}")

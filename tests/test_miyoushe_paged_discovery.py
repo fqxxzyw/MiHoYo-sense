@@ -226,8 +226,46 @@ def test_bad_discovery_config(collector, tmp_path, value):
 def test_no_arguments_defaults_to_three_game_batch(collector, monkeypatch):
     calls = []
     monkeypatch.setattr(sys, "argv", ["collector"])
-    monkeypatch.setattr(collector, "run_batch", lambda path, games, **kwargs: calls.append((path, games, kwargs)))
+    monkeypatch.setattr(collector, "run_news_batch", lambda path, *args, **kwargs:
+                        calls.append((path, ["genshin"], kwargs)))
+    monkeypatch.setattr(collector, "run_batch", lambda path, games, **kwargs:
+                        calls.append((path, games, kwargs)))
     collector.main()
-    assert len(calls) == 1
-    assert calls[0][1] == ["genshin", "starrail", "zzz"]
-    assert calls[0][2]["max_discovery_pages"] == 10
+    assert [call[1] for call in calls] == [["genshin"], ["starrail"], ["zzz"]]
+    assert [call[0].name for call in calls] == ["genshin", "starrail", "zzz"]
+    assert all(call[2]["discovery_batch_pages"] == 20 for call in calls)
+    assert all(call[2]["max_discovery_pages"] is None for call in calls)
+
+
+def test_home_collects_after_twenty_pages_before_requesting_page_twenty_one(collector, monkeypatch, tmp_path):
+    c = collector
+    pages = {n: home([str(1000 + n)]) for n in range(1, 22)}
+    pages[22] = home([])
+    calls, _ = install_api(c, monkeypatch, pages)
+    completed = []
+    original = c.run_collection
+    def collect(*args, **kwargs):
+        completed.append(kwargs["post_id"])
+        return original(*args, **kwargs)
+    monkeypatch.setattr(c, "run_collection", collect)
+    result = c.run_batch(tmp_path / "batch", ["zzz"], raw_root=tmp_path / "raw",
+                         max_posts=None, max_discovery_pages=None)
+    news21 = calls.index((c.WEB_HOME_URL, {"gids": 8, "page": 21, "page_size": 20}))
+    assert sum(url == c.COMMENTS_URL for url, _ in calls[:news21]) == 20
+    assert completed == [str(1000 + n) for n in range(1, 22)]
+    assert result["completed"]
+
+
+def test_home_resume_collects_saved_candidates_before_requesting_new_page(collector, monkeypatch, tmp_path):
+    c = collector
+    pages = {n: home([str(1000 + n)]) for n in range(1, 24)}
+    calls, _ = install_api(c, monkeypatch, pages)
+    root = tmp_path / "raw"
+    source, _ = c.discover_posts(root / "zzz/_discovery", game="zzz")
+    c.discover_home_pages("zzz", root / "zzz", 21, c.request_json, c.build_discovery_tasks, source)
+    calls.clear()
+    result = c.run_batch(tmp_path / "batch", ["zzz"], raw_root=root, max_posts=None, max_discovery_pages=22)
+    news22 = calls.index((c.WEB_HOME_URL, {"gids": 8, "page": 22, "page_size": 20}))
+    assert calls[0][0] == c.POST_URL
+    assert sum(url == c.COMMENTS_URL for url, _ in calls[:news22]) == 21
+    assert result["status"] == "limited"

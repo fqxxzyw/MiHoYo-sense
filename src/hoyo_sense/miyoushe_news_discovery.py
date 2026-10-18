@@ -183,7 +183,6 @@ def discover_news_pages(game, game_root, max_pages, request_json, *, preview_sav
                 "scope": "仅原神官方资讯 type=3 列表，非原神全站或玩家讨论帖",
             }
             save_json(state, manifest_path)
-        saved_before = len(state["pages"])
         attempt = {"started_at": utc_now(), "max_pages": max_pages}
         state["attempts"].append(attempt)
         state.pop("error", None)
@@ -240,11 +239,9 @@ def discover_news_pages(game, game_root, max_pages, request_json, *, preview_sav
         print(f"\n官方资讯候选共 {len(tasks)} 帖，状态 {state['status']}；"
               f"已复用 {len(state['pages'])} 页原始数据。", flush=True)
         # 恢复已有断点时同样展示每页清单，让用户看见本次发现范围，不必重新发请求。
-        for record in state["pages"]:
-            # 分批调度会反复恢复同一列表；只预览本轮新增页，避免刷屏旧清单。
-            # 独立的 --discover-news 仍默认展示全部已保存页。
-            if not preview_saved_pages and record["page"] <= saved_before:
-                continue
+        # 批次只打印汇总，避免数百条候选预览遮住“开始采评论”的提示。
+        # 独立发现模式才逐页预览；这些都是本地读取，不是额外网络请求。
+        for record in state["pages"] if preview_saved_pages else []:
             page_tasks, _, _, _ = parse_news_page(
                 read_page(record), game, record["params"], record["fetched_at"], record["file"],
             )

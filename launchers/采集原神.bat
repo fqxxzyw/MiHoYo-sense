@@ -20,7 +20,7 @@ if not exist "%PYTHON_EXE%" (
 )
 
 REM 数量上限、请求间隔及超时继续读取 configs\miyoushe.json。
-"%PYTHON_EXE%" scripts\01_collect_miyoushe.py --batch --game genshin
+"%PYTHON_EXE%" -u scripts\01_collect_miyoushe.py --batch-news --game genshin
 set "RUN_EXIT_CODE=%ERRORLEVEL%"
 
 echo.

@@ -20,7 +20,7 @@ DEFAULT_PATHS = {
 }
 DEFAULT_LIMITS = {"max_posts": 3, "max_pages": 5, "max_sub_pages": 2, "max_floors": 3}
 DEFAULT_REQUEST = {"interval_seconds": 2.0, "timeout_seconds": 20.0}
-DEFAULT_DISCOVERY = {"max_pages": 10}
+DEFAULT_DISCOVERY = {"max_pages": 10, "batch_pages": 20}
 
 
 def project_path(value, *, root=PROJECT_ROOT):
@@ -86,9 +86,12 @@ def load_config(path=None, *, root=PROJECT_ROOT):
             raise ValueError(f"{name} 必须为有限数字：间隔不小于 0，超时大于 0；不能为 null。")
     supplied_discovery = data.get("discovery", {})
     if not isinstance(supplied_discovery, dict) or set(supplied_discovery) - set(DEFAULT_DISCOVERY):
-        raise ValueError("discovery 配置只支持 max_pages。")
+        raise ValueError("discovery 配置只支持 max_pages 和 batch_pages。")
     discovery = {**DEFAULT_DISCOVERY, **supplied_discovery}
     value = discovery["max_pages"]
     if value is not None and (isinstance(value, bool) or not isinstance(value, int) or value < 1):
         raise ValueError("发现 max_pages 必须为正整数或 null。")
+    batch_pages = discovery["batch_pages"]
+    if isinstance(batch_pages, bool) or not isinstance(batch_pages, int) or batch_pages < 1:
+        raise ValueError("发现 batch_pages 必须为正整数，不能为 null。")
     return ProjectConfig(source=source, paths=paths, limits=limits, request=request, discovery=discovery)

@@ -72,7 +72,7 @@
 数据流、状态及恢复方式见 [官方资讯发现说明](docs/miyoushe_news_discovery.md)。
 
 抽样通过后曾启动原神资讯发现和评论的无上限后台任务，现按用户要求停止，等待用户在 CMD 手动续采。
-它先遍历资讯列表，再逐帖续采；批次进度已并回 `data/raw/miyoushe/_batches/genshin/batch_manifest.json` 的 `news_collection` 字段，
+现在改为每发现至多 20 页就先逐帖采集正文和评论，再继续下一批列表；恢复时先处理已保存候选。批次进度已并回 `data/raw/miyoushe/_batches/genshin/batch_manifest.json` 的 `news_collection` 字段，
 多余的 genshin_news 批次目录已删除，单帖原始数据及断点保持在原目录。
 全部上限为 None 仅表示不限制累计数量，不表示已经遍历完整。
 
@@ -94,15 +94,19 @@ python scripts/01_collect_miyoushe.py --batch --game all --max-posts 3 --max-pag
 ```
 
 批量运行自动接通分页发现，优先引用已有第一页原始响应，从下一页继续。
-默认累计发现页数上限为 10，支持 `--max-discovery-pages None`，不影响已有四种采集上限。
-批次默认保存在 `data/raw/miyoushe/_batches/genshin_starrail_zzz/batch_manifest.json`，
+`--batch` 根据游戏选择来源：原神官方资讯，星铁和绝区零首页推荐。每发现至多 20 页先采评论，再继续发现。
+仓库配置新增 `discovery.max_pages=null` 和 `discovery.batch_pages=20`：总页数不限，但调度按 20 页一批执行。
+缺少 discovery 的旧配置仍兼容默认总上限 10 页、每批 20 页；不足一批也会立即采评论。
+批次保存在各自的 `data/raw/miyoushe/_batches/<game>/batch_manifest.json`，
 单帖仍保存在 `data/raw/miyoushe/<game>/<post_id>/full_collection/`。
-旧批次中的候选及其顺序保留，新发现的帖子追加到末尾。
+原神旧首页候选会并入资讯批次，已保存的单帖 raw 和断点继续复用。
+旧三游戏混合批次文件保留；如需按原首页来源和原目录续采，可用 `--batch-home --game all`。
+各批次中的候选及其顺序保留，新发现的帖子追加到末尾。
 `--max-posts 3` 指累计前 3 帖，重复运行不会自动换成后 3 帖。
 上限更大时会继续已有任务；不要把 `limited`（达到上限）当作 `completed`（当前接口与条件下遍历结束）。
 
 采集原始 JSON，正文 HTML、图片链接、空文本评论和回复关系均保留；不下载图片。
-本次默认上限有限，显式传 `None` 才取消对应上限。发现返回空页时停止；重复页没有新任务 ID 时停滞并保留 raw。
+当前仓库四种 collection 上限与发现总上限均为 null；具体运行以上述配置和显式参数为准。发现返回空页时停止；重复页没有新任务 ID 时停滞并保留 raw。
 分页详情、旧批次升级和停止原因见 [更多帖子发现](docs/miyoushe_discovery.md)。
 详细参数、异常处理、样本验证结果见 [采集说明](docs/miyoushe_collection.md)。
 
@@ -159,18 +163,20 @@ JSON 中 `null` 表示取消对应上限，命令行写 `None`。未知配置键
 
 ```json
 "discovery": {
-  "max_pages": 10
+  "max_pages": null,
+  "batch_pages": 20
 }
 ```
 
 `max_pages` 是累计发现的列表页数，包含已有第一页和空的停止页；它与 `collection.max_pages`（每帖顶层评论页数）不同。
 设置 `null` 或运行时传 `--max-discovery-pages None` 可取消发现页数上限；四个原有 `collection` 值保持用户设置。
-旧配置缺少 `discovery` 时默认使用 10 页，不需要重建已有 raw 或删除断点。
+`batch_pages` / `--discovery-batch-pages` 是每轮发现页数，必须为正整数，不可设 null。
+旧配置缺少 `discovery` 时总上限默认 10 页、每批默认 20 页，不需要重建已有 raw 或删除断点。
 
 本轮 68 项测试通过。真实只发现最多 3 页：原神 15 帖（第 2 页空），星铁 58 帖，绝区零 60 帖；
 同上限恢复请求数为 0，原始文件不变。结果见 [发现验证记录](docs/miyoushe_discovery_validation_20261018.json)。
 这些数字是发现的候选帖子数量，本轮真实验证没有批量抓取这些新帖的正文与评论。
-本轮分页变更经用户授权同步 GitHub；保留无参数默认三游戏批次，配置文件及 raw 不修改。
+该次分页变更经用户授权同步 GitHub，保留无参数默认三游戏批次；当时未修改配置和 raw。
 
 ### 2026-10-18 本轮验证进度
 
@@ -359,3 +365,13 @@ MiHoYo-sense/
 | 2026-10-18（恢复原批次目录） | 按用户要求停止原神后台任务；资讯调度进度并回原 genshin/batch_manifest.json，保留首页历史；删除多余 genshin_news 批次目录；4110 份原始 JSON 核对未变，90 项测试通过 | 未自动重启，等待用户在 CMD 手动续采；星铁/绝区零进程未动 | 用 --batch-news 及全部 None 上限继续原目录断点 |
 
 学习时按“目的 → 输入与输出 → 代码讲解 → 运行检查 → 更新待办”的顺序推进。
+
+
+### 2026-10-18 分批发现与评论优先调度修复
+
+- 原有资讯模块已包含 20 页循环，但 CLI、首页调度和双击入口未统一；现自动原神入口接入资讯，星铁和绝区零使用首页。
+- 每轮最多发现 `discovery.batch_pages=20` 页，随后处理本批正文、顶层和楼中楼；总上限 null 不会跳过评论阶段。
+- 恢复时先核验已保存列表并处理旧候选，再请求新列表页；同次运行后续轮次不反复核验已经完成的帖子。
+- 帖子数、评论页数、楼层上限使任务未完成时先停止，保留断点，不继续堆积新候选。
+- 不新增业务文件，更新已有模块、启动脚本和说明；不修改已有 raw。配置仅新增 discovery，保留 collection、request 与 paths。
+- 离线回归验证覆盖 20/40 页切换、超过 20 页的旧候选优先、评论异常恢复、原始文件不变和入口来源；109 项测试通过（Python 3.12，离线模拟接口），未启动真实批量采集。

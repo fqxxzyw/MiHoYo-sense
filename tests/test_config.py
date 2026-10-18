@@ -109,3 +109,16 @@ def test_cli_config_and_override_apply_from_other_working_directory(tmp_path, mo
     batch = c.read_json(override / "_batches/zzz/batch_manifest.json")
     assert batch["attempts"][-1]["max_posts_per_game"] is None
     assert (override / "zzz/800/full_collection/post_800.json").exists()
+
+
+@pytest.mark.parametrize("value", [0, -1, None, True, 1.5, "20"])
+def test_invalid_discovery_round_size(tmp_path, value):
+    write_config(tmp_path, {"discovery": {"batch_pages": value}})
+    with pytest.raises(ValueError, match="batch_pages"):
+        load_config(root=tmp_path)
+
+
+def test_discovery_total_and_round_size_are_independent(tmp_path):
+    write_config(tmp_path, {"discovery": {"max_pages": None, "batch_pages": 20}})
+    config = load_config(root=tmp_path)
+    assert config.discovery == {"max_pages": None, "batch_pages": 20}

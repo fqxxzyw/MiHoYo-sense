@@ -162,7 +162,8 @@ def test_cli_news_batch_explicit_none_and_game_restriction(collector, monkeypatc
     ])
     c.main()
     assert len(calls) == 1 and calls[0][0][0] == tmp_path / "_batches/genshin"
-    assert all(value is None for value in calls[0][1].values())
+    assert calls[0][1]["discovery_batch_pages"] == 20
+    assert all(value is None for key, value in calls[0][1].items() if key != "discovery_batch_pages")
     monkeypatch.setattr(sys, "argv", ["collector", "--batch-news", "--game", "all"])
     with pytest.raises(SystemExit):
         c.main()
@@ -193,3 +194,133 @@ def test_original_batch_directory_preserves_legacy_and_reuses_news_substate(
     c.run_news_batch(old_path.parent, tmp_path / "genshin", c.request_json, c.run_collection)
     assert calls == []
     assert not (tmp_path / "_batches/genshin_news").exists()
+
+
+def paged_news_api(c, monkeypatch, end_page=41):
+    # 列表每页一个帖子便于检查调度顺序；详情/顶层/楼中楼仍走原采集器。
+    install_api(c, monkeypatch)
+    base = c.request_json
+    events = []
+    def request(url, params):
+        if url == c.MIYOUSHE_ENDPOINTS["news_list"]:
+            page = int(params["last_id"] or "0") + 1
+            events.append(("list", page))
+            return {"retcode": 0, "data": {
+                "list": [{"post": {"post_id": str(1000 + page), "subject": "资讯", "game_id": 0}}],
+                "last_id": str(page), "is_last": page == end_page,
+            }}
+        events.append(("post" if url == c.POST_URL else "comment", params["post_id"]))
+        return base(url, params)
+    monkeypatch.setattr(c, "request_json", request)
+    return events
+
+
+def test_news_twenty_page_rounds_collect_before_more_discovery(collector, monkeypatch, tmp_path):
+    c = collector
+    events = paged_news_api(c, monkeypatch)
+    collected = []
+    original = c.run_collection
+    def collect(*args, **kwargs):
+        collected.append(kwargs["post_id"])
+        return original(*args, **kwargs)
+    monkeypatch.setattr(c, "run_collection", collect)
+    state = run(c, tmp_path)
+    assert state["completed"]
+    for next_page in (21, 41):
+        position = events.index(("list", next_page))
+        assert {pid for kind, pid in events[:position] if kind == "comment"} == {
+            str(1000 + n) for n in range(1, next_page)}
+    # 同一次运行不重复调用已完成帖的采集器；下一次运行仍核验原始页。
+    assert collected == [str(1000 + n) for n in range(1, 42)]
+
+
+def test_news_saved_backlog_collected_before_new_list_requests(collector, monkeypatch, tmp_path):
+    c = collector
+    events = paged_news_api(c, monkeypatch)
+    c.discover_news_pages("genshin", tmp_path / "genshin", 23, c.request_json, preview_saved_pages=False)
+    originals = {p: p.read_bytes() for p in (tmp_path / "genshin/_discovery").rglob("page_*.json")}
+    events.clear()
+    state = run(c, tmp_path, max_discovery_pages=24)
+    position = events.index(("list", 24))
+    assert events[0] == ("post", "1001")
+    assert {pid for kind, pid in events[:position] if kind == "comment"} == {
+        str(1000 + n) for n in range(1, 24)}
+    assert state["status"] == "limited" and state["collection_completed"]
+    assert all(p.read_bytes() == value for p, value in originals.items())
+
+
+def test_news_comment_failure_never_advances_discovery_on_resume(collector, monkeypatch, tmp_path):
+    c = collector
+    events = paged_news_api(c, monkeypatch)
+    normal = c.request_json
+    def fail(url, params):
+        if url == c.COMMENTS_URL and params["post_id"] == "1002":
+            raise c.requests.Timeout("模拟评论中断")
+        return normal(url, params)
+    monkeypatch.setattr(c, "request_json", fail)
+    with pytest.raises(c.requests.Timeout):
+        run(c, tmp_path)
+    assert [n for kind, n in events if kind == "list"] == list(range(1, 21))
+    events.clear()
+    monkeypatch.setattr(c, "request_json", normal)
+    run(c, tmp_path, max_discovery_pages=21)
+    assert events[0] == ("comment", "1002")
+    assert events.index(("comment", "1020")) < events.index(("list", 21))
+
+
+def test_news_post_cap_stops_before_second_discovery_round(collector, monkeypatch, tmp_path):
+    c = collector
+    events = paged_news_api(c, monkeypatch)
+    state = run(c, tmp_path, max_posts=1)
+    assert state["status"] == "limited"
+    assert [n for kind, n in events if kind == "list"] == list(range(1, 21))
+    assert {pid for kind, pid in events if kind == "comment"} == {"1001"}
+    events.clear()
+    run(c, tmp_path, max_posts=1)
+    assert events == []
+
+
+def test_cli_genshin_batch_routes_to_news_and_forwards_round_size(collector, monkeypatch, tmp_path):
+    c = collector
+    calls = []
+    monkeypatch.setattr(c, "run_news_batch", lambda *a, **k: calls.append((a, k)))
+    monkeypatch.setattr(c, "run_batch", lambda *a, **k: pytest.fail("原神自动批次应使用资讯"))
+    monkeypatch.setattr(sys, "argv", ["collector", "--batch", "--game", "genshin",
+                                     "--raw-root", str(tmp_path), "--discovery-batch-pages", "7"])
+    c.main()
+    assert calls[0][0][0] == tmp_path / "_batches/genshin"
+    assert calls[0][1]["discovery_batch_pages"] == 7
+
+
+@pytest.mark.parametrize("value", ["0", "None", "-1"])
+def test_bad_round_size_cli_stops_before_collection(collector, monkeypatch, value):
+    monkeypatch.setattr(sys, "argv", ["collector", "--batch-news", "--discovery-batch-pages", value])
+    with pytest.raises(SystemExit):
+        collector.main()
+
+
+def test_auto_batch_imports_legacy_combined_candidates_without_modifying_file(collector, monkeypatch, tmp_path):
+    c = collector
+    install_api(c, monkeypatch)
+    path = tmp_path / "_batches/genshin_starrail_zzz/batch_manifest.json"
+    c.save_json({"batches": {"genshin": {"tasks": [
+        {"source": {"post_id": "799", "subject": "旧混合批次独有帖", "game_id": 2,
+                    "source": "webHome/recommended_posts", "request_params": {"gids": 2}}}
+    ]}}}, path)
+    before = path.read_bytes()
+    state = c.run_news_batch(tmp_path / "_batches/genshin", tmp_path / "genshin",
+                             c.request_json, c.run_collection)
+    assert [task["post_id"] for task in state["tasks"]] == ["799", "800", "801"]
+    assert state["completed"] and path.read_bytes() == before
+
+
+def test_explicit_home_cli_preserves_legacy_source_and_combined_directory(collector, monkeypatch, tmp_path):
+    c = collector
+    calls = []
+    monkeypatch.setattr(c, "run_batch", lambda *a, **k: calls.append((a, k)))
+    monkeypatch.setattr(c, "run_news_batch", lambda *a, **k: pytest.fail("显式首页模式不能切换来源"))
+    monkeypatch.setattr(sys, "argv", ["collector", "--batch-home", "--game", "all",
+                                     "--raw-root", str(tmp_path)])
+    c.main()
+    assert calls[0][0][0] == tmp_path / "_batches/genshin_starrail_zzz"
+    assert calls[0][0][1] == ["genshin", "starrail", "zzz"]

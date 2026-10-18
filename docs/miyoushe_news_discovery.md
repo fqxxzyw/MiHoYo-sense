@@ -52,7 +52,7 @@
 上限接受正整数或 `None`。本阶段新模式默认 2 页；原有首页发现模式的配置默认值不变。
 本阶段只验证原神 `type=3`，其他游戏在该模式下会报错，不把接口兼容性当作已验证事实。
 `--discover-news` 与 `--batch`、`--discover-more` 等模式互斥。
-原有 `--batch` 继续使用首页来源；`--batch-news` 已接入资讯清单，并继承旧原神批次候选。
+`--batch --game genshin` 和 `--batch-news --game genshin` 均接入资讯；`--batch-home` 显式保留旧首页来源。
 
 ## 如何判断结束
 
@@ -96,7 +96,9 @@ HTTP、业务或 JSON 失败不会无限重试。已保存异常页会保留；�
 & 'D:\Anaconda3\envs\hoyosense\python.exe' -u scripts/01_collect_miyoushe.py --batch-news --game genshin --max-discovery-pages None --max-posts None --max-pages None --max-sub-pages None --max-floors None
 ```
 
-任务先从已保存游标无上限遍历资讯列表，直到该列表返回 is_last=True，再逐帖复用原采集器。
+任务每发现至多 20 页，就先逐帖采集这些候选的正文和评论，再继续下一批。
+已有列表断点时先处理保存的候选，不再先请求新列表。`None` 只取消总页数上限，不取消每批 20 页的切换。
+每批页数在 `discovery.batch_pages` 设置，也可用 `--discovery-batch-pages 20` 覆盖；不足 20 页即遇到总上限或列表末页时，也会转入评论采集。
 顶层和每个有回复楼层也按各自 is_last 判断结束。2 秒间隔、配置超时、分页异常检测和异常停止继续生效。
 每帖先校验详情明确返回 game_id=2，才开始评论采集；缺少或不符时停止，不把列表的 0 强改为 2。
 
@@ -119,3 +121,5 @@ cd /d D:\soft\python\NLP\HoYoSense
 旧后台任务记录见 `outputs/reports/genshin_news_current_job.json`，当前标记为已停止、等待用户在 CMD 续采。
 达到接口结束会正常退出；HTTP、业务或分页异常会保留断点并停止，不会无限重试。
 恢复时重新执行相同命令，勿与已有原神批次进程同时运行。
+
+批次日志会明确显示“发现列表”和“采集评论”；列表批次只输出每页数量及汇总，不再预览每条标题造成刷屏。独立 `--discover-news` 仍只预览候选，不启动评论；需要采评论请使用批次入口。
