@@ -198,7 +198,10 @@ def test_git_line_ending_conversion_resumes_without_rewriting_raw(collector, mon
     c.run_collection(tmp_path, game="zzz", post_id="800")
     files = [p for p in tmp_path.rglob("*.json") if p.name != "manifest.json"]
     for p in files:
-        p.write_bytes(p.read_bytes().replace(b"\r\n", b"\n").replace(b"\n", b"\r\n"))
+        # 确实切换一次物理换行：Windows 原本就是 CRLF，不能再次写相同字节。
+        content = p.read_bytes()
+        p.write_bytes(content.replace(b"\r\n", b"\n") if b"\r\n" in content
+                      else content.replace(b"\n", b"\r\n"))
     expected = {p: p.read_bytes() for p in files}
     calls.clear()
     state = c.run_collection(tmp_path, game="zzz", post_id="800")

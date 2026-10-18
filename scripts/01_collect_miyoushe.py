@@ -22,6 +22,8 @@ from hoyo_sense.endpoints import MIYOUSHE_ENDPOINTS
 from hoyo_sense.games import MIYOUSHE_GAME_IDS as GAMES
 from hoyo_sense.storage import utc_now, read_json, save_json, digest, check_digest, run_lock
 from hoyo_sense.miyoushe_discovery import discover_home_pages
+from hoyo_sense.miyoushe_news_discovery import discover_news_pages
+from hoyo_sense.miyoushe_news_batch import run_news_batch
 
 DEFAULT_CONFIG = load_config()
 POST_ID = "78918177"
@@ -346,7 +348,7 @@ def collect_pages(state, run_dir, key, max_pages):
               f"状态 {task['status']}；{path.resolve()}", flush=True)
 
 
-def collect_post(state, run_dir):
+def collect_post(state, run_dir, *, require_game_id=False):
     task = state["tasks"]["post"]
     state["active_task"] = "post"
     path = run_dir / task["file"]
@@ -365,10 +367,14 @@ def collect_post(state, run_dir):
     post = result["data"]["post"]["post"]
     if str(post["post_id"]) != state["post_id"]:
         raise ValueError("帖子归属不正确。")
+    if require_game_id and "game_id" not in post:
+        raise ValueError("资讯候选的详情缺少 game_id，停止核验，不能继续采评论。")
     if "game_id" in post and str(post["game_id"]) != str(state["game_id"]):
         raise ValueError("帖子详情所属游戏与采集任务不一致。")
     state["title"] = post["subject"]
     task.update(status="completed", completed=True, sha256=digest(path))
+    if "game_id" in post:
+        task["validated_game_id"] = post["game_id"]
     checkpoint(state, run_dir)
 
 
@@ -471,7 +477,8 @@ def audit(state, run_dir):
 
 
 def run_collection(run_dir, max_pages=MAX_PAGES, max_sub_pages=MAX_SUB_PAGES,
-                   max_floors=MAX_FLOORS, seed_run=None, *, game="genshin", post_id=POST_ID):
+                   max_floors=MAX_FLOORS, seed_run=None, *, game="genshin", post_id=POST_ID,
+                   require_game_id=False):
     """上限按累计页数计算。恢复同目录时，已保存页只读核验，不重复请求。"""
     for value in (max_pages, max_sub_pages, max_floors):
         if value is not None and (isinstance(value, bool) or not isinstance(value, int) or value < 0):
@@ -480,13 +487,14 @@ def run_collection(run_dir, max_pages=MAX_PAGES, max_sub_pages=MAX_SUB_PAGES,
     with run_lock(run_dir):
         state = initialize(run_dir, seed_run, game=game, post_id=post_id)
         attempt = {"started_at": utc_now(), "max_pages": max_pages,
-                   "max_sub_pages": max_sub_pages, "max_floors": max_floors}
+                   "max_sub_pages": max_sub_pages, "max_floors": max_floors,
+                   "require_game_id": require_game_id}
         state["attempts"].append(attempt)
         state.pop("error", None)
         state.update(status="running", completed=False, active_task=None)
         checkpoint(state, run_dir)
         try:
-            collect_post(state, run_dir)
+            collect_post(state, run_dir, require_game_id=require_game_id)
             collect_pages(state, run_dir, "top", max_pages)
             discover_floors(state, run_dir)
             checkpoint(state, run_dir)
@@ -742,7 +750,11 @@ def main():
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--discover-posts", action="store_true", help="只发现首页第 1 页推荐帖子，不启动评论采集")
     mode.add_argument("--discover-more", action="store_true", help="分页发现更多帖子，不启动评论采集")
+    mode.add_argument("--discover-news", action="store_true",
+                      help="只发现原神官方资讯 type=3，默认最多 2 页，不启动评论采集")
     mode.add_argument("--batch", action="store_true", help="分页发现更多帖子，追加已有批次并续采")
+    mode.add_argument("--batch-news", action="store_true",
+                      help="原神官方资讯发现及正文/评论续采，复用旧原神批次的候选和单帖断点")
     parser.add_argument("--game", choices=[*GAMES, "all"], default="genshin")
     parser.add_argument("--post-id", type=validate_post_id, help="单帖模式的帖子 ID，原神默认使用已验证测试帖")
     parser.add_argument("--run-dir", type=Path, help="单帖续采目录；默认按游戏和帖子 ID 分开")
@@ -774,7 +786,7 @@ def main():
             if not hasattr(args, name):
                 setattr(args, name, value)
         if not hasattr(args, "max_discovery_pages"):
-            args.max_discovery_pages = config.discovery["max_pages"]
+            args.max_discovery_pages = 2 if args.discover_news else config.discovery["max_pages"]
         if args.max_discovery_pages == 0:
             parser.error("--max-discovery-pages 必须至少为 1，或设为 None。")
         for name in ("run_dir", "batch_dir", "seed_run"):
@@ -783,14 +795,27 @@ def main():
     except (OSError, ValueError) as error:
         parser.error(str(error))
     games = list(GAMES) if args.game == "all" else [args.game]
-    if (args.batch or args.discover_posts or args.discover_more) and (args.post_id or args.run_dir or args.seed_run):
+    if (args.batch or args.batch_news or args.discover_posts or args.discover_more or args.discover_news) and (args.post_id or args.run_dir or args.seed_run):
         parser.error("发现/批次模式不接受 --post-id、--run-dir 或 --seed-run。")
-    if args.batch_dir and not args.batch:
-        parser.error("--batch-dir 仅用于 --batch。")
+    if (args.discover_news or args.batch_news) and args.game != "genshin":
+        parser.error("官方资讯模式本阶段只验证原神，请使用 --game genshin。")
+    if args.batch_dir and not (args.batch or args.batch_news):
+        parser.error("--batch-dir 仅用于 --batch 或 --batch-news。")
     print("配置文件：", config.source, flush=True)
     print("米游社原始数据目录：", raw_root or RAW_DIR.parent, flush=True)
     print(f"请求间隔：{REQUEST_INTERVAL} 秒；连接/读取超时参数：{REQUEST_TIMEOUT} 秒", flush=True)
-    if args.discover_posts:
+    if args.batch_news:
+        game_root = game_raw_dir("genshin", raw_root)
+        run_news_batch(
+            args.batch_dir or game_root.parent / "_batches" / "genshin",
+            game_root, request_json, run_collection,
+            max_discovery_pages=args.max_discovery_pages, max_posts=args.max_posts,
+            max_pages=args.max_pages, max_sub_pages=args.max_sub_pages, max_floors=args.max_floors,
+        )
+    elif args.discover_news:
+        discover_news_pages("genshin", game_raw_dir("genshin", raw_root),
+                            args.max_discovery_pages, request_json)
+    elif args.discover_posts:
         for game in games:
             discover_posts(game=game, raw_root=raw_root)
     elif args.discover_more:

@@ -8,12 +8,12 @@
   },
   "request": {
     "interval_seconds": 2,
-    "timeout_seconds": 20
+    "timeout_seconds": 60
   },
   "collection": {
-    "max_posts": 3,
-    "max_pages": 5,
-    "max_sub_pages": 2,
-    "max_floors": 3
+    "max_posts": null,
+    "max_pages": null,
+    "max_sub_pages": null,
+    "max_floors": null
   }
 }

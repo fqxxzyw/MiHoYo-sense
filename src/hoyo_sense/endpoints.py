@@ -5,6 +5,7 @@
 PLATFORM_ENDPOINTS = {
     "miyoushe": {
         "web_home": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+        "news_list": "https://bbs-api-static.miyoushe.com/painter/wapi/getNewsList",
         "post": "https://bbs-api.miyoushe.com/post/wapi/getPostFull",
         "comments": "https://bbs-api.miyoushe.com/post/wapi/getPostReplies",
         "sub_replies": "https://bbs-api.miyoushe.com/post/wapi/getSubReplies",
