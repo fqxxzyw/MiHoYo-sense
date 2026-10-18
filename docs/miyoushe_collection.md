@@ -24,7 +24,9 @@
 | `--config` | 指定 JSON 配置，默认 `configs/miyoushe.json` |
 | `--raw-root` | 临时覆盖米游社原始数据根目录，其下直接保存游戏子目录 |
 | `--discover-posts` | 每游戏只请求首页第 1 页，保存并展示去重清单，不采评论 |
-| `--batch` | 按发现清单运行有限批次，自动恢复 |
+| `--discover-more` | 分页发现更多候选，不采正文和评论 |
+| `--max-discovery-pages` | 累计列表发现页数，默认 10，接受正整数或 None |
+| `--batch` | 分页发现并将新候选追加旧批次，继续采集 |
 | `--game` | 默认 genshin，可选 starrail、zzz、all |
 | `--post-id` | 单帖 ID；星穹铁道、绝区零单帖模式必须显式指定 |
 | `--max-posts` | 每游戏累计处理的前 N 帖，默认 3，仅批次模式使用 |
@@ -37,7 +39,8 @@
 | `--verify-only` | 只读核验原始文件与断点，不发请求 |
 
 命令行的顶层页数、楼中楼页数、楼层数默认分别为 **5、2、3**，避免直接运行便启动无限采集。
-四种上限均接受非负整数或 `None`；`None` 只取消对应上限，不会启用首页翻页。
+四种采集上限均接受非负整数或 `None`；`None` 只取消对应上限。
+分页发现默认在批次模式启用，由独立的 `discovery.max_pages` / `--max-discovery-pages` 控制。
 上限包括已保存页面；重复运行相同上限不会逐轮扩大范围，降低上限也不删数据。
 内部 `run_collection()` 保留历史调用默认值以兼容旧代码；直接调用函数时应显式传入上限。
 
@@ -107,15 +110,16 @@ python scripts/01_collect_miyoushe.py --game zzz --post-id 78937626 --max-pages 
 ```
 
 发现接口为 `https://bbs-api-static.miyoushe.com/apihub/wapi/webHome`，
-只使用 `gids=<游戏ID>&page=1&page_size=20` 与 `data.recommended_posts`。
+使用 `gids=<游戏ID>&page=<页码>&page_size=20` 与 `data.recommended_posts`。
+单页入口保留 page=1；分页入口从已有第一页继续。详细用法见 [更多帖子发现](miyoushe_discovery.md)。
 请求 20 条不保证返回 20 条，也不保证是全站最新帖或随机样本。
 记录 `webHome/recommended_posts` 来源、发现时间、请求参数和原始出现位置。
 原始列表保留重复记录，任务按 `post_id` 去重；跨游戏记录保留在发现清单及批次 `excluded`，不进入错误的游戏目录。
 
 批次首次运行优先复用各游戏最新的成功发现快照，没有才请求首页。
-之后候选名单固定，不随首页变化；恢复时重新核对来源和原始响应哈希。
+分页发现会把此前未登记的候选追加至旧批次，保留旧候选顺序与状态；恢复时核对来源和原始响应哈希。
 每帖调用原单帖采集器，复用 `full_collection` 中已有原始页，不重新采帖或前几页。
-发现功能本身不会修改旧的单帖或批次状态。
+只发现模式不修改单帖或批次状态；批次模式会追加任务并记录采集进度。
 
 若要采用新的首页样本，先再次运行发现命令，再指定一个新的空 `--batch-dir`：
 

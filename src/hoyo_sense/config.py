@@ -20,6 +20,7 @@ DEFAULT_PATHS = {
 }
 DEFAULT_LIMITS = {"max_posts": 3, "max_pages": 5, "max_sub_pages": 2, "max_floors": 3}
 DEFAULT_REQUEST = {"interval_seconds": 2.0, "timeout_seconds": 20.0}
+DEFAULT_DISCOVERY = {"max_pages": 10}
 
 
 def project_path(value, *, root=PROJECT_ROOT):
@@ -41,6 +42,7 @@ class ProjectConfig:
     paths: dict[str, Path]
     limits: dict[str, int | None]
     request: dict[str, float] = field(default_factory=lambda: dict(DEFAULT_REQUEST))
+    discovery: dict[str, int | None] = field(default_factory=lambda: dict(DEFAULT_DISCOVERY))
 
     @property
     def miyoushe_root(self):
@@ -53,8 +55,8 @@ def load_config(path=None, *, root=PROJECT_ROOT):
     source = project_path(path if path is not None else "configs/miyoushe.json", root=root)
     with source.open(encoding="utf-8-sig") as file:
         data = json.load(file)
-    if not isinstance(data, dict) or set(data) - {"paths", "collection", "request"}:
-        raise ValueError("配置顶层只支持 paths、collection 和 request 三个字典。")
+    if not isinstance(data, dict) or set(data) - {"paths", "collection", "request", "discovery"}:
+        raise ValueError("配置顶层只支持 paths、collection、request 和 discovery 字典。")
     supplied_paths = data.get("paths", {})
     supplied_limits = data.get("collection", {})
     if not isinstance(supplied_paths, dict) or set(supplied_paths) - set(DEFAULT_PATHS):
@@ -82,4 +84,11 @@ def load_config(path=None, *, root=PROJECT_ROOT):
                 or not math.isfinite(value) or value < 0
                 or (name == "timeout_seconds" and value == 0)):
             raise ValueError(f"{name} 必须为有限数字：间隔不小于 0，超时大于 0；不能为 null。")
-    return ProjectConfig(source=source, paths=paths, limits=limits, request=request)
+    supplied_discovery = data.get("discovery", {})
+    if not isinstance(supplied_discovery, dict) or set(supplied_discovery) - set(DEFAULT_DISCOVERY):
+        raise ValueError("discovery 配置只支持 max_pages。")
+    discovery = {**DEFAULT_DISCOVERY, **supplied_discovery}
+    value = discovery["max_pages"]
+    if value is not None and (isinstance(value, bool) or not isinstance(value, int) or value < 1):
+        raise ValueError("发现 max_pages 必须为正整数或 null。")
+    return ProjectConfig(source=source, paths=paths, limits=limits, request=request, discovery=discovery)

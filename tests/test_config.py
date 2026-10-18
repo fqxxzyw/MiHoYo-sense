@@ -68,6 +68,7 @@ def test_cli_config_and_override_apply_from_other_working_directory(tmp_path, mo
     spec.loader.exec_module(c)
     config = write_config(tmp_path, {
         "paths": {"raw_dir": str(tmp_path / "configured_raw")},
+        "discovery": {"max_pages": 1},
         "collection": {"max_posts": 1, "max_pages": 0, "max_sub_pages": 0, "max_floors": 0},
     })
     calls = []

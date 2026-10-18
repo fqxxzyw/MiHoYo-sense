@@ -1,0 +1,59 @@
+{
+  "checked_at": "2026-10-18T11:35:24.297765+00:00",
+  "source": "webHome/recommended_posts",
+  "max_pages": 3,
+  "resume_requests": 0,
+  "existing_raw_hashes_unchanged": true,
+  "only_discovery_no_post_or_comment_requests": true,
+  "games": {
+    "genshin": {
+      "gids": 2,
+      "pages_saved": 2,
+      "unique_post_ids": 15,
+      "status": "exhausted",
+      "stop_reason": "当前推荐列表返回空页",
+      "page_records": [
+        15,
+        0
+      ],
+      "page_new_ids": [
+        15,
+        0
+      ]
+    },
+    "starrail": {
+      "gids": 6,
+      "pages_saved": 3,
+      "unique_post_ids": 58,
+      "status": "limited",
+      "stop_reason": "达到累计发现页数上限",
+      "page_records": [
+        20,
+        18,
+        20
+      ],
+      "page_new_ids": [
+        20,
+        18,
+        20
+      ]
+    },
+    "zzz": {
+      "gids": 8,
+      "pages_saved": 3,
+      "unique_post_ids": 60,
+      "status": "limited",
+      "stop_reason": "达到累计发现页数上限",
+      "page_records": [
+        20,
+        20,
+        20
+      ],
+      "page_new_ids": [
+        20,
+        20,
+        20
+      ]
+    }
+  }
+}
