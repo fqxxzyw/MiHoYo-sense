@@ -1,0 +1,120 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110941535051714560",
+          "uid": "297398594",
+          "r_uid": "391263186",
+          "content": "天蛇船满人了",
+          "f_forum_id": 28,
+          "f_reply_id": "2110935794702094336",
+          "floor_id": 1985,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792122656,
+          "updated_at": 1792122656,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"天蛇船满人了\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "297398594",
+          "nickname": "1狸猫将军1",
+          "introduce": "",
+          "avatar": "101529",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 49010
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2026/05/06/6512ae59775ad9375af8dc0279cfea31_6528183884971116453.png",
+          "pendant": "",
+          "ip_region": "广西",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1993960824711970816",
+            "bg_color": "f6f6f6",
+            "url": "https://bbs-static.miyoushe.com/static/2025/11/27/e92070c173e2656ed483e6cbcc5ecbbf_8993487243511922778.png",
+            "name": "原神「杜林」评论装扮",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "391263186",
+          "nickname": "AAA暗流诅咒批发",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 11,
+            "exp": 17936
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/08/15/391263186/951bb6de41584ee09784bc010da6e2dc_3952697633032613426.jpg",
+          "pendant": "https://upload-bbs.miyoushe.com/upload/2022/12/21/8bbaf934a8e56b8a65302666cb2699dd_6451779866321514249.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110941535051714561",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

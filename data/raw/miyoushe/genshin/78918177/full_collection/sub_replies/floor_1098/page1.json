@@ -1,0 +1,125 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110667365635477504",
+          "uid": "454456361",
+          "r_uid": "454456361",
+          "content": "",
+          "f_forum_id": 28,
+          "f_reply_id": "2110667317164396544",
+          "floor_id": 1098,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792057288,
+          "updated_at": 1792057291,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":{\"image\":\"https://upload-bbs.miyoushe.com/upload/2026/10/15/454456361/815b8bc79a6a0e101d2d1053407cf6f5_6687555867570532163.jpg\"},\"attributes\":{\"height\":1260,\"width\":2800}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "454456361",
+          "nickname": "CanGBaI",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 3,
+            "exp": 424
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/05/20/454456361/c838ba5dcdeae3af4a6fc126939c65e1_676738347057496020.png",
+          "pendant": "",
+          "ip_region": "新疆",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [
+          {
+            "url": "https://upload-bbs.miyoushe.com/upload/2026/10/15/454456361/815b8bc79a6a0e101d2d1053407cf6f5_6687555867570532163.jpg",
+            "height": 1260,
+            "width": 2800,
+            "format": "jpg",
+            "size": "590335",
+            "image_id": "261720750",
+            "entity_type": "IMG_ENTITY_REPLY",
+            "entity_id": "2110667365635477504",
+            "is_deleted": false
+          }
+        ],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "454456361",
+          "nickname": "CanGBaI",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 3,
+            "exp": 424
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/05/20/454456361/c838ba5dcdeae3af4a6fc126939c65e1_676738347057496020.png",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110667365635477505",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

@@ -1,0 +1,132 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110772808479625216",
+          "uid": "159604403",
+          "r_uid": "348797181",
+          "content": "难道我真是天才",
+          "f_forum_id": 28,
+          "f_reply_id": "2110744807452594176",
+          "floor_id": 1540,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792082428,
+          "updated_at": 1792082429,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"难道我真是天才\"},{\"insert\":{\"image\":\"https://upload-bbs.miyoushe.com/upload/2026/10/16/159604403/0e6f07ef3a5a667174ec0c92ff8a5594_1297408993931918829.jpg\"},\"attributes\":{\"height\":1280,\"width\":2800}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "159604403",
+          "nickname": "逐梦S",
+          "introduce": "",
+          "avatar": "100174",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 5,
+            "exp": 1864
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/99e5d22600af87fe08cd21632a0ac191.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2023/09/27/549f1034c4ef45c3d17dc1fd5773a601_824798917743388249.png",
+          "ip_region": "浙江",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1834881730310311936",
+            "bg_color": "fff7e7",
+            "url": "https://bbs-static.miyoushe.com/static/2024/09/14/cf2210886d8fa1e3d3babe93c6582a2b_1044364532588652991.png",
+            "name": "原神「四周年赠礼-雷电将军」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": "https://bbs-static.miyoushe.com/static/2024/12/13/1734084540849雷神.pag"
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [
+          {
+            "url": "https://upload-bbs.miyoushe.com/upload/2026/10/16/159604403/0e6f07ef3a5a667174ec0c92ff8a5594_1297408993931918829.jpg",
+            "height": 1280,
+            "width": 2800,
+            "format": "jpg",
+            "size": "885652",
+            "image_id": "261737957",
+            "entity_type": "IMG_ENTITY_REPLY",
+            "entity_id": "2110772808479625216",
+            "is_deleted": false
+          }
+        ],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "348797181",
+          "nickname": "这个人太懒了什么也没",
+          "introduce": "",
+          "avatar": "100989",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 1,
+            "exp": 15
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2023/03/08/31ca088944f3e060742f4ea567d25f34_4904353858432914346.png",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110772808479625217",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110709295660879872",
+          "uid": "397711840",
+          "r_uid": "397711840",
+          "content": "如果可以的话，老米都会在这个活动让一只史莱姆赢过天理",
+          "f_forum_id": 28,
+          "f_reply_id": "2110707547893420032",
+          "floor_id": 1368,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792067285,
+          "updated_at": 1792067286,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"如果可以的话，老米都会在这个活动让一只史莱姆赢过天理\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "397711840",
+          "nickname": "月下阿荫",
+          "introduce": "",
+          "avatar": "100007",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 2471
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/2adac6e4e0195c39d90696955f9a7902.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2023/09/27/549f1034c4ef45c3d17dc1fd5773a601_824798917743388249.png",
+          "ip_region": "河南",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1869950058993082368",
+            "bg_color": "fff6f2",
+            "url": "https://bbs-static.miyoushe.com/static/2024/12/20/a7cc46ddebd75503da5515bb43efef36_7315745545553428730.png",
+            "name": "原神「众讨深渊！来战-B款」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "397711840",
+          "nickname": "月下阿荫",
+          "introduce": "",
+          "avatar": "100007",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 2471
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/2adac6e4e0195c39d90696955f9a7902.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2023/09/27/549f1034c4ef45c3d17dc1fd5773a601_824798917743388249.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110709295660879873",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

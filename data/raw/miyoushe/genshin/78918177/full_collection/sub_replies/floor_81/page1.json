@@ -1,0 +1,120 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110583629707497472",
+          "uid": "309197658",
+          "r_uid": "304318265",
+          "content": "瑞士城市_(米游姬糖葫芦)",
+          "f_forum_id": 28,
+          "f_reply_id": "2110583010829422592",
+          "floor_id": 81,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792037324,
+          "updated_at": 1792037325,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"瑞士城市_(米游姬糖葫芦)\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "309197658",
+          "nickname": "夏夏夏洛蒂呀",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 46775
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/10/15/309197658/5123db26dd463d0bd10b3922993e514b_4362292562198870215.jpg",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2020/08/19/3435a14ebb7af0a70cfe07c53a921b30_1956186495542818369.png",
+          "ip_region": "上海",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2104484128677183488",
+            "bg_color": "ffffff",
+            "url": "https://bbs-static.miyoushe.com/static/2026/09/28/f7935bf44f809e7c56496bb3ed8e41b7_6899652797149700012.png",
+            "name": "「原神六周年快乐！」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "304318265",
+          "nickname": "洛木君",
+          "introduce": "",
+          "avatar": "40017",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 5,
+            "exp": 1479
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/avatar/avatar40017.png",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2020/08/19/3435a14ebb7af0a70cfe07c53a921b30_1956186495542818369.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110583629707497473",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

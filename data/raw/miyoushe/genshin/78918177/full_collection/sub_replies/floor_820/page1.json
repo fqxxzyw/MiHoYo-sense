@@ -1,0 +1,120 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110786019591475200",
+          "uid": "282171488",
+          "r_uid": "425131745",
+          "content": "以前那次可以养，等级属性都很高，还有各种buff。这次是固定的属性",
+          "f_forum_id": 28,
+          "f_reply_id": "2110625516538261504",
+          "floor_id": 820,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792085578,
+          "updated_at": 1792085578,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"以前那次可以养，等级属性都很高，还有各种buff。这次是固定的属性\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "282171488",
+          "nickname": "独暗",
+          "introduce": "",
+          "avatar": "101473",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 14,
+            "exp": 30415
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2025/12/15/a6bc333c4937fedf0b563ccc53917f09_1875321675950057664.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2025/11/24/2d50afa5bc59d635480229e0a4a1b23a_4083469654954682105.png",
+          "ip_region": "安徽",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2104484128677183488",
+            "bg_color": "ffffff",
+            "url": "https://bbs-static.miyoushe.com/static/2026/09/28/f7935bf44f809e7c56496bb3ed8e41b7_6899652797149700012.png",
+            "name": "「原神六周年快乐！」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "425131745",
+          "nickname": "白虹惊yu",
+          "introduce": "",
+          "avatar": "100905",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 8,
+            "exp": 8229
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2023/01/18/e0830ba5a338b6fd126afcaff044a887_2959533590319327575.png",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110786019591475201",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

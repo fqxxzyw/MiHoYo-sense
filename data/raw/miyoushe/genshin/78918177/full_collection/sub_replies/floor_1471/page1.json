@@ -1,0 +1,221 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110773217905045504",
+          "uid": "382203501",
+          "r_uid": "169878184",
+          "content": "没绷住",
+          "f_forum_id": 28,
+          "f_reply_id": "2110728855436873728",
+          "floor_id": 1471,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792082526,
+          "updated_at": 1792082526,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"没绷住\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "382203501",
+          "nickname": "墨染江山a",
+          "introduce": "",
+          "avatar": "101473",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 7,
+            "exp": 5110
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2025/12/15/a6bc333c4937fedf0b563ccc53917f09_1875321675950057664.png",
+          "pendant": "",
+          "ip_region": "山东",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2072221339707564032",
+            "bg_color": "093055",
+            "url": "https://bbs-static.miyoushe.com/static/2026/07/01/b4cd5c2fd8af4ed5e3cd4d20c8842aa5_6746956759739963046.png",
+            "name": "「哥伦比娅」评论装扮",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "169878184",
+          "nickname": "Nachoneko甘城",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 13,
+            "exp": 23109
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2023/10/26/169878184/de58c0fcbb7820e0bc60652160f6466d_5215962805657702729.jpg",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2022/09/28/876e62fb1fdfba3267c90fe364a5ae4e_1594369066719402876.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110981984540012544",
+          "uid": "168350338",
+          "r_uid": "169878184",
+          "content": "hhhh 你这也太惨了",
+          "f_forum_id": 28,
+          "f_reply_id": "2110728855436873728",
+          "floor_id": 1471,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792132299,
+          "updated_at": 1792132300,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"hhhh 你这也太惨了\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "168350338",
+          "nickname": "qAtvNXLebbczrIgThoQ",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 4,
+            "exp": 531
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/10/03/168350338/8dc978b3fa2301b2f012e6a36fc19321_3573562941331902390.jpg",
+          "pendant": "",
+          "ip_region": "河北",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "169878184",
+          "nickname": "Nachoneko甘城",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 13,
+            "exp": 23109
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2023/10/26/169878184/de58c0fcbb7820e0bc60652160f6466d_5215962805657702729.jpg",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2022/09/28/876e62fb1fdfba3267c90fe364a5ae4e_1594369066719402876.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110981984540012545",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

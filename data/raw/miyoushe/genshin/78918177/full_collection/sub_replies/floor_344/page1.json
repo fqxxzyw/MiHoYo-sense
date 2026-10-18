@@ -1,0 +1,221 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110732322532446208",
+          "uid": "440011920",
+          "r_uid": "285430717",
+          "content": "其实是所有队友簇拥着保护了最后一只史莱姆，毕竟它在最后10秒甚至还有超过一半的血量",
+          "f_forum_id": 28,
+          "f_reply_id": "2110598709426966528",
+          "floor_id": 344,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792072775,
+          "updated_at": 1792072778,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"其实是所有队友簇拥着保护了最后一只史莱姆，毕竟它在最后10秒甚至还有超过一半的血量\"},{\"insert\":{\"backup_text\":\"[自定义表情]\",\"custom_emoticon\":{\"id\":\"61376\",\"url\":\"https://upload-bbs.miyoushe.com/upload/2025/12/08/440011920/a2da18e6a5419ba3f1eae9a966a1c025_1562327653891160644.gif\",\"size\":{\"width\":1046,\"height\":1063,\"file_size\":1109497},\"is_available\":true,\"hash\":\"978e49c70958ca359c53f6cae3dba6e5f906106a\"}}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "440011920",
+          "nickname": "繁星游鱼",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 5,
+            "exp": 2059
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/11/27/440011920/35884636e7b76fd7f1218633deb6bc6d_3188331610137855986.jpg",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2020/08/19/3435a14ebb7af0a70cfe07c53a921b30_1956186495542818369.png",
+          "ip_region": "广东",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1869950058993082368",
+            "bg_color": "fff6f2",
+            "url": "https://bbs-static.miyoushe.com/static/2024/12/20/a7cc46ddebd75503da5515bb43efef36_7315745545553428730.png",
+            "name": "原神「众讨深渊！来战-B款」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 1,
+          "like_num": 47,
+          "sub_num": 0,
+          "dislike_num": 1
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "285430717",
+          "nickname": "herobrine339",
+          "introduce": "",
+          "avatar": "100785",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 7,
+            "exp": 5731
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2022/10/10/7dcbd8aee1eb6ab0ea5fc4e27bc7c766_2919644670909786954.png",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111238155614056448",
+          "uid": "455214755",
+          "r_uid": "440011920",
+          "content": "确实，他被超载炸回去三次，被火鸟转圈击退一次，几乎全程远离了蟹子",
+          "f_forum_id": 28,
+          "f_reply_id": "2110732322532446208",
+          "floor_id": 344,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792193375,
+          "updated_at": 1792193380,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"确实，他被超载炸回去三次，被火鸟转圈击退一次，几乎全程远离了蟹子\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "455214755",
+          "nickname": "诶嘿1437",
+          "introduce": "",
+          "avatar": "101271",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 3231
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2023/11/07/51434bd6a4159e63a37d50a613f18327_7064665484619888425.png",
+          "pendant": "",
+          "ip_region": "河北",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 2,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "440011920",
+          "nickname": "繁星游鱼",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 5,
+            "exp": 2059
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/11/27/440011920/35884636e7b76fd7f1218633deb6bc6d_3188331610137855986.jpg",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2020/08/19/3435a14ebb7af0a70cfe07c53a921b30_1956186495542818369.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2111238155614056449",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

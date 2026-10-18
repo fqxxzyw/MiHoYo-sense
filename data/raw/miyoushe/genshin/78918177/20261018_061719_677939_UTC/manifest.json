@@ -1,0 +1,76 @@
+{
+  "platform": "miyoushe",
+  "game": "genshin",
+  "post_id": "78918177",
+  "started_at": "2026-10-18T06:17:19.677939+00:00",
+  "sort": "hot",
+  "page_size": 20,
+  "max_pages": 5,
+  "status": "finished",
+  "title": "八强即将出炉！欢迎收看「判测胜券本征」名场面集锦",
+  "comments": {
+    "pages_saved": 5,
+    "total_top_level_records": 99,
+    "unique_top_level_comments": 99,
+    "duplicate_top_level_records": 0,
+    "stop_reason": "达到设定页数上限",
+    "pages": [
+      {
+        "page": 1,
+        "request_last_id": null,
+        "response_last_id": "20",
+        "record_count": 19,
+        "new_count": 19,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page1.json",
+        "fetched_at": "2026-10-18T06:17:22.257090+00:00"
+      },
+      {
+        "page": 2,
+        "request_last_id": "20",
+        "response_last_id": "40",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page2.json",
+        "fetched_at": "2026-10-18T06:17:24.581997+00:00"
+      },
+      {
+        "page": 3,
+        "request_last_id": "40",
+        "response_last_id": "60",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page3.json",
+        "fetched_at": "2026-10-18T06:17:26.911897+00:00"
+      },
+      {
+        "page": 4,
+        "request_last_id": "60",
+        "response_last_id": "80",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page4.json",
+        "fetched_at": "2026-10-18T06:17:29.209410+00:00"
+      },
+      {
+        "page": 5,
+        "request_last_id": "80",
+        "response_last_id": "100",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page5.json",
+        "fetched_at": "2026-10-18T06:17:31.526024+00:00"
+      }
+    ]
+  },
+  "finished_at": "2026-10-18T06:17:31.526024+00:00"
+}

@@ -1,0 +1,214 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110747376478867456",
+          "uid": "326715067",
+          "r_uid": "336475740",
+          "content": "哈哈哈哈哈哈",
+          "f_forum_id": 28,
+          "f_reply_id": "2110624150511415296",
+          "floor_id": 810,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792076365,
+          "updated_at": 1792076365,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"哈哈哈哈哈哈\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "326715067",
+          "nickname": "温迪打丘丘",
+          "introduce": "",
+          "avatar": "101371",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 2458
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2024/09/29/44edd3e903f63ab06974aeaa6194408b_5998729106189691236.png",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2022/09/28/876e62fb1fdfba3267c90fe364a5ae4e_1594369066719402876.png",
+          "ip_region": "湖南",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 2,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "336475740",
+          "nickname": "夕1010",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 52458
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/12/19/336475740/6e2c5f65305861f691a41dbfccd94886_7662138212768689730.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2026/08/24/86e6b77a15326a19555834c51dda259d_9217306430324449507.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110847980414586880",
+          "uid": "74149350",
+          "r_uid": "336475740",
+          "content": "大家一直都对原魔斗蛐蛐挺感兴趣的",
+          "f_forum_id": 28,
+          "f_reply_id": "2110624150511415296",
+          "floor_id": 810,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792100350,
+          "updated_at": 1792100351,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"大家一直都对原魔斗蛐蛐挺感兴趣的\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "74149350",
+          "nickname": "许我笔墨绘你倾城颜",
+          "introduce": "",
+          "avatar": "100162",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 15,
+            "exp": 35159
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/97734c89374997c7c87d5af5f7442171.png",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2020/08/19/3435a14ebb7af0a70cfe07c53a921b30_1956186495542818369.png",
+          "ip_region": "浙江",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 7,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "336475740",
+          "nickname": "夕1010",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 52458
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/12/19/336475740/6e2c5f65305861f691a41dbfccd94886_7662138212768689730.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2026/08/24/86e6b77a15326a19555834c51dda259d_9217306430324449507.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110847980414586881",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

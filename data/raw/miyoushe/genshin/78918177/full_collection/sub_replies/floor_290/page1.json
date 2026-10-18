@@ -1,0 +1,154 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110597558103126016",
+          "uid": "302828487",
+          "r_uid": "302828487",
+          "content": "可是投了75给圣骸兽",
+          "f_forum_id": 28,
+          "f_reply_id": "2110597428997369856",
+          "floor_id": 290,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792040645,
+          "updated_at": 1792040648,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"可是投了75给圣骸兽\"},{\"insert\":{\"backup_text\":\"[自定义表情]\",\"custom_emoticon\":{\"id\":\"91408\",\"url\":\"https://upload-bbs.miyoushe.com/upload/2026/08/11/337258556/a3b73af38b94387caf12a8765269e8d9_797953108796080731.gif\",\"size\":{\"width\":200,\"height\":200},\"is_available\":true,\"hash\":\"01ffc24550c556d82233acbc25e06f4742e6d846\"}}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "302828487",
+          "nickname": "余于我尚可",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 2761
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2025/06/23/2dbbc2032b04dbc77879e70b5c920054_6707090509695643556.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2023/09/27/549f1034c4ef45c3d17dc1fd5773a601_824798917743388249.png",
+          "ip_region": "河南",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 3,
+            "avatar_assets_id": "1936998273227206656",
+            "resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2025/06/23/077bead2663890a66b850914f2c3ecc1_3972689222127865108.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2025/06/23/4ef94a6253547b6cca4e17f3af67f9fb_1026593939077315218.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2025/06/23/0a623f4eec95e449f2cc53e058813fe6_8057789301513612983.png"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2025/06/23/2dbbc2032b04dbc77879e70b5c920054_6707090509695643556.png"
+              }
+            ],
+            "hd_resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2025/06/23/f793df9b1532afc8c1fb6675e94cbc78_4993996397153239227.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2025/06/23/26b01d70b2707d437c872794b8c47d60_3297409362611617101.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2025/06/23/392d4935ff97a2e15a93f970d7ff1c7f_884320941117871135.png"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2025/06/23/2dbbc2032b04dbc77879e70b5c920054_6707090509695643556.png"
+              }
+            ]
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1834881512797941760",
+            "bg_color": "aaf1ea",
+            "url": "https://bbs-static.miyoushe.com/static/2024/09/14/63a821b875d0ee7ee8dd31b69b33be07_6222716952225731052.png",
+            "name": "原神「四周年赠礼-钟离」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "302828487",
+          "nickname": "余于我尚可",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 2761
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2025/06/23/2dbbc2032b04dbc77879e70b5c920054_6707090509695643556.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2023/09/27/549f1034c4ef45c3d17dc1fd5773a601_824798917743388249.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110597558103126017",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

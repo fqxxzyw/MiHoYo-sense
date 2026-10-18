@@ -1,0 +1,22 @@
+{
+  "kind": "post_discovery",
+  "source": "webHome/recommended_posts",
+  "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+  "request_params": {
+    "gids": 2,
+    "page": 1,
+    "page_size": 20
+  },
+  "started_at": "2026-10-18T07:26:50.344160+00:00",
+  "status": "discovered",
+  "raw_file": "webHome_page1.json",
+  "task_file": "discovered_posts.json",
+  "pagination_verified": false,
+  "collection_started": false,
+  "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+  "record_count": 15,
+  "unique_post_count": 15,
+  "duplicate_records": 0,
+  "stop_reason": "仅请求第 1 页；列表翻页规则尚未验证",
+  "finished_at": "2026-10-18T07:26:52.556152+00:00"
+}

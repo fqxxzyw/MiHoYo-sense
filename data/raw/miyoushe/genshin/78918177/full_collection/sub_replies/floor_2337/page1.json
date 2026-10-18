@@ -1,0 +1,120 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111354741935722496",
+          "uid": "325884826",
+          "r_uid": "216205645",
+          "content": "天台嘉宾一位",
+          "f_forum_id": 28,
+          "f_reply_id": "2111340655281958912",
+          "floor_id": 2337,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792221172,
+          "updated_at": 1792221175,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"天台嘉宾一位\"},{\"insert\":{\"backup_text\":\"[自定义表情]\",\"custom_emoticon\":{\"id\":\"88759\",\"url\":\"https://upload-bbs.miyoushe.com/upload/2026/10/17/325884826/b36b5d4a99c6f4b78d0a4a31bc9cbd69_4532859815634579348.png\",\"size\":{\"width\":1271,\"height\":902,\"file_size\":1083683},\"is_available\":true,\"hash\":\"5c8e100d18b74c3af90fa13e722bee70cda1d4ef\"}}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "325884826",
+          "nickname": "幽蝶引渡",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 9,
+            "exp": 11093
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/05/13/325884826/ebc58050061bc7cf40f3913a1d3c7262_7287211146361532924.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2025/11/24/2d50afa5bc59d635480229e0a4a1b23a_4083469654954682105.png",
+          "ip_region": "新疆",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2104484128677183488",
+            "bg_color": "ffffff",
+            "url": "https://bbs-static.miyoushe.com/static/2026/09/28/f7935bf44f809e7c56496bb3ed8e41b7_6899652797149700012.png",
+            "name": "「原神六周年快乐！」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 1,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "216205645",
+          "nickname": "茶餐厅123",
+          "introduce": "",
+          "avatar": "1",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 5,
+            "exp": 1359
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/avatar/avatar1.png",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2111354741935722497",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

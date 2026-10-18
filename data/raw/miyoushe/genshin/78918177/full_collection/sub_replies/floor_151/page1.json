@@ -1,0 +1,464 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110590153270398976",
+          "uid": "341924893",
+          "r_uid": "387799402",
+          "content": "大馋小子，想吃直说",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586350939615232",
+          "floor_id": 151,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792038880,
+          "updated_at": 1792038886,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"大馋小子，想吃直说\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "341924893",
+          "nickname": "A芙芙宁娜",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 44095
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2025/12/22/0170a53c1f5eb5db3ae8616513cb64bd_8953540416449181199.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2024/06/17/1f87d9bef2da2375acb0b3035e5ff732_1234937030711868947.png",
+          "ip_region": "江西",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 3,
+            "avatar_assets_id": "2003020799727951872",
+            "resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2025/12/22/ae0198f7f942cbeecc367e570c74cc25_671101449471804047.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2025/12/22/a6e60328f2d4dbf5785d04dd27194fa6_2069503313059881721.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2025/12/22/bc3ff7728f5924d213e71f0ade15e247_2425222437274854251.png"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2025/12/22/0170a53c1f5eb5db3ae8616513cb64bd_8953540416449181199.png"
+              }
+            ],
+            "hd_resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2025/12/22/2b7c63b8d0bdf956ee5e8b04db403ad7_5928253525582704110.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2025/12/22/6c1da5e5b04583b99ff5542a695f19db_1079381538343371170.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2025/12/22/0170a53c1f5eb5db3ae8616513cb64bd_450133724412110645.png"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2025/12/22/0170a53c1f5eb5db3ae8616513cb64bd_8953540416449181199.png"
+              }
+            ]
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2072221339707564032",
+            "bg_color": "093055",
+            "url": "https://bbs-static.miyoushe.com/static/2026/07/01/b4cd5c2fd8af4ed5e3cd4d20c8842aa5_6746956759739963046.png",
+            "name": "「哥伦比娅」评论装扮",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 30,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "387799402",
+          "nickname": "可爱即正义Glly",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 71966
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/01/29/387799402/9da78c05e0dcf337525ba7bb08f3a312_68671058280598101.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2025/01/06/5fabe8c0915b8ffeff8aecb6e9b72330_3158213953064466992.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110819870387654656",
+          "uid": "296683661",
+          "r_uid": "387799402",
+          "content": "横批，不委屈自己",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586350939615232",
+          "floor_id": 151,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792093648,
+          "updated_at": 1792093649,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"横批，不委屈自己\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "296683661",
+          "nickname": "凯亚大宝贝",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 2,
+            "exp": 80
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/09/29/296683661/f58276e57840077132c7213cf695c931_1229505273446347712.png",
+          "pendant": "",
+          "ip_region": "重庆",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 3,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "387799402",
+          "nickname": "可爱即正义Glly",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 71966
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/01/29/387799402/9da78c05e0dcf337525ba7bb08f3a312_68671058280598101.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2025/01/06/5fabe8c0915b8ffeff8aecb6e9b72330_3158213953064466992.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111239833756905472",
+          "uid": "182952250",
+          "r_uid": "387799402",
+          "content": "平手吃华莱士_(星谷米游姬-我吃一口)",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586350939615232",
+          "floor_id": 151,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792193775,
+          "updated_at": 1792193780,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"平手吃华莱士_(星谷米游姬-我吃一口)\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "182952250",
+          "nickname": "魶白",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 7,
+            "exp": 6230
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2023/12/24/182952250/2c1b68b87dc3b34dffdade964a068540_4909339043114324734.png",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2020/08/19/3435a14ebb7af0a70cfe07c53a921b30_1956186495542818369.png",
+          "ip_region": "山西",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 1,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "387799402",
+          "nickname": "可爱即正义Glly",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 71966
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/01/29/387799402/9da78c05e0dcf337525ba7bb08f3a312_68671058280598101.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2025/01/06/5fabe8c0915b8ffeff8aecb6e9b72330_3158213953064466992.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111247158297522176",
+          "uid": "387799402",
+          "r_uid": "182952250",
+          "content": "吃塔斯汀_(偶像姬_糖葫芦)",
+          "f_forum_id": 28,
+          "f_reply_id": "2111239833756905472",
+          "floor_id": 151,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792195522,
+          "updated_at": 1792195522,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"吃塔斯汀_(偶像姬_糖葫芦)\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "387799402",
+          "nickname": "可爱即正义Glly",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 71966
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/01/29/387799402/9da78c05e0dcf337525ba7bb08f3a312_68671058280598101.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2025/01/06/5fabe8c0915b8ffeff8aecb6e9b72330_3158213953064466992.png",
+          "ip_region": "江西",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2016825437925195776",
+            "bg_color": "fde2df",
+            "url": "https://bbs-static.miyoushe.com/static/2026/01/29/cf0866a9d21722f939dda4489b95ddc9_531946969762495398.png",
+            "name": "绝区零「妄想启动！」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "182952250",
+          "nickname": "魶白",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 7,
+            "exp": 6230
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2023/12/24/182952250/2c1b68b87dc3b34dffdade964a068540_4909339043114324734.png",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2020/08/19/3435a14ebb7af0a70cfe07c53a921b30_1956186495542818369.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2111247158297522177",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

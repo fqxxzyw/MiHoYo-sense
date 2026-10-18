@@ -1,0 +1,22 @@
+{
+  "checked_at": "2026-10-18T07:26:52.628454+00:00",
+  "run_dir": "D:\\soft\\python\\NLP\\HoYoSense\\data\\raw\\miyoushe\\genshin\\_discovery\\20261018_072650_344160_UTC",
+  "network_requests": [
+    {
+      "url": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      }
+    }
+  ],
+  "raw_record_count": 15,
+  "unique_post_count": 15,
+  "duplicate_records": 0,
+  "previous_json_files_checked": 532,
+  "previous_json_files_unchanged": true,
+  "batch_comment_collection_started": false,
+  "pagination_verified": false,
+  "tests_passed": 16
+}

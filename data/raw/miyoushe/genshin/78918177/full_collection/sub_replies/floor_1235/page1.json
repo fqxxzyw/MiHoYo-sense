@@ -1,0 +1,252 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110688919764619264",
+          "uid": "411020030",
+          "r_uid": "411020030",
+          "content": "",
+          "f_forum_id": 28,
+          "f_reply_id": "2110688900278865920",
+          "floor_id": 1235,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792062427,
+          "updated_at": 1792062430,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":{\"image\":\"https://upload-bbs.miyoushe.com/upload/2026/10/15/411020030/d2a9b6ba6aa54f235ab254f22967c07f_214072068430674338.jpg\"},\"attributes\":{\"height\":720,\"width\":1600}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "411020030",
+          "nickname": "我不会起名195732468",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 15,
+            "exp": 37809
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2024/05/07/411020030/07150f7f94f4eca046f97a7831e8d6f8_5404684672939382137.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2024/11/25/72810809c68e47d239603d547ad17feb_1608081475910666114.png",
+          "ip_region": "河南",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1978420060573749248",
+            "bg_color": "f6ecdb",
+            "url": "https://bbs-static.miyoushe.com/static/2025/10/15/3db24dc9c328090fb727fc18eaf44e30_5827859066148855487.png",
+            "name": "绘幻师",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 1,
+          "like_num": 1,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [
+          {
+            "url": "https://upload-bbs.miyoushe.com/upload/2026/10/15/411020030/d2a9b6ba6aa54f235ab254f22967c07f_214072068430674338.jpg",
+            "height": 720,
+            "width": 1600,
+            "format": "jpg",
+            "size": "215014",
+            "image_id": "261723625",
+            "entity_type": "IMG_ENTITY_REPLY",
+            "entity_id": "2110688919764619264",
+            "is_deleted": false
+          }
+        ],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "411020030",
+          "nickname": "我不会起名195732468",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 15,
+            "exp": 37809
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2024/05/07/411020030/07150f7f94f4eca046f97a7831e8d6f8_5404684672939382137.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2024/11/25/72810809c68e47d239603d547ad17feb_1608081475910666114.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110688940002791424",
+          "uid": "411020030",
+          "r_uid": "411020030",
+          "content": "",
+          "f_forum_id": 28,
+          "f_reply_id": "2110688919764619264",
+          "floor_id": 1235,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792062432,
+          "updated_at": 1792062435,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":{\"image\":\"https://upload-bbs.miyoushe.com/upload/2026/10/15/411020030/28b7c1299217f39cd1ac7f5ca6066989_3666665774203294879.jpg\"},\"attributes\":{\"height\":720,\"width\":1600}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "411020030",
+          "nickname": "我不会起名195732468",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 15,
+            "exp": 37809
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2024/05/07/411020030/07150f7f94f4eca046f97a7831e8d6f8_5404684672939382137.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2024/11/25/72810809c68e47d239603d547ad17feb_1608081475910666114.png",
+          "ip_region": "河南",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1978420060573749248",
+            "bg_color": "f6ecdb",
+            "url": "https://bbs-static.miyoushe.com/static/2025/10/15/3db24dc9c328090fb727fc18eaf44e30_5827859066148855487.png",
+            "name": "绘幻师",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 1,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [
+          {
+            "url": "https://upload-bbs.miyoushe.com/upload/2026/10/15/411020030/28b7c1299217f39cd1ac7f5ca6066989_3666665774203294879.jpg",
+            "height": 720,
+            "width": 1600,
+            "format": "jpg",
+            "size": "214561",
+            "image_id": "261723626",
+            "entity_type": "IMG_ENTITY_REPLY",
+            "entity_id": "2110688940002791424",
+            "is_deleted": false
+          }
+        ],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "411020030",
+          "nickname": "我不会起名195732468",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 15,
+            "exp": 37809
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2024/05/07/411020030/07150f7f94f4eca046f97a7831e8d6f8_5404684672939382137.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2024/11/25/72810809c68e47d239603d547ad17feb_1608081475910666114.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110688940002791425",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

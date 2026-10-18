@@ -1,0 +1,120 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111078145652199424",
+          "uid": "402562645",
+          "r_uid": "400061792",
+          "content": "真绝望_(米游姬-呆滞)",
+          "f_forum_id": 28,
+          "f_reply_id": "2111055713891176448",
+          "floor_id": 2142,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792155226,
+          "updated_at": 1792155226,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"真绝望_(米游姬-呆滞)\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "402562645",
+          "nickname": "芋圆啦love",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 3,
+            "exp": 374
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/07/15/402562645/a04ea53f857b56dfa21f17c456064c95_5657732224068068024.jpg",
+          "pendant": "https://bbs-static.miyoushe.com/static/2025/04/26/bd5bc9d050bbf3ee4362bc124a9bb508_1667976449109998389.png",
+          "ip_region": "陕西",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1807967381478285312",
+            "bg_color": "f6f6f6",
+            "url": "https://bbs-static.miyoushe.com/static/2024/07/02/a865e1251ca78fbf4234bfdf9a2d7a56_8055954014184177150.png",
+            "name": "绝区零开服纪念评论装扮",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "400061792",
+          "nickname": "君踏墨竹归",
+          "introduce": "",
+          "avatar": "100276",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 2,
+            "exp": 112
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/8cb8be7ef963882482385aeee6c803df.png",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2111078145652199425",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

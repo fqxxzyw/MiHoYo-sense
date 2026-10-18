@@ -1,0 +1,30 @@
+{
+  "floor_id": 35,
+  "pages_saved": 2,
+  "unique_sub_replies": 40,
+  "stop_reason": "达到楼中楼页数上限",
+  "pages": [
+    {
+      "page": 1,
+      "request_last_id": null,
+      "response_last_id": "2110599200696823809",
+      "record_count": 20,
+      "new_count": 20,
+      "duplicate_count": 0,
+      "is_last": false,
+      "file": "page1.json",
+      "fetched_at": "2026-10-18T06:26:49.479274+00:00"
+    },
+    {
+      "page": 2,
+      "request_last_id": "2110599200696823809",
+      "response_last_id": "2110605758023241729",
+      "record_count": 20,
+      "new_count": 20,
+      "duplicate_count": 0,
+      "is_last": false,
+      "file": "page2.json",
+      "fetched_at": "2026-10-18T06:26:51.788270+00:00"
+    }
+  ]
+}

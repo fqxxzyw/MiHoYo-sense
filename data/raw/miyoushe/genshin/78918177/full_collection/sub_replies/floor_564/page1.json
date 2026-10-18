@@ -1,0 +1,113 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110613034945040384",
+          "uid": "453377286",
+          "r_uid": "285047821",
+          "content": "是右边4个史莱姆，左边4个小宝",
+          "f_forum_id": 28,
+          "f_reply_id": "2110605055755046912",
+          "floor_id": 564,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792044335,
+          "updated_at": 1792044335,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"是右边4个史莱姆，左边4个小宝\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "453377286",
+          "nickname": "枫原万叶何时复刻",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 10,
+            "exp": 11703
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/09/27/453377286/5b5a487c8dde9d106aeec872d758af5f_3334879789987093512.png",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2020/08/19/3435a14ebb7af0a70cfe07c53a921b30_1956186495542818369.png",
+          "ip_region": "广西",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "285047821",
+          "nickname": "林屿汐moyuer",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 16,
+            "exp": 58733
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/05/02/285047821/b1a85482548896d192465077dc887d56_5736818853225489349.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2024/04/24/8120eb2455d8c610434994155d39b81c_1198217919422859637.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110613034945040385",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

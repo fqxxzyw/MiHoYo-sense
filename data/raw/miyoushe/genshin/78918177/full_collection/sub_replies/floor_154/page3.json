@@ -1,0 +1,969 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110992917939769344",
+          "uid": "333342262",
+          "r_uid": "274992530",
+          "content": "评论区黄维风评被害",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586466089136128",
+          "floor_id": 154,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792134906,
+          "updated_at": 1792134907,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"评论区黄维风评被害\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "333342262",
+          "nickname": "战神梦比优斯",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 9,
+            "exp": 10183
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2024/12/20/3b9dfb31cc399a37b8ff22d25a9039ae_3574784973263992845.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2023/09/27/549f1034c4ef45c3d17dc1fd5773a601_824798917743388249.png",
+          "ip_region": "福建",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 3,
+            "avatar_assets_id": "1870055505423032320",
+            "resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2024/12/20/310f79e27be98bbe74b1472963b43c7c_7907145673098554809.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2024/12/20/de87aa7c9a8725a5bc901576d07b4b97_7616860437456084562.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2024/12/20/31c98da5201322dc8404f572b64cc37d_3041255423462155359.png"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2024/12/20/3b9dfb31cc399a37b8ff22d25a9039ae_3574784973263992845.png"
+              }
+            ],
+            "hd_resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2024/12/20/a5909488d53eacd344b7138026211f62_8091472563999052491.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2024/12/20/e726d0370e63c32fde23d47b7435be3a_6929152375013027518.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2024/12/20/05fb68128b18a443e231f5c3af21bc6d_6736289251687638970.png"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2024/12/20/3b9dfb31cc399a37b8ff22d25a9039ae_3574784973263992845.png"
+              }
+            ]
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1834862444179144704",
+            "bg_color": "e6f5fc",
+            "url": "https://bbs-static.miyoushe.com/static/2024/09/14/c30aa968833e0dfdf92426ad337f010a_6082219434330059692.png",
+            "name": "崩坏3八周年",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "274992530",
+          "nickname": "大龙王护士长",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 12,
+            "exp": 22113
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/02/13/274992530/95f7b5cb8058f665a4fd1484139bb3c3_4178927161850898420.jpg",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111027013068681216",
+          "uid": "332551338",
+          "r_uid": "274992530",
+          "content": "必须审判！",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586466089136128",
+          "floor_id": 154,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792143035,
+          "updated_at": 1792143038,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"必须审判！\"},{\"insert\":{\"image\":\"https://upload-bbs.miyoushe.com/upload/2026/10/16/332551338/421bcbfb039dc8cf833b3b811ab06a6b_4637209839197974585.jpg\"},\"attributes\":{\"height\":2147,\"width\":960}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "332551338",
+          "nickname": "小心小新点",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 7,
+            "exp": 4864
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2026/07/29/cb77dd29dca17272ced7a103be1081b3_511742456237805521.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2024/03/07/aa45e13c57e6342d5ea099404d9dfa98_4542939529123678087.png",
+          "ip_region": "山东",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 3,
+            "avatar_assets_id": "2082371872497917952",
+            "resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2026/07/29/2e8196d41cfedd45aa5b4a9310c27bda_4509930227055002262.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2026/07/29/503af03530cabdc02b4de5b2df300264_4331236638255220909.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2026/07/29/fff72e69edc2831cbfd07106430286b9_2960685046579429448.png"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2026/07/29/cb77dd29dca17272ced7a103be1081b3_511742456237805521.png"
+              }
+            ],
+            "hd_resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2026/07/29/7d0c17c257b8bcb2583e663afc6d5d9a_3479328869213206638.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2026/07/29/59867b424206662f6155412287c764c9_2986066777411858544.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2026/07/29/cb77dd29dca17272ced7a103be1081b3_1047104477282072561.png"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2026/07/29/cb77dd29dca17272ced7a103be1081b3_511742456237805521.png"
+              }
+            ]
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2104484128677183488",
+            "bg_color": "ffffff",
+            "url": "https://bbs-static.miyoushe.com/static/2026/09/28/f7935bf44f809e7c56496bb3ed8e41b7_6899652797149700012.png",
+            "name": "「原神六周年快乐！」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 1,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [
+          {
+            "url": "https://upload-bbs.miyoushe.com/upload/2026/10/16/332551338/421bcbfb039dc8cf833b3b811ab06a6b_4637209839197974585.jpg",
+            "height": 2147,
+            "width": 960,
+            "format": "jpg",
+            "size": "370122",
+            "image_id": "261763230",
+            "entity_type": "IMG_ENTITY_REPLY",
+            "entity_id": "2111027013068681216",
+            "is_deleted": false
+          }
+        ],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "274992530",
+          "nickname": "大龙王护士长",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 12,
+            "exp": 22113
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/02/13/274992530/95f7b5cb8058f665a4fd1484139bb3c3_4178927161850898420.jpg",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111080155793747968",
+          "uid": "348466319",
+          "r_uid": "274992530",
+          "content": "你说深渊一期一期一期，来过多少个旅行者了，改过不啦，换汤不换药啊。人家史莱姆也有理由说的，我打的什么对手，第三降临者啊，你这批是什么对手？你让我输？圣骇兽现在什么水平？就这么点输出，雷蝎什么的都在输出，他能赢吗？赢不了，没这个能力知道吧！再这样下去要输丘丘人了，输完丘丘人在输野猪输团雀，接下来没得输了_(抱大腿)",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586466089136128",
+          "floor_id": 154,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792155705,
+          "updated_at": 1792155711,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"你说深渊一期一期一期，来过多少个旅行者了，改过不啦，换汤不换药啊。人家史莱姆也有理由说的，我打的什么对手，第三降临者啊，你这批是什么对手？你让我输？圣骇兽现在什么水平？就这么点输出，雷蝎什么的都在输出，他能赢吗？赢不了，没这个能力知道吧！再这样下去要输丘丘人了，输完丘丘人在输野猪输团雀，接下来没得输了_(抱大腿)\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "348466319",
+          "nickname": "老王的楼下小张",
+          "introduce": "",
+          "avatar": "100293",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 3293
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/77b466232303de73e16cadb5271d9ae2.png",
+          "pendant": "",
+          "ip_region": "广东",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "274992530",
+          "nickname": "大龙王护士长",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 12,
+            "exp": 22113
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/02/13/274992530/95f7b5cb8058f665a4fd1484139bb3c3_4178927161850898420.jpg",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111107384098484224",
+          "uid": "278461481",
+          "r_uid": "306888997",
+          "content": "是的，圣骸兽输的原因不止一个，一是火鸟大招大多数打到了火史莱姆上，导致其他史莱姆血量过多，雷蝎子不能更快攻击火史莱姆\n二是过载反应是火属性伤害，所以雷火都可以触发，超载的情况下，只能对雷史莱姆造成伤害，火史莱姆活到最后是非常正常的\n三是雷蝎子打火史莱姆的时候，没去密集的地方打群伤，也没有攻击完血量最高的火史莱姆后再去打血量第二高的，导致最后一个史莱姆的血量百分比比雷蝎子要高，因此就输了\n很多人都说雷蝎子做的不好，其实根本不能把所有原因或根本原因归在他身上",
+          "f_forum_id": 28,
+          "f_reply_id": "2110589489309159424",
+          "floor_id": 154,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792162197,
+          "updated_at": 1792163202,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"是的，圣骸兽输的原因不止一个，一是火鸟大招大多数打到了火史莱姆上，导致其他史莱姆血量过多，雷蝎子不能更快攻击火史莱姆\\r\\n二是过载反应是火属性伤害，所以雷火都可以触发，超载的情况下，只能对雷史莱姆造成伤害，火史莱姆活到最后是非常正常的\\r\\n三是雷蝎子打火史莱姆的时候，没去密集的地方打群伤，也没有攻击完血量最高的火史莱姆后再去打血量第二高的，导致最后一个史莱姆的血量百分比比雷蝎子要高，因此就输了\\r\\n很多人都说雷蝎子做的不好，其实根本不能把所有原因或根本原因归在他身上\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "278461481",
+          "nickname": "大鲸鱼啦",
+          "introduce": "",
+          "avatar": "100057",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 7,
+            "exp": 5860
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/222b847170feb3f2babcc1bd4f0e30dd.png",
+          "pendant": "",
+          "ip_region": "湖北",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "306888997",
+          "nickname": "哎诶嘿哎",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 9,
+            "exp": 8896
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2024/06/12/3ff8f7035fa1d5166b3e15d5c6d2c5b1_2315574946320395362.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2025/01/20/c0918f103c8e555a60789d58f4b2fbc7_1559815521394451753.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111112937701265408",
+          "uid": "404477861",
+          "r_uid": "274992530",
+          "content": "气死我了，就不说在深渊里面他们到底难不难打吧？就说七神召唤我是一次都没打过他们，我当时看到这个配组，我还以为那两个兽赢定了，结果一看结局直接气笑了好吧",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586606480134144",
+          "floor_id": 154,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792163521,
+          "updated_at": 1792163522,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"气死我了，就不说在深渊里面他们到底难不难打吧？就说七神召唤我是一次都没打过他们，我当时看到这个配组，我还以为那两个兽赢定了，结果一看结局直接气笑了好吧\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "404477861",
+          "nickname": "小说主角控一位",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 3749
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/08/15/404477861/d5d9ae7e1ecf262805812e5a1b19f0e2_3558416502267330772.jpg",
+          "pendant": "https://upload-bbs.miyoushe.com/upload/2022/12/21/8bbaf934a8e56b8a65302666cb2699dd_6451779866321514249.png",
+          "ip_region": "广东",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2104484128677183488",
+            "bg_color": "ffffff",
+            "url": "https://bbs-static.miyoushe.com/static/2026/09/28/f7935bf44f809e7c56496bb3ed8e41b7_6899652797149700012.png",
+            "name": "「原神六周年快乐！」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "274992530",
+          "nickname": "大龙王护士长",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 12,
+            "exp": 22113
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/02/13/274992530/95f7b5cb8058f665a4fd1484139bb3c3_4178927161850898420.jpg",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111154578836434944",
+          "uid": "350596293",
+          "r_uid": "274992530",
+          "content": "火鸟也没好哪去，大招全打在火史莱姆上了",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586606480134144",
+          "floor_id": 154,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792173449,
+          "updated_at": 1792173450,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"火鸟也没好哪去，大招全打在火史莱姆上了\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "350596293",
+          "nickname": "水汇泽木聚林",
+          "introduce": "",
+          "avatar": "100623",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 3,
+            "exp": 174
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/c9947a19d1f9f1a8ad95d478957f6438.png",
+          "pendant": "",
+          "ip_region": "广东",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "274992530",
+          "nickname": "大龙王护士长",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 12,
+            "exp": 22113
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/02/13/274992530/95f7b5cb8058f665a4fd1484139bb3c3_4178927161850898420.jpg",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111485513625088000",
+          "uid": "336361593",
+          "r_uid": "274992530",
+          "content": "_(星谷米游姬-我吃一口)",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586466089136128",
+          "floor_id": 154,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792252350,
+          "updated_at": 1792252351,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"_(星谷米游姬-我吃一口)\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "336361593",
+          "nickname": "xjy雨",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 14,
+            "exp": 28535
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2023/11/08/a48770afd62912cb5ce812ad36abea71_84818212835964635.png",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2021/02/25/e2097bca0f876603da4e827b177ceb5b_9203099957697765848.png",
+          "ip_region": "广东",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 3,
+            "avatar_assets_id": "1722153064690900992",
+            "resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2023/11/08/7cb76d022dcdbb91695b260bcfdf0a62_5491110279282363470.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2023/11/08/44b81353a05d91c8871be0a858256b02_2510758376857182063.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2023/11/09/7cb76d022dcdbb91695b260bcfdf0a62_4749101757649642907.gif"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2023/11/08/a48770afd62912cb5ce812ad36abea71_84818212835964635.png"
+              }
+            ],
+            "hd_resources": [
+              {
+                "format": 3,
+                "url": "https://bbs-static.miyoushe.com/static/2023/11/08/dc86411d585d2ec12dc510b5f178f189_7015877391112195394.gif"
+              },
+              {
+                "format": 1,
+                "url": "https://bbs-static.miyoushe.com/static/2023/11/08/8110090a65e7294965048178ec9815ea_6726471948731559748.webp"
+              },
+              {
+                "format": 2,
+                "url": "https://bbs-static.miyoushe.com/static/2023/11/09/dc86411d585d2ec12dc510b5f178f189_4694681991618719161.gif"
+              },
+              {
+                "format": 4,
+                "url": "https://bbs-static.miyoushe.com/static/2023/11/08/a48770afd62912cb5ce812ad36abea71_84818212835964635.png"
+              }
+            ]
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "1834882045956894720",
+            "bg_color": "a9854a",
+            "url": "https://bbs-static.miyoushe.com/static/2024/09/14/600f23e85b2706bcdd7f0aeda5fac5c3_8572856567402507387.png",
+            "name": "原神「四周年赠礼-芙宁娜」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "274992530",
+          "nickname": "大龙王护士长",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 12,
+            "exp": 22113
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/02/13/274992530/95f7b5cb8058f665a4fd1484139bb3c3_4178927161850898420.jpg",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2111639928985513984",
+          "uid": "327389950",
+          "r_uid": "274992530",
+          "content": "火鸟开局技能全打在火史莱姆上了",
+          "f_forum_id": 28,
+          "f_reply_id": "2110586606480134144",
+          "floor_id": 154,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792289166,
+          "updated_at": 1792289168,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"火鸟开局技能全打在火史莱姆上了\"},{\"insert\":{\"backup_text\":\"[自定义表情]\",\"custom_emoticon\":{\"id\":\"45163\",\"url\":\"https://upload-bbs.miyoushe.com/upload/2025/06/11/358554470/e812cfc253933b3ce78d2d49e78c4174_6607502335519139982.jpg\",\"size\":{\"width\":1282,\"height\":801,\"file_size\":179799},\"is_available\":true,\"hash\":\"9345a47f12d731fd5ccbe0cf3a86a281004d2c8a\"}}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "327389950",
+          "nickname": "伊毕裘",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 3066
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/09/23/327389950/5fefe60700ca51eea1b7076f72ce54c3_4702202417036414662.jpg",
+          "pendant": "",
+          "ip_region": "浙江",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2104484128677183488",
+            "bg_color": "ffffff",
+            "url": "https://bbs-static.miyoushe.com/static/2026/09/28/f7935bf44f809e7c56496bb3ed8e41b7_6899652797149700012.png",
+            "name": "「原神六周年快乐！」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 1,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "274992530",
+          "nickname": "大龙王护士长",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 12,
+            "exp": 22113
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/02/13/274992530/95f7b5cb8058f665a4fd1484139bb3c3_4178927161850898420.jpg",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2111639928985513985",
+    "is_last": false,
+    "has_previous": true,
+    "post_owner_uid": "75276539"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110588382499065856",
+          "uid": "342359795",
+          "r_uid": "159252321",
+          "content": "其实打火枪也没问题，主要是他又回头，但凡他打了火枪，最后靠扣血也能赢的，来回跑不打人就纯演",
+          "f_forum_id": 28,
+          "f_reply_id": "2110585164572340224",
+          "floor_id": 131,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792038457,
+          "updated_at": 1792039195,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"其实打火枪也没问题，主要是他又回头，但凡他打了火枪，最后靠扣血也能赢的，来回跑不打人就纯演\"},{\"insert\":{\"backup_text\":\"[自定义表情]\",\"custom_emoticon\":{\"id\":\"78493\",\"url\":\"https://upload-bbs.miyoushe.com/upload/2026/07/28/342359795/300ff1a9ea2427b5046a523dfca9339d_7651883505403218959.jpg\",\"size\":{\"width\":512,\"height\":481,\"file_size\":21664},\"is_available\":true,\"hash\":\"1b9a76b45dc2c3c57c1c0789f78f62b6136a447a\"}}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "342359795",
+          "nickname": "情子大魔王",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 11,
+            "exp": 15752
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/10/06/342359795/bf8d8fad34704eee3bacdb653d518a90_5060084478212676353.jpg",
+          "pendant": "",
+          "ip_region": "江西",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2087481624768815104",
+            "bg_color": "ffffff",
+            "url": "https://bbs-static.miyoushe.com/static/2026/08/12/df64592fe473b35b3e3ff946e20c6f43_6857963796815923460.png",
+            "name": "原神「奥黛塔」",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 1,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "159252321",
+          "nickname": "老婆刻晴吖",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 14,
+            "exp": 31652
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/static/2024/04/18/7cacd81448c6179a4b0d9f50d2dcdc77_3852975797492824176.png",
+          "pendant": "https://bbs-static.miyoushe.com/static/2024/05/28/f9887c4bf8369df2eeba59fd2e44fd15_6382278922250170691.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110588382499065857",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110662316373405696",
+          "uid": "350098962",
+          "r_uid": "295701998",
+          "content": "有的有的，兄弟有的",
+          "f_forum_id": 28,
+          "f_reply_id": "2110662047248961536",
+          "floor_id": 1067,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792056085,
+          "updated_at": 1792056087,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"有的有的，兄弟有的\"},{\"insert\":{\"backup_text\":\"[自定义表情]\",\"custom_emoticon\":{\"id\":\"79752\",\"url\":\"https://upload-bbs.miyoushe.com/upload/2026/06/22/350098962/03c1ada5967e9149c02cb61792dbfa55_7588362845913255261.png\",\"size\":{\"width\":126,\"height\":126,\"file_size\":15564},\"is_available\":true,\"hash\":\"e006f50cae50548e73f4e420892e5ce657638806\"}}}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "350098962",
+          "nickname": "鎮淵",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 5,
+            "exp": 1401
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/04/01/350098962/663b39674cdeea9fe26238a0c9156e56_8697982848253396756.jpg",
+          "pendant": "https://bbs-static.miyoushe.com/static/2023/09/27/549f1034c4ef45c3d17dc1fd5773a601_824798917743388249.png",
+          "ip_region": "广东",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": {
+            "assets_id": "2072221339707564032",
+            "bg_color": "093055",
+            "url": "https://bbs-static.miyoushe.com/static/2026/07/01/b4cd5c2fd8af4ed5e3cd4d20c8842aa5_6746956759739963046.png",
+            "name": "「哥伦比娅」评论装扮",
+            "animation_effects_gif_url": "",
+            "animation_effects_pag_url": ""
+          }
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 0,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "295701998",
+          "nickname": "广东这十年",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 5,
+            "exp": 1455
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2026/05/10/295701998/2cf39bad3360ad71c7e230ec0f8339f3_5457568004140870734.jpg",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110662316373405697",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

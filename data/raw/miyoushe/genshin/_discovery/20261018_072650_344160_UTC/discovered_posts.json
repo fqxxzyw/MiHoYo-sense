@@ -1,0 +1,286 @@
+{
+  "source": "webHome/recommended_posts",
+  "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+  "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+  "request_params": {
+    "gids": 2,
+    "page": 1,
+    "page_size": 20
+  },
+  "raw_file": "webHome_page1.json",
+  "record_count": 15,
+  "unique_post_count": 15,
+  "duplicate_records": 0,
+  "tasks": [
+    {
+      "post_id": "78918177",
+      "subject": "八强即将出炉！欢迎收看「判测胜券本征」名场面集锦",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        1
+      ]
+    },
+    {
+      "post_id": "78879329",
+      "subject": "7.1版本活动祈愿预告第二期",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        2
+      ]
+    },
+    {
+      "post_id": "78864131",
+      "subject": "「往冥府的安魂歌」7.1版本活动速递第二期",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        3
+      ]
+    },
+    {
+      "post_id": "78859376",
+      "subject": "原神测试玩家招募开启",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        4
+      ]
+    },
+    {
+      "post_id": "78859378",
+      "subject": "「判测胜券本征」活动现已开启，参与即得原石奖励！",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        5
+      ]
+    },
+    {
+      "post_id": "78879225",
+      "subject": "【有奖活动】7.1版本第二期话题活动开启~",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        6
+      ]
+    },
+    {
+      "post_id": "78859380",
+      "subject": "【有奖活动】提瓦特冒险记——判测胜券本征",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        7
+      ]
+    },
+    {
+      "post_id": "78159165",
+      "subject": "【已开奖】「雪宴之锋」薇斯纳绘画征集活动开启！",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        8
+      ]
+    },
+    {
+      "post_id": "78864405",
+      "subject": "「幽歌萦渊」沃雅妮莎绘画征集活动作品展示合集",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        9
+      ]
+    },
+    {
+      "post_id": "78782589",
+      "subject": "「虚星临渡」祈愿：「虚渊暗星·丝柯克(冰)」概率UP！",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        10
+      ]
+    },
+    {
+      "post_id": "78782590",
+      "subject": "「莓色香颂」祈愿：「明绚千韵·爱可菲(冰)」概率UP！",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        11
+      ]
+    },
+    {
+      "post_id": "78782593",
+      "subject": "「神铸赋形」：「单手剑·苍耀」「长柄武器·香韵奏者」概率UP",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        12
+      ]
+    },
+    {
+      "post_id": "78467497",
+      "subject": "【网页活动上线】周年拾光册——与派蒙一起回顾提瓦特之旅吧！",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        13
+      ]
+    },
+    {
+      "post_id": "78610186",
+      "subject": "【有奖活动】10月生日会话题活动开启！",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        14
+      ]
+    },
+    {
+      "post_id": "78341236",
+      "subject": "【有奖活动】「往冥府的安魂歌」7.1版本攻略征集活动开启！",
+      "game_id": 2,
+      "discovery_status": "discovered",
+      "source": "webHome/recommended_posts",
+      "endpoint": "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome",
+      "discovered_at": "2026-10-18T07:26:52.548137+00:00",
+      "request_params": {
+        "gids": 2,
+        "page": 1,
+        "page_size": 20
+      },
+      "raw_file": "webHome_page1.json",
+      "source_indices": [
+        15
+      ]
+    }
+  ]
+}

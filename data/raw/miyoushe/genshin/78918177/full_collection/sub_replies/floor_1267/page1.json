@@ -1,0 +1,214 @@
+{
+  "retcode": 0,
+  "message": "OK",
+  "data": {
+    "list": [
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110708277522944000",
+          "uid": "453377286",
+          "r_uid": "225855350",
+          "content": "最好不出",
+          "f_forum_id": 28,
+          "f_reply_id": "2110694414174834688",
+          "floor_id": 1267,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792067043,
+          "updated_at": 1792067043,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"最好不出\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "453377286",
+          "nickname": "枫原万叶何时复刻",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 10,
+            "exp": 11703
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2025/09/27/453377286/5b5a487c8dde9d106aeec872d758af5f_3334879789987093512.png",
+          "pendant": "https://upload-bbs.mihoyo.com/upload/2020/08/19/3435a14ebb7af0a70cfe07c53a921b30_1956186495542818369.png",
+          "ip_region": "广西",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 4,
+          "sub_num": 0,
+          "dislike_num": 3
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "225855350",
+          "nickname": "伦斐",
+          "introduce": "",
+          "avatar": "100200",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 13,
+            "exp": 23857
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/6ccdb0f1f61743895ac049702f74a507.png",
+          "pendant": "",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      },
+      {
+        "reply": {
+          "game_id": 2,
+          "post_id": "78918177",
+          "reply_id": "2110737333772636160",
+          "uid": "285316157",
+          "r_uid": "296981245",
+          "content": "依旧假赛，真想控制结果需要这么极限？中间雷史索敌不歪早赢了，依旧不看机制也不算伤害，把攻击力当伤害来算的说是要不动脑想一下对战双方性能再怎么不公平也不可能出现一方a一下对面就死完了的吧，你当打火影天地战场？",
+          "f_forum_id": 28,
+          "f_reply_id": "2110732554621939712",
+          "floor_id": 1267,
+          "is_deleted": 0,
+          "delete_src": 0,
+          "created_at": 1792073970,
+          "updated_at": 1792073975,
+          "deleted_at": 0,
+          "struct_content": "[{\"insert\":\"依旧假赛，真想控制结果需要这么极限？中间雷史索敌不歪早赢了，依旧不看机制也不算伤害，把攻击力当伤害来算的说是要不动脑想一下对战双方性能再怎么不公平也不可能出现一方a一下对面就死完了的吧，你当打火影天地战场？\"}]",
+          "structured_content_rows": [],
+          "is_top": false,
+          "has_block_word": false,
+          "overt_status": 0,
+          "is_showing_missing": false,
+          "selected_comment_time": 0,
+          "is_mentor": false,
+          "view_status": 0,
+          "reply_extra": null
+        },
+        "user": {
+          "uid": "285316157",
+          "nickname": "yughjkhh",
+          "introduce": "",
+          "avatar": "100430",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 2,
+            "exp": 31
+          },
+          "avatar_url": "https://bbs-static.miyoushe.com/communityweb/upload/c9d11674eac7631d2210a1ba20799958.png",
+          "pendant": "",
+          "ip_region": "福建",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": {
+            "avatar_type": 0,
+            "avatar_assets_id": "",
+            "resources": [],
+            "hd_resources": []
+          },
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "stat": {
+          "reply_num": 0,
+          "like_num": 2,
+          "sub_num": 0,
+          "dislike_num": 0
+        },
+        "self_operation": {
+          "attitude": 0,
+          "reply_vote_attitude": 0
+        },
+        "master_status": {
+          "is_official_master": false,
+          "is_user_master": false
+        },
+        "images": [],
+        "sub_replies": [],
+        "is_lz": false,
+        "sub_reply_count": 0,
+        "r_user": {
+          "uid": "296981245",
+          "nickname": "落日跌入海底",
+          "introduce": "",
+          "avatar": "",
+          "gender": 0,
+          "certification": {
+            "type": 0,
+            "label": ""
+          },
+          "level_exp": {
+            "level": 6,
+            "exp": 3496
+          },
+          "avatar_url": "https://upload-bbs.miyoushe.com/upload/2024/01/10/296981245/6ec9ea7d9bf57534c531e75e38d2b4e9_1853014828692648146.jpg",
+          "pendant": "https://bbs-static.miyoushe.com/static/2025/04/26/bd5bc9d050bbf3ee4362bc124a9bb508_1667976449109998389.png",
+          "ip_region": "",
+          "is_following": false,
+          "is_followed": false,
+          "avatar_ext": null,
+          "is_super_fan": false,
+          "reply_bubble": null
+        },
+        "r_reply": null,
+        "r_post": null,
+        "user_game_info": null,
+        "reply_full_extra": null
+      }
+    ],
+    "last_id": "2110737333772636161",
+    "is_last": false,
+    "has_previous": false,
+    "post_owner_uid": "75276539"
+  }
+}

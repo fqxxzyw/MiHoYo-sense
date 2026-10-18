@@ -1,0 +1,106 @@
+{
+  "platform": "miyoushe",
+  "game": "genshin",
+  "post_id": "78918177",
+  "started_at": "2026-10-18T06:26:34.980587+00:00",
+  "sort": "hot",
+  "page_size": 20,
+  "max_pages": 5,
+  "status": "finished",
+  "title": "八强即将出炉！欢迎收看「判测胜券本征」名场面集锦",
+  "comments": {
+    "pages_saved": 5,
+    "total_top_level_records": 99,
+    "unique_top_level_comments": 99,
+    "duplicate_top_level_records": 0,
+    "stop_reason": "达到设定页数上限",
+    "pages": [
+      {
+        "page": 1,
+        "request_last_id": null,
+        "response_last_id": "20",
+        "record_count": 19,
+        "new_count": 19,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page1.json",
+        "fetched_at": "2026-10-18T06:26:37.550898+00:00"
+      },
+      {
+        "page": 2,
+        "request_last_id": "20",
+        "response_last_id": "40",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page2.json",
+        "fetched_at": "2026-10-18T06:26:39.914576+00:00"
+      },
+      {
+        "page": 3,
+        "request_last_id": "40",
+        "response_last_id": "60",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page3.json",
+        "fetched_at": "2026-10-18T06:26:42.272308+00:00"
+      },
+      {
+        "page": 4,
+        "request_last_id": "60",
+        "response_last_id": "80",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page4.json",
+        "fetched_at": "2026-10-18T06:26:44.590757+00:00"
+      },
+      {
+        "page": 5,
+        "request_last_id": "80",
+        "response_last_id": "100",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "comments_78918177_hot_page5.json",
+        "fetched_at": "2026-10-18T06:26:46.913444+00:00"
+      }
+    ]
+  },
+  "sub_replies_test": {
+    "floor_id": 35,
+    "pages_saved": 2,
+    "unique_sub_replies": 40,
+    "stop_reason": "达到楼中楼页数上限",
+    "pages": [
+      {
+        "page": 1,
+        "request_last_id": null,
+        "response_last_id": "2110599200696823809",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "page1.json",
+        "fetched_at": "2026-10-18T06:26:49.479274+00:00"
+      },
+      {
+        "page": 2,
+        "request_last_id": "2110599200696823809",
+        "response_last_id": "2110605758023241729",
+        "record_count": 20,
+        "new_count": 20,
+        "duplicate_count": 0,
+        "is_last": false,
+        "file": "page2.json",
+        "fetched_at": "2026-10-18T06:26:51.788270+00:00"
+      }
+    ]
+  },
+  "finished_at": "2026-10-18T06:26:51.788270+00:00"
+}

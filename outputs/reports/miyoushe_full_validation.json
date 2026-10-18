@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-18T07:17:18.560420+00:00",
+  "run_dir": "D:\\soft\\python\\NLP\\HoYoSense\\data\\raw\\miyoushe\\genshin\\78918177\\full_collection",
+  "status": "completed",
+  "completed": true,
+  "completion_scope": "仅当前接口、热门顶层排序及已发现楼层；不保证全部历史、删除或折叠评论",
+  "top": {
+    "pages_saved": 100,
+    "total_records": 1950,
+    "unique_comments": 1950,
+    "duplicate_records": 0,
+    "completed": true,
+    "next_last_id": "2000"
+  },
+  "floors_discovered": 193,
+  "floors_completed": 193,
+  "sub_pages": 413,
+  "sub_total_records": 1183,
+  "sub_unique_ids_global": 1183,
+  "sub_duplicate_records": 0,
+  "top_sub_id_overlap": 0,
+  "all_unique_comment_ids": 3133,
+  "raw_json_files_excluding_manifest": 514,
+  "seed_raw_files_byte_identical": true,
+  "file_hashes_counts_cursor_chains_and_floor_links_verified": true,
+  "unfinished_tasks": {},
+  "completed_resume_network_requests": 0,
+  "completed_resume_raw_files_unchanged": true
+}

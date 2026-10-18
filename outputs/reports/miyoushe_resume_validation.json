@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-18T06:57:24.070566+00:00",
+  "offline_tests_passed": 13,
+  "live_small_run": {
+    "top_pages": 6,
+    "top_unique": 119,
+    "floor_35_pages": 3,
+    "floor_35_unique": 60
+  },
+  "same_limits_resume_network_requests": 0,
+  "saved_raw_files_unchanged": true,
+  "status": "limited"
+}
