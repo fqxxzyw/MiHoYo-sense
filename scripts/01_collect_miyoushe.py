@@ -20,7 +20,9 @@ import requests
 _SOURCE_DIR = Path(__file__).resolve().parents[1] / "src"
 if str(_SOURCE_DIR) not in sys.path:
     sys.path.insert(0, str(_SOURCE_DIR))
-from hoyo_sense.config import GAMES, PROJECT_ROOT, load_config, project_path
+from hoyo_sense.config import load_config, project_path
+from hoyo_sense.endpoints import MIYOUSHE_ENDPOINTS
+from hoyo_sense.games import MIYOUSHE_GAME_IDS as GAMES
 
 DEFAULT_CONFIG = load_config()
 POST_ID = "78918177"
@@ -29,12 +31,13 @@ PAGE_SIZE = 20
 MAX_PAGES = None       # 顶层累计页数上限；None 表示不设上限。
 MAX_SUB_PAGES = None   # 每楼累计页数上限；恢复时包含之前成功保存的页。
 MAX_FLOORS = None      # 小规模验证时限制楼层数。
-REQUEST_INTERVAL = 2
-REQUEST_TIMEOUT = 20
-POST_URL = "https://bbs-api.miyoushe.com/post/wapi/getPostFull"
-COMMENTS_URL = "https://bbs-api.miyoushe.com/post/wapi/getPostReplies"
-SUB_REPLIES_URL = "https://bbs-api.miyoushe.com/post/wapi/getSubReplies"
-WEB_HOME_URL = "https://bbs-api-static.miyoushe.com/apihub/wapi/webHome"
+REQUEST_INTERVAL = DEFAULT_CONFIG.request["interval_seconds"]
+REQUEST_TIMEOUT = DEFAULT_CONFIG.request["timeout_seconds"]
+# 保留入口中原有常量名，其值统一来自接口表；下方分页和保存逻辑不用重写。
+POST_URL = MIYOUSHE_ENDPOINTS["post"]
+COMMENTS_URL = MIYOUSHE_ENDPOINTS["comments"]
+SUB_REPLIES_URL = MIYOUSHE_ENDPOINTS["sub_replies"]
+WEB_HOME_URL = MIYOUSHE_ENDPOINTS["web_home"]
 DISCOVERY_SOURCE = "webHome/recommended_posts"
 HEADERS = {
     "User-Agent": (
@@ -149,6 +152,14 @@ def request_json(url, params):
     time.sleep(REQUEST_INTERVAL)
     response = requests.get(url, params=params, headers=HEADERS, timeout=REQUEST_TIMEOUT)
     print("请求：", response.url, "HTTP", response.status_code, flush=True)
+    if response.status_code == 429:
+        retry_after = response.headers.get("Retry-After", "服务端未提供")
+        # 不自动重试：向外抛错后，单帖/批次原有异常处理会保存断点并停止。
+        raise requests.HTTPError(
+            f"HTTP 429：请求过于频繁，Retry-After={retry_after}；"
+            "已停止，请等待并检查请求频率后再恢复。",
+            response=response,
+        )
     response.raise_for_status()
     result = response.json()
     check_result(result)
@@ -738,6 +749,7 @@ def optional_limit(value):
 
 
 def main():
+    global REQUEST_INTERVAL, REQUEST_TIMEOUT
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, help="配置文件；相对路径基于项目根目录")
     parser.add_argument("--raw-root", type=Path, help="临时覆盖米游社原始数据根目录（其下是游戏目录）")
@@ -758,6 +770,9 @@ def main():
     args = parser.parse_args()
     try:
         config = load_config(args.config) if args.config else DEFAULT_CONFIG
+        # 在入口应用一次配置，所有发现、正文、顶层、楼中楼请求共用同一套节奏。
+        REQUEST_INTERVAL = config.request["interval_seconds"]
+        REQUEST_TIMEOUT = config.request["timeout_seconds"]
         # 优先级：显式命令行参数 > 指定配置 > 项目默认配置。
         raw_root = (project_path(args.raw_root) if args.raw_root is not None else
                     config.miyoushe_root if args.config else None)
@@ -776,6 +791,7 @@ def main():
         parser.error("--batch-dir 仅用于 --batch。")
     print("配置文件：", config.source, flush=True)
     print("米游社原始数据目录：", raw_root or RAW_DIR.parent, flush=True)
+    print(f"请求间隔：{REQUEST_INTERVAL} 秒；连接/读取超时参数：{REQUEST_TIMEOUT} 秒", flush=True)
     if args.discover_posts:
         for game in games:
             discover_posts(game=game, raw_root=raw_root)

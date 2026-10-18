@@ -1,15 +1,16 @@
 """集中管理项目路径和采集上限，不创建目录，也不在导入时发起网络请求。"""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 import json
+import math
 import os
 from pathlib import Path, PureWindowsPath
 
+from .games import MIYOUSHE_GAME_IDS as GAMES
 
 # __file__ 是本配置模块的文件路径，parents[2] 从 src/hoyo_sense 回到项目根目录。
 # 不使用 Path.cwd()，因此在 PyCharm、终端、其他工作目录启动时，结果都一样。
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-GAMES = {"genshin": 2, "starrail": 6, "zzz": 8}
 DEFAULT_PATHS = {
     "raw_dir": "data/raw",
     "processed_dir": "data/processed",
@@ -18,6 +19,7 @@ DEFAULT_PATHS = {
     "outputs_dir": "outputs",
 }
 DEFAULT_LIMITS = {"max_posts": 3, "max_pages": 5, "max_sub_pages": 2, "max_floors": 3}
+DEFAULT_REQUEST = {"interval_seconds": 2.0, "timeout_seconds": 20.0}
 
 
 def project_path(value, *, root=PROJECT_ROOT):
@@ -38,6 +40,7 @@ class ProjectConfig:
     source: Path
     paths: dict[str, Path]
     limits: dict[str, int | None]
+    request: dict[str, float] = field(default_factory=lambda: dict(DEFAULT_REQUEST))
 
     @property
     def miyoushe_root(self):
@@ -50,8 +53,8 @@ def load_config(path=None, *, root=PROJECT_ROOT):
     source = project_path(path if path is not None else "configs/miyoushe.json", root=root)
     with source.open(encoding="utf-8-sig") as file:
         data = json.load(file)
-    if not isinstance(data, dict) or set(data) - {"paths", "collection"}:
-        raise ValueError("配置顶层只支持 paths 和 collection 两个字典。")
+    if not isinstance(data, dict) or set(data) - {"paths", "collection", "request"}:
+        raise ValueError("配置顶层只支持 paths、collection 和 request 三个字典。")
     supplied_paths = data.get("paths", {})
     supplied_limits = data.get("collection", {})
     if not isinstance(supplied_paths, dict) or set(supplied_paths) - set(DEFAULT_PATHS):
@@ -70,4 +73,13 @@ def load_config(path=None, *, root=PROJECT_ROOT):
     for name, value in limits.items():
         if value is not None and (isinstance(value, bool) or not isinstance(value, int) or value < 0):
             raise ValueError(f"{name} 必须为非负整数或 null。")
-    return ProjectConfig(source=source, paths=paths, limits=limits)
+    supplied_request = data.get("request", {})
+    if not isinstance(supplied_request, dict) or set(supplied_request) - set(DEFAULT_REQUEST):
+        raise ValueError("request 配置包含未知键，或不是字典。")
+    request = {**DEFAULT_REQUEST, **supplied_request}
+    for name, value in request.items():
+        if (isinstance(value, bool) or not isinstance(value, (int, float))
+                or not math.isfinite(value) or value < 0
+                or (name == "timeout_seconds" and value == 0)):
+            raise ValueError(f"{name} 必须为有限数字：间隔不小于 0，超时大于 0；不能为 null。")
+    return ProjectConfig(source=source, paths=paths, limits=limits, request=request)
