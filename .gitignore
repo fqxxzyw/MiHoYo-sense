@@ -1,0 +1,13 @@
+# 原始数据与运行状态留在本地；已有被跟踪文件不受忽略规则影响。
+data/raw/
+data/processed/
+data/annotated/
+data/splits/
+outputs/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.venv/
+.env
+.env.*

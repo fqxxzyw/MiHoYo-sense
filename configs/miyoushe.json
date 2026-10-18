@@ -1,0 +1,15 @@
+{
+  "paths": {
+    "raw_dir": "data/raw",
+    "processed_dir": "data/processed",
+    "annotated_dir": "data/annotated",
+    "splits_dir": "data/splits",
+    "outputs_dir": "outputs"
+  },
+  "collection": {
+    "max_posts": 3,
+    "max_pages": 5,
+    "max_sub_pages": 2,
+    "max_floors": 3
+  }
+}
