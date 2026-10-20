@@ -9775,10 +9775,132 @@
       "finished_at": "2026-10-18T13:55:13.832765+00:00",
       "status": "completed",
       "error": null
+    },
+    {
+      "started_at": "2026-10-18T14:21:27.741263+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-18T14:21:31.246779+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-18T14:57:18.702442+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-18T14:57:22.797346+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-18T15:44:41.047840+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-18T15:44:52.187947+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-19T03:15:43.642593+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-19T03:15:52.110499+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-19T05:54:45.917065+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-19T05:54:54.164732+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-19T08:12:18.989454+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-19T08:12:27.349549+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-19T17:19:08.796404+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-19T17:19:17.959968+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-20T01:05:41.399398+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-20T01:05:45.979393+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-20T02:46:51.813331+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-20T02:46:57.962993+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-20T04:09:52.601813+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "finished_at": "2026-10-20T04:09:56.511033+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-20T06:48:31.592326+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "retry_unavailable": false,
+      "finished_at": "2026-10-20T06:48:37.731562+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-20T10:20:38.549006+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "retry_unavailable": false,
+      "finished_at": "2026-10-20T10:20:45.193189+00:00",
+      "status": "completed",
+      "error": null
     }
   ],
   "seed_run": "D:\\soft\\python\\NLP\\HoYoSense\\data\\raw\\miyoushe\\genshin\\78918177\\20261018_062634_980587_UTC",
-  "updated_at": "2026-10-18T13:55:13.832765+00:00",
+  "updated_at": "2026-10-20T10:20:45.193189+00:00",
   "active_task": null,
   "title": "八强即将出炉！欢迎收看「判测胜券本征」名场面集锦",
   "stop_reason": "正常遍历结束"

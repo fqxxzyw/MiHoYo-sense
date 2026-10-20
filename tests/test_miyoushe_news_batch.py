@@ -163,7 +163,9 @@ def test_cli_news_batch_explicit_none_and_game_restriction(collector, monkeypatc
     c.main()
     assert len(calls) == 1 and calls[0][0][0] == tmp_path / "_batches/genshin"
     assert calls[0][1]["discovery_batch_pages"] == 20
-    assert all(value is None for key, value in calls[0][1].items() if key != "discovery_batch_pages")
+    assert calls[0][1]["retry_unavailable"] is False
+    assert all(value is None for key, value in calls[0][1].items()
+               if key not in ("discovery_batch_pages", "retry_unavailable"))
     monkeypatch.setattr(sys, "argv", ["collector", "--batch-news", "--game", "all"])
     with pytest.raises(SystemExit):
         c.main()

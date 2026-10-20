@@ -43,7 +43,8 @@ def append_candidates(batch, candidates):
 
 def run_news_batch(batch_dir, game_root, request_json, collect, *,
                    max_discovery_pages=None, max_posts=None, max_pages=None,
-                   max_sub_pages=None, max_floors=None, discovery_batch_pages=20):
+                   max_sub_pages=None, max_floors=None, discovery_batch_pages=20,
+                   retry_unavailable=False):
     """每发现一批资讯页就先采评论，清空本批队列后再继续发现。
 
     collect 是入口传入的原单帖采集函数，仍负责请求间隔、超时、原始保存和恢复。
@@ -128,6 +129,7 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
             "max_posts": max_posts, "max_pages": max_pages,
             "max_sub_pages": max_sub_pages, "max_floors": max_floors,
             "discovery_batch_pages": discovery_batch_pages,
+            "retry_unavailable": retry_unavailable,
         }
         batch["attempts"].append(attempt)
         batch.update(status="running", phase="discovery", completed=False, active_post_id=None)
@@ -138,6 +140,7 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
             batch["updated_at"] = utc_now()
             batch["posts_completed"] = sum(task["completed"] for task in batch["tasks"])
             batch["posts_known"] = len(batch["tasks"])
+            batch["posts_skipped"] = sum(task["status"] == "skipped_unavailable" for task in batch["tasks"])
             save_batch()
 
         checkpoint()
@@ -175,7 +178,7 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                 for index, task in enumerate(batch["tasks"]):
                     current = None
                     if max_posts is not None and index >= max_posts:
-                        if not task["completed"]:
+                        if not task["completed"] and task["status"] != "skipped_unavailable":
                             task.update(status="limited", stop_reason="达到累计帖子数上限")
                         continue
                     current = task
@@ -186,6 +189,9 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                         raise ValueError("批次候选缺少发现来源。")
                     if any(post_id_string(source["post_id"]) != post_id for source in task["sources"]):
                         raise ValueError("批次帖子 ID 与发现来源不一致。")
+                    if task["status"] == "skipped_unavailable" and (
+                            not retry_unavailable or post_id in verified_this_run):
+                        continue
                     # 每次启动仍核验旧断点；同一次运行后续轮次不反复扫描已核验完成的帖子。
                     if post_id in verified_this_run and task["completed"]:
                         continue
@@ -200,7 +206,16 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                         game_root / task["run_dir"], max_pages=max_pages,
                         max_sub_pages=max_sub_pages, max_floors=max_floors,
                         game="genshin", post_id=post_id, require_game_id=True,
+                        retry_unavailable=retry_unavailable,
                     )
+                    if state["status"] == "skipped_unavailable":
+                        task.update(status="skipped_unavailable", completed=False,
+                                    stop_reason=state["stop_reason"],
+                                    unavailable=deepcopy(state["unavailable"]), updated_at=utc_now())
+                        verified_this_run.add(post_id)
+                        checkpoint()
+                        continue
+                    task.pop("unavailable", None)
                     validated = state["tasks"]["post"].get("validated_game_id")
                     if str(validated) != str(MIYOUSHE_GAME_IDS["genshin"]):
                         raise ValueError("单帖详情未通过原神游戏归属核验。")
@@ -220,7 +235,8 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                 batch["active_post_id"] = None
                 # 本轮仍有未完成任务（帖子数、评论页数或楼层上限），就保留 limited
                 # 断点并停止，不继续发现新的帖子。下次放宽上限后优先恢复这些任务。
-                if not all(task["completed"] for task in batch["tasks"]):
+                if not all(task["completed"] or task["status"] == "skipped_unavailable"
+                           for task in batch["tasks"]):
                     break
                 if discovery["completed"]:
                     break
@@ -235,9 +251,16 @@ def run_news_batch(batch_dir, game_root, request_json, collect, *,
                 if max_discovery_pages is not None:
                     target_pages = min(target_pages, max_discovery_pages)
             batch["collection_completed"] = bool(batch["tasks"]) and all(t["completed"] for t in batch["tasks"])
+            batch["collection_drained"] = bool(batch["tasks"]) and all(
+                t["completed"] or t["status"] == "skipped_unavailable" for t in batch["tasks"])
             batch["completed"] = discovery["completed"] and batch["collection_completed"]
-            batch["status"] = "completed" if batch["completed"] else "limited"
-            batch["stop_reason"] = "当前来源及评论接口遍历结束" if batch["completed"] else "达到设定上限"
+            batch["status"] = ("completed" if batch["completed"] else
+                               "finished_with_skips" if discovery["completed"] and batch["collection_drained"]
+                               and batch["posts_skipped"] else "limited")
+            batch["stop_reason"] = (
+                "当前任务调度结束，但存在详情不可用的未完成帖子"
+                if batch["status"] == "finished_with_skips" else
+                "当前来源及评论接口遍历结束" if batch["completed"] else "达到设定上限")
             batch["phase"] = "finished"
         except (Exception, KeyboardInterrupt) as error:
             batch.update(status="interrupted", completed=False,

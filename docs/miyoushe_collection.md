@@ -40,6 +40,24 @@
 | `--run-dir` | 指定单帖断点目录，不能与发现/批次模式混用 |
 | `--seed-run` | 新目录首次运行时复制导入旧格式采样 |
 | `--verify-only` | 只读核验原始文件与断点，不发请求 |
+| `--retry-unavailable` | 显式重试此前详情接口返回 1105 而跳过的帖子；默认保留跳过记录 |
+
+## 详情不可用与批次继续
+
+仅在帖子详情接口 getPostFull 返回整数错误码 1105 时，将该帖记录为
+`skipped_unavailable`，`completed=false`，然后批次继续后面的帖子。
+此状态表示“详情接口当次不可访问”，不推断帖子已经删除。原始错误响应保存在该帖
+`full_collection/errors/post_unavailable_attempt_XXXX.json`，请求参数、时间和原因记录在
+单帖及批次 manifest 的 `unavailable` 字典中；已有正文、评论原始页不删除、不覆盖。
+
+重启会保留跳过记录，避免反复卡在同一帖。需要主动检查是否恢复时，在原命令末尾加
+`--retry-unavailable`；同一次运行每个不可用帖子只重试一次。成功后继续原目录采集，
+旧错误样本仍保留。业务错误原文不做永久删除结论。
+
+批次新增 `posts_skipped` 和 `collection_drained`：后者只表示任务队列已经处理到尾部。
+来源遍历结束且其余帖子已完成，但有跳过帖子时，批次状态为 `finished_with_skips`，
+`completed`、`collection_completed` 仍为 false。达到数量上限仍为 limited。
+顶层或楼中楼接口的 1105、其他业务错误、HTTP 403/429、超时和分页异常仍中断批次。
 
 命令行上限读取配置；当前仓库 collection 四项均为 null。只有配置缺省时才使用兼容默认值。
 四种采集上限均接受非负整数或 `None`；`None` 只取消对应上限。

@@ -72,12 +72,27 @@ def validate_post_id(post_id):
     return post_id
 
 
-def check_result(result):
+class APIBusinessError(ValueError):
+    """保留业务错误的结构化字段，调用方不需要从报错字符串中猜测错误码。"""
+
+    def __init__(self, result, *, url=None, params=None):
+        self.result = result
+        self.retcode = result.get("retcode")
+        self.url = url
+        self.params = dict(params or {})
+        super().__init__(f"接口业务失败：retcode={self.retcode!r}，"
+                         f"message={str(result.get('message', ''))[:200]!r}")
+
+
+class PostUnavailableError(ValueError):
+    """仅用于详情接口的 1105；不表示已确认删除，更不代表评论采集完成。"""
+
+
+def check_result(result, *, url=None, params=None):
     if not isinstance(result, dict):
         raise ValueError("JSON 最外层不是字典。")
     if result.get("retcode") != 0:
-        raise ValueError(f"接口业务失败：retcode={result.get('retcode')!r}，"
-                         f"message={str(result.get('message', ''))[:200]!r}")
+        raise APIBusinessError(result, url=url, params=params)
 
 
 def request_json(url, params):
@@ -95,7 +110,7 @@ def request_json(url, params):
         )
     response.raise_for_status()
     result = response.json()
-    check_result(result)
+    check_result(result, url=url, params=params)
     return result
 
 
@@ -361,7 +376,27 @@ def collect_post(state, run_dir, *, require_game_id=False):
     else:
         if task["completed"]:
             raise FileNotFoundError("断点记录的帖子文件缺失。")
-        result = request_json(POST_URL, {"gids": state["game_id"], "post_id": state["post_id"], "read": 1})
+        params = {"gids": state["game_id"], "post_id": state["post_id"], "read": 1}
+        try:
+            result = request_json(POST_URL, params)
+        except APIBusinessError as error:
+            # 只有实际详情请求的整数错误码 1105 可以跳过。超时、HTTP 错误、
+            # 其他业务错误以及评论接口的 1105，都继续向外抛出并停止批次。
+            if (type(error.retcode) is not int or error.retcode != 1105
+                    or error.url != POST_URL or error.params != params):
+                raise
+            observed_at = utc_now()
+            # 每次显式重试留下独立错误样本，不能把失败响应写入成功详情文件。
+            filename = f"errors/post_unavailable_attempt_{len(state['attempts']):04d}.json"
+            save_json(error.result, run_dir / filename)
+            state["unavailable"] = {
+                "retcode": error.retcode, "message": error.result.get("message"),
+                "endpoint": POST_URL, "request_params": params,
+                "observed_at": observed_at, "response_file": filename,
+                "sha256": digest(run_dir / filename),
+                "reason": "帖子详情接口返回 1105；本次不可访问，未判定删除",
+            }
+            raise PostUnavailableError(state["unavailable"]["reason"]) from error
         save_json(result, path)
     check_result(result)
     post = result["data"]["post"]["post"]
@@ -458,6 +493,20 @@ def initialize(run_dir, seed_run=None, *, game="genshin", post_id=POST_ID) -> di
 def audit(state, run_dir):
     """只读核验：重算传入的内存字典，不写磁盘，不发请求。"""
     for key, task in state["tasks"].items():
+        if key == "post" and task["status"] == "skipped_unavailable":
+            record = state["unavailable"]
+            path = run_dir / record["response_file"]
+            expected_params = {"gids": state["game_id"], "post_id": state["post_id"], "read": 1}
+            if (path.parent != run_dir / "errors" or record["endpoint"] != POST_URL
+                    or record["request_params"] != expected_params or record["retcode"] != 1105
+                    or state["completed"] or task["completed"]):
+                raise ValueError("详情不可用记录与帖子断点不一致。")
+            check_digest(path, record["sha256"])
+            response = read_json(path)
+            if response.get("retcode") != 1105 or response.get("message") != record["message"]:
+                raise ValueError("详情不可用记录与原始响应不一致。")
+            print("核验 post：详情接口不可用，已跳过，未完成。", flush=True)
+            continue
         if "pages" in task:
             if task.get("post_id", state["post_id"]) != state["post_id"]:
                 raise ValueError("分页任务的帖子 ID 不一致。")
@@ -478,7 +527,7 @@ def audit(state, run_dir):
 
 def run_collection(run_dir, max_pages=MAX_PAGES, max_sub_pages=MAX_SUB_PAGES,
                    max_floors=MAX_FLOORS, seed_run=None, *, game="genshin", post_id=POST_ID,
-                   require_game_id=False):
+                   require_game_id=False, retry_unavailable=False):
     """上限按累计页数计算。恢复同目录时，已保存页只读核验，不重复请求。"""
     for value in (max_pages, max_sub_pages, max_floors):
         if value is not None and (isinstance(value, bool) or not isinstance(value, int) or value < 0):
@@ -486,15 +535,21 @@ def run_collection(run_dir, max_pages=MAX_PAGES, max_sub_pages=MAX_SUB_PAGES,
     run_dir = project_path(run_dir)
     with run_lock(run_dir):
         state = initialize(run_dir, seed_run, game=game, post_id=post_id)
+        if state.get("status") == "skipped_unavailable" and not retry_unavailable:
+            audit(state, run_dir)
+            print(f"跳过已记录的详情不可用帖子 {post_id}；"
+                  "可用 --retry-unavailable 显式重试。", flush=True)
+            return state
         attempt = {"started_at": utc_now(), "max_pages": max_pages,
                    "max_sub_pages": max_sub_pages, "max_floors": max_floors,
-                   "require_game_id": require_game_id}
+                   "require_game_id": require_game_id, "retry_unavailable": retry_unavailable}
         state["attempts"].append(attempt)
         state.pop("error", None)
         state.update(status="running", completed=False, active_task=None)
         checkpoint(state, run_dir)
         try:
             collect_post(state, run_dir, require_game_id=require_game_id)
+            state.pop("unavailable", None)
             collect_pages(state, run_dir, "top", max_pages)
             discover_floors(state, run_dir)
             checkpoint(state, run_dir)
@@ -510,6 +565,13 @@ def run_collection(run_dir, max_pages=MAX_PAGES, max_sub_pages=MAX_SUB_PAGES,
             state["completed"] = all(task["completed"] for task in state["tasks"].values())
             state["status"] = "completed" if state["completed"] else "limited"
             state["stop_reason"] = "正常遍历结束" if state["completed"] else "达到上限，仍有任务未遍历结束"
+        except PostUnavailableError as error:
+            state.update(status="skipped_unavailable", completed=False, stop_reason=str(error),
+                         error=f"{type(error).__name__}: {error}")
+            state["tasks"]["post"].update(status="skipped_unavailable", completed=False,
+                                           stop_reason=str(error))
+            # 返回有明确状态的字典，让批次继续下一帖；原有评论页和回复关系均保留。
+            print(f"跳过帖子 {post_id}：{error}；原始错误响应已保存。", flush=True)
         except (Exception, KeyboardInterrupt) as error:
             state.update(status="interrupted", completed=False, stop_reason="异常中断",
                          error=f"{type(error).__name__}: {error}")
@@ -577,7 +639,7 @@ def prepare_batch_game(game, raw_root):
 
 def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
               max_pages=5, max_sub_pages=2, max_floors=3, raw_root=None, max_discovery_pages=1,
-              discovery_batch_pages=20):
+              discovery_batch_pages=20, retry_unavailable=False):
     """任务清单 → 逐帖采集 → 批次进度。上限均按累计数量计算，恢复不轮换帖子。
 
     batches 字典保存游戏，tasks 列表保持发现顺序；每个帖子仍使用原单帖断点。
@@ -615,6 +677,7 @@ def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
         attempt = {"started_at": utc_now(), "max_posts_per_game": max_posts,
                    "max_pages": max_pages, "max_sub_pages": max_sub_pages, "max_floors": max_floors,
                    "max_discovery_pages": max_discovery_pages,
+                   "retry_unavailable": retry_unavailable,
                    "discovery_batch_pages": discovery_batch_pages}
         batch["attempts"].append(attempt)
         batch.update(status="running", completed=False)
@@ -705,6 +768,9 @@ def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
                         expected_dir = (Path(game) / post_id / "full_collection").as_posix()
                         if task["post_id"] != post_id or task["run_dir"] != expected_dir:
                             raise ValueError("批次的帖子 ID 或输出路径与来源不一致。")
+                        if task["status"] == "skipped_unavailable" and (
+                                not retry_unavailable or post_id in verified_this_run):
+                            continue
                         # 本次运行已经完成并核验的帖子不在下一轮重复扫描；重启后仍重新核验。
                         if post_id in verified_this_run and task["completed"]:
                             continue
@@ -714,7 +780,16 @@ def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
                         state = run_collection(
                             raw_root / expected_dir, max_pages, max_sub_pages, max_floors,
                             game=game, post_id=post_id,
+                            retry_unavailable=retry_unavailable,
                         )
+                        if state["status"] == "skipped_unavailable":
+                            task.update(status="skipped_unavailable", completed=False,
+                                        stop_reason=state["stop_reason"],
+                                        unavailable=deepcopy(state["unavailable"]), updated_at=utc_now())
+                            verified_this_run.add(post_id)
+                            save_json(batch, path)
+                            continue
+                        task.pop("unavailable", None)
                         task.update(
                             status=state["status"], completed=state["completed"],
                             stop_reason=state["stop_reason"], updated_at=utc_now(),
@@ -728,7 +803,8 @@ def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
                         save_json(batch, path)
                     current = None
                     # 未完成当前候选（受帖子/评论/楼层上限影响）时先停止，不再堆积新任务。
-                    if not all(task["completed"] for task in group["tasks"]):
+                    if not all(task["completed"] or task["status"] == "skipped_unavailable"
+                               for task in group["tasks"]):
                         break
                     progress = group.get("paged_discovery")
                     if not progress or progress["status"] in ("exhausted", "stalled"):
@@ -748,11 +824,20 @@ def run_batch(batch_dir, games=("genshin", "starrail", "zzz"), *, max_posts=3,
                 for group in batch["batches"].values()
             )
             batch["collection_completed"] = bool(nonempty) and all(t["completed"] for t in all_tasks)
+            batch["posts_skipped"] = sum(t["status"] == "skipped_unavailable" for t in all_tasks)
+            batch["collection_drained"] = bool(nonempty) and all(
+                t["completed"] or t["status"] == "skipped_unavailable" for t in all_tasks)
             # 兼容旧单页调用；分页调用只有发现停止页且所有帖子完成才标 completed。
             paged = any(group.get("paged_discovery") for group in batch["batches"].values())
             batch["completed"] = batch["collection_completed"] and (not paged or batch["discovery_finished"])
             batch["status"] = ("completed" if batch["completed"] else
+                               "finished_with_skips" if batch["posts_skipped"] and batch["collection_drained"]
+                               and (not paged or batch["discovery_finished"]) else
                                "limited" if all_tasks else "no_posts")
+            batch["stop_reason"] = (
+                "当前任务调度结束，但存在详情不可用的未完成帖子"
+                if batch["status"] == "finished_with_skips" else
+                "正常遍历结束" if batch["completed"] else "达到上限或仍有未完成任务")
         except (Exception, KeyboardInterrupt) as error:
             batch.update(status="interrupted", error=f"{type(error).__name__}: {error}")
             if current is not None:
@@ -807,6 +892,8 @@ def main():
                         help="累计帖子发现页数上限；默认读取 discovery.max_pages")
     parser.add_argument("--discovery-batch-pages", type=optional_limit, default=argparse.SUPPRESS,
                         help="每发现多少页就先采评论；默认 discovery.batch_pages=20，必须为正整数")
+    parser.add_argument("--retry-unavailable", action="store_true",
+                        help="显式重试此前详情接口返回 1105 而跳过的帖子；默认复用跳过记录")
     mode.add_argument("--verify-only", action="store_true", help="只读核验原始页与断点，不发请求")
     # 没有传入任何参数时，默认批量采集三个游戏。
     # 如果传入了参数，就完全按照传入的参数执行。
@@ -858,6 +945,7 @@ def main():
             max_discovery_pages=args.max_discovery_pages, max_posts=args.max_posts,
             max_pages=args.max_pages, max_sub_pages=args.max_sub_pages, max_floors=args.max_floors,
             discovery_batch_pages=args.discovery_batch_pages,
+            retry_unavailable=args.retry_unavailable,
         )
     elif args.discover_news:
         discover_news_pages("genshin", game_raw_dir("genshin", raw_root),
@@ -886,6 +974,7 @@ def main():
                            max_sub_pages=args.max_sub_pages, max_floors=args.max_floors,
                            max_discovery_pages=args.max_discovery_pages,
                            discovery_batch_pages=args.discovery_batch_pages)
+            options["retry_unavailable"] = args.retry_unavailable
             if game == "genshin":
                 run_news_batch(batch_dir, game_root, request_json, run_collection, **options)
             else:
@@ -895,7 +984,8 @@ def main():
         run_batch(batch_dir, games, max_posts=args.max_posts, max_pages=args.max_pages,
                   max_sub_pages=args.max_sub_pages, max_floors=args.max_floors, raw_root=raw_root,
                   max_discovery_pages=args.max_discovery_pages,
-                  discovery_batch_pages=args.discovery_batch_pages)
+                  discovery_batch_pages=args.discovery_batch_pages,
+                  retry_unavailable=args.retry_unavailable)
     else:
         if args.game == "all":
             parser.error("--game all 仅用于 --discover-posts、--discover-more、--batch-home 或 --batch。")
@@ -910,7 +1000,8 @@ def main():
             audit(state, run_dir)
         else:
             run_collection(run_dir, args.max_pages, args.max_sub_pages, args.max_floors,
-                           args.seed_run, game=args.game, post_id=post_id)
+                           args.seed_run, game=args.game, post_id=post_id,
+                           retry_unavailable=args.retry_unavailable)
 
 
 if __name__ == "__main__":
