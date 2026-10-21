@@ -11,3 +11,5 @@ __pycache__/
 .venv/
 .env
 .env.*
+# 两个视频平台的本地会话、Cookie 和请求签名上下文。
+configs/*.local.json

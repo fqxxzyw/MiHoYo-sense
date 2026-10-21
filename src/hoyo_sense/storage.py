@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import time
 from typing import Any
 
 
@@ -19,7 +20,7 @@ def read_json(path) -> Any:
 
 
 def save_json(data, path):
-    """先写同目录临时文件，再原子替换，避免中断留下半份 JSON。"""
+    """先写同目录临时文件，再原子替换；短暂的 Windows 文件占用会退避重试。"""
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(path.name + ".tmp")
@@ -27,7 +28,17 @@ def save_json(data, path):
         json.dump(data, file, ensure_ascii=False, indent=2)
         file.flush()
         os.fsync(file.fileno())
-    os.replace(temporary, path)
+    # Windows 上读取方未共享删除权限时，替换可能短暂失败（如索引/扫描）。
+    # 只重试替换，保留已 fsync 的临时文件；不删除旧断点或直接截断写入。
+    # 最多等待 5.55 秒，持续的权限问题及其他 I/O 错误仍向调用方抛出。
+    for attempt in range(10):
+        try:
+            os.replace(temporary, path)
+            break
+        except OSError as error:
+            if getattr(error, "winerror", None) not in (5, 32, 33) or attempt == 9:
+                raise
+            time.sleep(min(0.05 * 2 ** attempt, 1.0))
 
 
 def digest(path):

@@ -12,4 +12,4 @@ MIYOUSHE_GAME_IDS = {
     "zzz": 8,
 }
 
-# B站、抖音将来可能使用关键词或其他标识，确认获取方式后再定义映射。
+# B站 mid 和抖音 sec_user_id 保存在各自 configs/<platform>.json 的 accounts 中。

@@ -4,9 +4,11 @@
 
 项目计划整合米游社、B站与抖音中关于《原神》《崩坏：星穹铁道》《绝区零》的文章、视频文本与评论，分析玩家讨论的主题、态度和兴趣，并探索跨平台差异与内容推荐。
 
-> 当前阶段：米游社三个游戏的帖子发现、单帖采集、有限批量采集与断点恢复。其他平台、清洗与建模仍为待办。
-> 最后更新：2026-10-18。
-> 本轮仅完善采集功能和文档。已有远程仓库实际包含旧采集代码及原始样本；新增原始数据保持本地，不随本轮代码交付。代码实现、真实接口验证和远程发布分别记录。
+> 当前阶段：暂停B站、抖音的数据扩展；米游社三游戏已完成提取、清洗、划分及标注文件导入，准备逐步学习训练情感基线。标签来源待确认，模型尚未训练。
+> 最后更新：2026-10-21。
+> 新增原始数据及提取结果保持本地。代码实现、本地运行与远程发布分别记录。
+
+> 交给下一位教学智能体前，先读 [训练交接说明](docs/training_handoff.md)：包含当前数据位置、标签定义、后续建文件顺序和可直接使用的教学提示词。
 
 ## 项目目标
 
@@ -48,14 +50,136 @@
 - [x] 集中配置数据目录与采集上限，配置/命令行相对路径统一基于项目根目录。
 - [x] 新增原神官方资讯 type=3 独立发现入口，真实两页发现 40 帖，游标续页和零请求恢复已验证。
 - [x] 随机抽取 3 篇资讯核验正文和评论；接通资讯批次与旧单帖断点，全量 89 项测试通过。
+- [x] 增加独立的本地 JSON 提取入口：帖子、评论、回复关联、来源追溯、按 ID 合并和基础质量统计；离线测试通过。
 - [ ] 完成第一版可运行流程。
 
-**当前下一步：使用已验证的首页分页扩大原始 JSON 积累，继续核实更多板块来源；原始数据积累后，再进入 EDA、去重与清洗。首页推荐不等于全站全部帖子。**
+**当前下一步：使用现有米游社数据完成结构化提取和 EDA，再根据空文本、重复文本及覆盖范围决定分析样本；B站、抖音采集暂缓。首页推荐及官方资讯均不等于全站全部帖子。**
 
 采集阶段不删除重复评论、不清洗文本、不丢弃空文本或图片评论，完整保存每次成功获取的接口 JSON。
 目前的“去重”分为两种：任务清单按帖子/楼层 ID 去重，只避免重复调度；分页中的 ID 集合只用于计数，
-不会修改原始响应。重复记录的处理、分析表合并及文本去重统一留到后续 EDA/清洗阶段。
+不会修改原始响应。独立提取阶段会按 ID 合并分析表中的重复出现，保留全部来源；相同文本但不同 ID 的评论继续保留。
 先采集 raw 不等于已经拥有全站全部数据，覆盖范围仍以发现来源、接口、页数和断点状态为准。
+
+## 现有 JSON 的结构化提取
+
+`miyoushe_news_batch.py` 负责发现和调度采集；数据提取使用独立的
+[04_extract_miyoushe.py](scripts/04_extract_miyoushe.py)，核心逻辑在
+[preprocessing/miyoushe.py](src/hoyo_sense/preprocessing/miyoushe.py)。
+
+```powershell
+# 默认处理现有米游社三游戏数据，不请求网络。
+python scripts/04_extract_miyoushe.py
+
+# 只处理原神；再次运行会生成新快照。
+python scripts/04_extract_miyoushe.py --game genshin
+```
+
+输入为 `data/raw/miyoushe/<game>/<post_id>/full_collection/manifest.json` 及其已登记原始页。
+输出为 `data/processed/miyoushe/<UTC时间>/` 中的 `posts.jsonl`、`comments.jsonl`、
+对应的 CSV、每条评论严格占一行的 `comments_flat.csv`、每帖覆盖记录 `collection_runs.jsonl` 和质量报告 `report.json`。
+JSONL 中每行一条记录，ID 为字符串；CSV 用于浏览，Excel 导入时将 ID 列设为文本。
+`report.json` 的 `status=completed` 才表示本次提取完成。
+
+提取保留原文，单独生成去 HTML 和整理空白后的 `text`，不删除表情、否定词、图片评论或不同 ID 的相同文本。
+完整分页优先于内嵌预览，相同评论 ID 合并后仍保留所有文件路径和 JSON 定位。
+未完成帖子也会纳入，采集状态单独保留；未登记的待处理 raw 只报告、不导入。
+详细字段、校验与后续分析顺序见 [米游社数据提取说明](docs/miyoushe_extraction.md)。
+
+2026-10-21 本地首轮成功提取：742 篇帖子、275,570 条不同 ID 的评论；
+10 项提取测试及输出回读核验通过。结果在 `data/processed/miyoushe/20261021_122801_976711_UTC/`，
+质量报告包含 3 个中断任务和 1 个详情不可用任务的覆盖状态。
+查看所有顶层和楼中楼评论请打开成功快照中的 `comments_flat.csv`：275,570 条评论，含表头共 275,571 行。
+`posts.csv` 仅为帖子表；首次失败目录 `20261021_122603_870037_UTC` 不作为分析输入。
+
+## 当前使用的两列评论表
+
+运行 `python scripts/05_prepare_analysis.py`，默认读取最新成功提取快照，生成
+`data/processed/miyoushe/comments.csv`。重复运行时校验内容，相同结果自动复用；结果不同时保留旧文件，
+需要更新可运行 `python scripts/05_prepare_analysis.py --overwrite`。
+也可用 `--snapshot` 指定来源、`--output-dir` 指定输出目录。
+
+- 评论表只保留 `post_id`、`comment` 两列，顶层及楼中楼均各占一行。
+- 三个游戏合计 275,570 条，空文本和相同文本评论均保留。
+- EDA 报告、旧分析表归档及运行记录统一放在 `outputs/eda/miyoushe/`。
+
+`data` 根目录只使用既有四个目录：`raw` 原始数据、`processed` 处理数据、
+`annotated` 标注数据、`splits` 训练/验证/测试划分。不会为分析另建同级目录。
+原始提取快照仍在 `data/processed/miyoushe/<快照名>/`，保留完整元信息供后续追溯。
+
+2026-10-21 两列表生成与两项针对性测试通过；文本空白合并为空格，不自动生成情感标签。
+
+## 评论去空、去重与异常检查
+
+运行 `python scripts/06_clean_comments.py`，读取 `data/processed/miyoushe/comments.csv`，
+成品写入同目录的 `comments_clean.csv`，仍只保留 `post_id、comment` 两列。
+清洗前后统计、异常逐条记录和重复次数统一放在 `outputs/cleaning/miyoushe/`。
+
+默认删除无效记录和空文本，按同一帖子 ID＋整理后的相同评论去重；跨帖重复、单字评价和表情保留。
+广告、抽奖互动、乱码嫌疑、异常长度、纯标点等仅标记，供人工复核，不自动删除。
+输入表不变；重复运行自动复用一致结果，输入有变则更新清洗成品。
+
+默认去重版适合作为文本建模输入。统计真实评论频次时使用 `--dedup none`，或用报告中的重复次数恢复权重。
+参数、异常规则及计数口径见 [评论清洗说明](docs/comment_cleaning.md)。
+
+2026-10-21 本地实跑：275,570 条输入，去除原始空文本 2,649 条和无可提取文字的 HTML 图片/表情图片 2,755 条，
+同帖相同文本合并 45,916 次，得到 224,250 条、覆盖 742 篇帖子的两列成品。
+图片原文及 URL 在异常记录中保留供看图复核；23 项相关测试通过，重复运行复用一致结果。
+
+## 按帖子划分 train / dev / test
+
+运行 `python scripts/07_split_dataset.py`，默认按唯一帖子 ID 以 8:1:1、seed=42 划分。
+同帖顶层及楼中楼全部进入同一集合，数据仍只有 `post_id、comment` 两列。
+输出统一为 `data/splits/train.csv`、`dev.csv`、`test.csv` 及帖子归属清单 `split_manifest.csv`；
+报告和跨集合重复文本清单放在 `outputs/splitting/miyoushe/`。
+
+本地运行：train 594 帖/157,568 条，dev 74 帖/28,226 条，test 74 帖/38,456 条。
+8:1:1 针对帖子数，评论行数比例因帖子大小而不同。帖子交叉为 0；3,497 组跨集合相同文本需在标注前复核。
+11 项划分测试通过；相同输入参数可重复运行，不同结果默认拒绝覆盖已存在的划分。
+详细参数及后续标注口径见 [数据划分说明](docs/dataset_splitting.md)。
+
+## 评论情感标注与基线计划
+
+已将用户提供的 `train_labeled.csv`、`dev_labeled.csv`、`test_labeled.csv` 原样归入 `data/annotated/`，
+情感类别表命名为 `sentiment_classes.csv`。文件均与既有划分逐条对应，帖子交叉为 0。
+0=负面、1=正面、2=中性，-1=待审核。排除 -1 后 train/dev/test 分别有 144,418 / 26,031 / 36,348 条。
+标注来源尚待确认，不能仅凭字段和数量校验将其认定为独立人工金标准。
+
+首轮计划比较多数类基准、字符 TF-IDF + ComplementNB / LogisticRegression / LinearSVC，
+以 dev Macro-F1 选型，冻结方案后再做 test 评估。当前未启动训练。
+具体流程和标签口径见 [情感基线计划](docs/sentiment_baselines.md)。
+
+## B站、抖音官方账号采集（2026-10-21，当前暂缓）
+
+新增 [B站入口](scripts/02_collect_bilibili.py) 和 [抖音入口](scripts/03_collect_douyin.py)，
+账号及业务参数分别在 [B站配置](configs/bilibili.json)、[抖音配置](configs/douyin.json)。
+范围限定为所选游戏的指定官方账号作品与评论；两个新入口默认只选原神，最多一个作品、列表一页、
+一级评论一页、一个父评论分支的一页回复，自动断点恢复。
+
+```powershell
+# 先测试已知作品；也可省略作品ID，从配置的官方账号发现作品。
+python scripts/02_collect_bilibili.py --game genshin --bvid BV1zi7Y6BEdS
+python scripts/03_collect_douyin.py --game genshin --aweme-id 7684640572371488015
+
+# B站已知父评论的少量回复；重复同一命令复用断点。
+python scripts/02_collect_bilibili.py --bvid BV1zi7Y6BEdS --parent-comment-id 303897942961 --max-pages 0 --max-sub-pages 3
+```
+
+默认输出 `data/raw/<bilibili或douyin>/<game>/`，断点为该目录下 `_batch/manifest.json`。
+作品列表、详情HTML/JSON、一级评论和每个父评论的回复分别归档；完整字节原文保留，
+另存的完整JSON将ID转为字符串。失败、人工上限和接口结束分别记录，不覆盖旧响应。
+Cookie 使用 `HOYOSENSE_BILIBILI_COOKIE` / `HOYOSENSE_DOUYIN_COOKIE` 或被忽略的
+`configs/*.local.json`，请求参数元数据脱敏。默认间隔2秒、超时60秒、额外重试1次。
+
+本地实测：B站原神详情成功；一级评论仅返回3条却报告 `all_count=70901` 和 `is_end=true`，
+不能称已采齐，一级评论后续游标未验证。父评论 `303897942961` 的回复 `pn=1/2/3` 成功，
+共30个不同ID，仍是部分完成；禁止网络后的恢复0次请求，27份已存文件哈希不变。
+B站账号作品发现为 HTTP200/code=-352；抖音发现为403，评论与回复为200空正文，均按失败保留。
+抖音签名/会话仍待解决；星铁、绝区零完成配置和离线参数检查，尚未做本轮真实请求；弹幕暂未实现。
+离线模拟测试与本地请求证据分开记录，未把浏览器样本当作Python已验证结果。
+新增视频采集49项测试、项目全量174项测试通过，包含米游社回归。
+
+参数、私密上下文、状态解释、新增文件作用和剩余问题见 [视频采集说明](docs/video_collection.md)，
+实际请求汇总见 [验证记录](docs/video_collection_validation_20261021.json)。本轮未进行大规模采集或GitHub推送。
 
 ## 原神官方资讯发现
 
@@ -116,7 +240,7 @@ python scripts/01_collect_miyoushe.py --batch --game all --max-posts 3 --max-pag
 | --- | --- |
 | `configs/miyoushe.json` | 修改原始、处理、标注、划分、输出目录，以及四种采集上限 |
 | `src/hoyo_sense/config.py` | 统一定位项目根目录、解析路径、校验配置，供后续清洗/分析复用 |
-| `src/hoyo_sense/endpoints.py` | 按平台保存已验证接口；B站、抖音暂为空分组 |
+| `src/hoyo_sense/endpoints.py` | 按平台保存接口地址；各接口验证状态见对应采集说明 |
 | `src/hoyo_sense/games.py` | 统一游戏名称及米游社自己的游戏 ID |
 | `src/hoyo_sense/miyoushe_discovery.py` | 分页发现、发现断点核验、重复页防止循环 |
 | `src/hoyo_sense/storage.py` | 共用原子 JSON 保存、文件哈希核验和文件锁 |

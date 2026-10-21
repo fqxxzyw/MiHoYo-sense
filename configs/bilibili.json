@@ -1,0 +1,15 @@
+{
+  "paths": {"raw_dir": "data/raw"},
+  "request": {"interval_seconds": 2, "timeout_seconds": 60, "retries": 1},
+  "collection": {"max_posts": 1, "max_discovery_pages": 1, "max_pages": 1, "max_sub_pages": 1, "max_floors": 1},
+  "accounts": {
+    "genshin": {"mid": "401742377", "sample_bvid": "BV1zi7Y6BEdS"},
+    "starrail": {"mid": "1340190821", "sample_bvid": "BV1Rmh96ZEXh"},
+    "zzz": {"mid": "1636034895", "sample_bvid": "BV1SknF6KE5g"}
+  },
+  "params": {
+    "discovery": {"order": "pubdate", "ps": 25, "index": 1, "order_avoided": true, "platform": "web", "web_location": "333.1387"},
+    "comments": {"type": 1, "mode": 3, "plat": 1, "seek_rpid": "", "web_location": "1315875"},
+    "replies": {"type": 1, "ps": 10, "web_location": "333.788"}
+  }
+}

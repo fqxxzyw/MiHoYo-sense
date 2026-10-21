@@ -1,0 +1,16 @@
+{
+  "paths": {"raw_dir": "data/raw"},
+  "request": {"interval_seconds": 2, "timeout_seconds": 60, "retries": 1},
+  "collection": {"max_posts": 1, "max_discovery_pages": 1, "max_pages": 1, "max_sub_pages": 1, "max_floors": 1},
+  "accounts": {
+    "genshin": {"sec_user_id": "MS4wLjABAAAAw6_Jq4rDqlUKujFUvw0mjwTE8Y4uYuqJoKIQWO43oBYTd5_FlhU3qZ-PbOS7MP35"},
+    "starrail": {"sec_user_id": "MS4wLjABAAAAsWXxS-KIWEuFJf2oy9E5RwDFzqIElxMsYccLGHCTh-J7z4WhTCehpsQwkv0n_8pl"},
+    "zzz": {"sec_user_id": "MS4wLjABAAAAtcO3pO9MOJ75_Q2cFDQNHaNn_Lv00dHIeANENN1mIvpNcUPetFwF04HYF0cAbFxC"}
+  },
+  "params": {
+    "common": {"device_platform": "webapp", "aid": "6383", "channel": "channel_pc_web"},
+    "discovery": {"count": 18, "locate_query": false, "show_live_replay_strategy": 1, "need_time_list": 0, "time_list_query": 0, "whale_cut_token": "", "cut_version": 1, "publish_video_strategy_type": 2, "from_user_page": 1},
+    "comments": {"pc_img_format": "webp", "count": 10, "item_type": 0, "insert_ids": "", "whale_cut_token": "", "cut_version": 1, "rcFT": ""},
+    "replies": {"cut_version": 1, "count": 3, "item_type": 0}
+  }
+}

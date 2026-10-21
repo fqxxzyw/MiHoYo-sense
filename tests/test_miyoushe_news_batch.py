@@ -95,6 +95,38 @@ def test_unlimited_news_batch_uses_original_comment_interfaces_and_resumes(colle
     assert calls == []
 
 
+def test_transient_checkpoint_access_denied_does_not_interrupt_batch(collector, monkeypatch, tmp_path):
+    from hoyo_sense import storage
+
+    c = collector
+    calls = install_api(c, monkeypatch)
+    original_replace = storage.os.replace
+    failed = False
+    checkpoint = tmp_path / "genshin/800/full_collection/manifest.json"
+
+    def replace(source, target):
+        nonlocal failed
+        if Path(target) == checkpoint and not failed:
+            state = storage.read_json(source)
+            if state["tasks"]["top"].get("pages"):
+                failed = True
+                error = PermissionError("模拟评论页落盘后断点被占用")
+                error.winerror = 5
+                raise error
+        original_replace(source, target)
+
+    monkeypatch.setattr(storage.os, "replace", replace)
+    monkeypatch.setattr(storage.time, "sleep", lambda _: None)
+    assert run(c, tmp_path)["completed"]
+    assert failed
+    # 同一评论游标没有因断点替换重试而重复请求。
+    requests = [(url, tuple(sorted(params.items()))) for url, params in calls]
+    assert len(requests) == len(set(requests))
+    calls.clear()
+    assert run(c, tmp_path)["completed"]
+    assert calls == []
+
+
 @pytest.mark.parametrize("wrong_game,missing_game", [(6, False), (None, True)])
 def test_detail_game_must_validate_before_any_comment_request(
         collector, monkeypatch, tmp_path, wrong_game, missing_game):

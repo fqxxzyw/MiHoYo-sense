@@ -1,0 +1,69 @@
+{
+  "validated_at_utc": "2026-10-21T00:42:20.337720+00:00",
+  "scope": "原神一个B站视频；抖音仅原神失败请求；未扩展星铁或绝区零真实请求",
+  "fixture_evidence": "tests/test_video_collectors.py 是交接字段构造的模拟数据；未提供完整浏览器样本文件",
+  "offline_tests": {
+    "video_collector_cases_passed": 49,
+    "entire_project_cases_passed": 174,
+    "command": "python -m pytest -q"
+  },
+  "bilibili": {
+    "local_detail_request": "success",
+    "bvid": "BV1zi7Y6BEdS",
+    "aid": "116810225555111",
+    "local_comments_request": "success_under_current_conditions",
+    "top_records": 3,
+    "top_reported_all_count": 70901,
+    "top_returned_is_end": true,
+    "top_pagination_verified": false,
+    "coverage_note": "仅3条但is_end=true；不能声称采齐all_count，未验证一级评论下一页",
+    "known_parent_comment_id": "303897942961",
+    "known_parent_reply_pages": [
+      1,
+      2,
+      3
+    ],
+    "known_parent_reply_records": [
+      10,
+      10,
+      10
+    ],
+    "known_parent_unique_reply_ids": 30,
+    "known_parent_reported_counts": [
+      3992,
+      3992,
+      3992
+    ],
+    "known_parent_status": "limited",
+    "known_parent_next_page": 4,
+    "other_checked_parent_id": "307025126864",
+    "other_checked_parent_pages": [
+      1,
+      2
+    ],
+    "offline_resume_network_calls": 0,
+    "raw_hashes_unchanged": true,
+    "raw_files_checked": 27,
+    "discovery_http_status": 200,
+    "discovery_business_code": -352,
+    "discovery_pagination_verified": false,
+    "raw_root": "data/raw/bilibili_validation_20261021/genshin/"
+  },
+  "douyin": {
+    "discovery_http_status": 403,
+    "comments_http_status": 200,
+    "comments_body_bytes": 0,
+    "replies_http_status": 200,
+    "replies_body_bytes": 0,
+    "successful_local_pages": 0,
+    "pagination_verified": false,
+    "raw_root": "data/raw/douyin_validation_20261021/genshin/"
+  },
+  "execution": {
+    "timeout_seconds": 15,
+    "interval_seconds": 2,
+    "retries": 0,
+    "credentials_supplied": false,
+    "default_config_timeout_seconds": 60
+  }
+}
