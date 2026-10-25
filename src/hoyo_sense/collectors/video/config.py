@@ -5,8 +5,8 @@ import json
 import math
 from pathlib import Path
 
-from .config import project_path
-from .games import GAME_NAMES
+from ...config import project_path
+from ...games import GAME_NAMES
 
 
 LIMITS = {"max_posts": 1, "max_discovery_pages": 1, "max_pages": 1,
@@ -69,7 +69,7 @@ def load_video_config(platform, path=None):
     if not isinstance(params, dict) or set(params) - {"common", "discovery", "comments", "replies"}:
         raise ValueError("params 存在未知接口用途。")
     # 公共配置不接受会话或签名字段；它们只允许通过被忽略的私密上下文传入。
-    from .video_http import PUBLIC_PARAMS
+    from .http import PUBLIC_PARAMS
     for values in params.values():
         if (not isinstance(values, dict) or set(values) - PUBLIC_PARAMS
                 or any(not isinstance(v, (str, int, float, bool)) for v in values.values())):

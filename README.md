@@ -4,11 +4,49 @@
 
 项目计划整合米游社、B站与抖音中关于《原神》《崩坏：星穹铁道》《绝区零》的文章、视频文本与评论，分析玩家讨论的主题、态度和兴趣，并探索跨平台差异与内容推荐。
 
-> 当前阶段：暂停B站、抖音的数据扩展；米游社三游戏已完成提取、清洗、划分及标注文件导入，准备逐步学习训练情感基线。标签来源待确认，模型尚未训练。
-> 最后更新：2026-10-21。
+> 当前阶段：暂停B站、抖音的数据扩展；米游社数据已处理，逻辑回归与随机森林基线已训练并完成 dev 评估。标签来源待确认；fastText、BERT 及量化/蒸馏代码已补齐并接入公共预测接口，真实训练另行运行；LLM 后续实现。
+> 最后更新：2026-10-25。
 > 新增原始数据及提取结果保持本地。代码实现、本地运行与远程发布分别记录。
 
 > 交给下一位教学智能体前，先读 [训练交接说明](docs/training_handoff.md)：包含当前数据位置、标签定义、后续建文件顺序和可直接使用的教学提示词。
+
+## 当前源码目录
+
+```text
+api/                           # 公共模型发现、缓存与预测后端
+app/                           # 可选择算法和模型版本的本地预测网页
+scripts/                       # 01～10：09 启动预测界面，10 运行模型学习实验
+src/hoyo_sense/
+├── collectors/
+│   ├── miyoushe/              # 首页发现、资讯发现与资讯批次调度
+│   └── video/                 # B站和抖音共用的采集代码
+├── analysis/                  # 分析表准备、标注复核等分析代码
+├── preprocessing/             # 本地 JSON 提取和评论清洗
+├── modeling/                  # 数据划分；各算法独立目录；common/ 放共用代码
+└── recommendation/            # 推荐功能预留目录
+outputs/                       # EDA、复核与校验报告；后续实验产物也放这里
+```
+
+公共模块 `config.py`、`storage.py`、`games.py`、`endpoints.py` 和 `__init__.py` 仍在
+`src/hoyo_sense/` 根目录。项目根路径统一由 `hoyo_sense.config` 定位。
+采集目录整理保留了 `data/`、`outputs/` 中的数据、报告和采集断点，采集入口和数据路径保持不变。
+
+建模代码现按算法组织：`modeling/tfidf_logistic/` 下的 `model.py`、`train.py`、
+`evaluate.py`、`predict.py` 分别负责模型定义、训练、评估和预测；
+共用读取、指标和模型读写在 `modeling/common/`。模型统一保存到 `outputs/models/`。
+具体路径和运行命令见 [算法目录与学习说明](docs/modeling_structure.md)。
+
+fastText、BERT 的训练、评估、预测、量化和蒸馏学习代码已补齐，统一入口为
+`scripts/10_model_experiment.py`。源模型在压缩前复制到独立实验目录，并检查哈希；
+路径、依赖和逐步运行顺序见 [模型压缩学习说明](docs/model_compression_learning.md)。
+代码就绪不表示这两种算法已经完成真实训练或已有评估分数。
+
+[app/](app/README.md) 提供算法选择、评论输入和结果展示界面；
+[api/](api/README.md) 提供各算法共用的预测接口。
+后续调用关系为 `app → api → modeling/<algorithm>/predict.py → outputs/models/`，
+在根目录运行 `python scripts/09_serve_app.py`，打开 `http://127.0.0.1:8765` 即可试用。
+目前已有逻辑回归与随机森林权重；fastText、BERT 保存模型后也会自动出现在选择框中，
+并区分原始、量化和蒸馏版本。没有权重的算法不会显示为可用。
 
 ## 项目目标
 
@@ -62,7 +100,7 @@
 
 ## 现有 JSON 的结构化提取
 
-`miyoushe_news_batch.py` 负责发现和调度采集；数据提取使用独立的
+`src/hoyo_sense/collectors/miyoushe/news_batch.py` 负责发现和调度采集；数据提取使用独立的
 [04_extract_miyoushe.py](scripts/04_extract_miyoushe.py)，核心逻辑在
 [preprocessing/miyoushe.py](src/hoyo_sense/preprocessing/miyoushe.py)。
 
@@ -147,6 +185,12 @@ JSONL 中每行一条记录，ID 为字符串；CSV 用于浏览，Excel 导入�
 首轮计划比较多数类基准、字符 TF-IDF + ComplementNB / LogisticRegression / LinearSVC，
 以 dev Macro-F1 选型，冻结方案后再做 test 评估。当前未启动训练。
 具体流程和标签口径见 [情感基线计划](docs/sentiment_baselines.md)。
+
+2026-10-22 已将 v2 中 11,868 条纯表情的中性标签合回原 `*_labeled.csv`，
+并删除 2,597 条纯数字或普通符号评论。当前 train/dev/test 行数为
+155,587 / 27,905 / 38,161，待审核分别为 2,098 / 466 / 425。
+原件已备份，当前待审核清单已刷新；规则、备份和逐行明细见
+[标注合并说明](docs/annotation_merging.md)。上面的导入数量为过滤前历史记录。
 
 ## B站、抖音官方账号采集（2026-10-21，当前暂缓）
 
@@ -242,7 +286,7 @@ python scripts/01_collect_miyoushe.py --batch --game all --max-posts 3 --max-pag
 | `src/hoyo_sense/config.py` | 统一定位项目根目录、解析路径、校验配置，供后续清洗/分析复用 |
 | `src/hoyo_sense/endpoints.py` | 按平台保存接口地址；各接口验证状态见对应采集说明 |
 | `src/hoyo_sense/games.py` | 统一游戏名称及米游社自己的游戏 ID |
-| `src/hoyo_sense/miyoushe_discovery.py` | 分页发现、发现断点核验、重复页防止循环 |
+| `src/hoyo_sense/collectors/miyoushe/discovery.py` | 分页发现、发现断点核验、重复页防止循环 |
 | `src/hoyo_sense/storage.py` | 共用原子 JSON 保存、文件哈希核验和文件锁 |
 | `scripts/01_collect_miyoushe.py` | 读取配置并执行采集，保留原有单帖与发现逻辑 |
 

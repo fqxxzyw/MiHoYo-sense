@@ -5,10 +5,10 @@ import json
 from pathlib import Path
 from uuid import uuid4
 
-from .storage import utc_now, read_json, save_json, check_digest, run_lock
-from .video_http import CollectionError, redacted
-from .video_platforms import VideoPlatform, identifier
-from .video_storage import archive_response, immutable_json, restore_response
+from ...storage import utc_now, read_json, save_json, check_digest, run_lock
+from .http import CollectionError, redacted
+from .platforms import VideoPlatform, identifier
+from .storage import archive_response, immutable_json, restore_response
 
 
 def new_task(kind, position):
@@ -163,7 +163,7 @@ class VideoCollector:
                 raise CollectionError("恢复时已解析 JSON 与响应原文不一致。")
         else:
             immutable_json(parsed_path, value)
-        from .storage import digest
+        from ...storage import digest
         previous_ids = {item for page in task["pages"] for item in page["record_ids"]}
         new_ids = set(ids) - previous_ids
         used = {json.dumps(page["input_cursor"], sort_keys=True) for page in task["pages"]}

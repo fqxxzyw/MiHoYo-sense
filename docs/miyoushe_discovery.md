@@ -8,7 +8,7 @@
 
 | 文件 | 作用 |
 | --- | --- |
-| `src/hoyo_sense/miyoushe_discovery.py` | 新增：列表页循环、页数上限、保存发现断点、恢复和停止判断 |
+| `src/hoyo_sense/collectors/miyoushe/discovery.py` | 列表页循环、页数上限、保存发现断点、恢复和停止判断 |
 | `src/hoyo_sense/storage.py` | 从旧入口提取原有 JSON、哈希与文件锁工具，供两个采集模块共用 |
 | `scripts/01_collect_miyoushe.py` | 修改：保留原单帖采集，接通分页发现，向旧批次追加新候选 |
 | `src/hoyo_sense/config.py` | 修改：读取独立的 discovery 配置，兼容旧配置文件 |

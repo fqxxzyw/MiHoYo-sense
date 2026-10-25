@@ -25,7 +25,7 @@
 ## 数据流与代码
 
 入口 `scripts/01_collect_miyoushe.py --discover-news` 使用共用的配置和请求函数，
-调用 `src/hoyo_sense/miyoushe_news_discovery.py`。
+调用 `src/hoyo_sense/collectors/miyoushe/news_discovery.py`。
 
 数据流：请求前保存待请求游标 → 原始页原子落盘 → 登记页信息和下一游标 → 重建候选清单 → 展示各页候选。
 如果中断发生在原始页落盘后、断点登记前，恢复时直接登记已保存页，不重新请求。

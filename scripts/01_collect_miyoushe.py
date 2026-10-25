@@ -21,9 +21,9 @@ from hoyo_sense.config import load_config, project_path
 from hoyo_sense.endpoints import MIYOUSHE_ENDPOINTS
 from hoyo_sense.games import MIYOUSHE_GAME_IDS as GAMES
 from hoyo_sense.storage import utc_now, read_json, save_json, digest, check_digest, run_lock
-from hoyo_sense.miyoushe_discovery import discover_home_pages
-from hoyo_sense.miyoushe_news_discovery import discover_news_pages
-from hoyo_sense.miyoushe_news_batch import run_news_batch
+from hoyo_sense.collectors.miyoushe.discovery import discover_home_pages
+from hoyo_sense.collectors.miyoushe.news_discovery import discover_news_pages
+from hoyo_sense.collectors.miyoushe.news_batch import run_news_batch
 
 DEFAULT_CONFIG = load_config()
 POST_ID = "78918177"

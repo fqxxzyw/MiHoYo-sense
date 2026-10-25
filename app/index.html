@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#151e31">
+  <title>HoYoSense · 评论情感预测</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%234a65ef'/%3E%3Ctext x='20' y='29' text-anchor='middle' font-family='sans-serif' font-size='28' font-weight='700' fill='white'%3EH%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <svg class="icon-defs" aria-hidden="true"><defs>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Z"/><path d="m20 2 .6 1.4L22 4l-1.4.6L20 6l-.6-1.4L18 4l1.4-.6L20 2Z"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6 6a8 8 0 0 1 13 2M18 18a8 8 0 0 1-13-2"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5A8.5 8.5 0 0 1 12.5 20H4l-1 1V11.5a9 9 0 1 1 18 0Z"/><path d="M8 9h8M8 13h5"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm9 5v9l-9 5-9-5V8m9 5v9M7 5.8l9 5"/></symbol>
+  </defs></svg>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="HoYoSense 首页"><span class="brand-mark">H<span></span></span><span>HoYoSense<small>读懂玩家的声音</small></span></a>
+    <div class="section-label">WORKSPACE</div>
+    <div class="nav-active"><svg class="icon"><use href="#i-grid"/></svg>预测工作台<span class="nav-dot"></span></div>
+    <div class="section-label algorithms-label">算法库 <span id="algorithm-count">—</span></div>
+    <div id="algorithm-list" class="algorithm-list"><div class="nav-placeholder">正在发现本地模型…</div></div>
+    <div class="sidebar-bottom"><span class="local-icon">⌘</span><div>本地预测<small>评论仅在本机处理</small></div><span class="online-dot"></span></div>
+  </aside>
+  <main>
+    <header class="topbar"><span>实验工作台 <span class="breadcrumb">/</span> 情感预测</span><span class="service-status" id="service-status"><i></i>正在连接</span></header>
+    <div class="workspace">
+      <section class="page-heading"><div><div class="eyebrow">SENTIMENT ANALYSIS</div><h1>评论情感预测<span class="heading-dot">.</span></h1><p>选择一个模型，看看评论中的情绪。</p></div><div class="heading-symbol" aria-hidden="true"><svg class="icon"><use href="#i-spark"/></svg></div></section>
+      <section class="model-card" aria-labelledby="model-heading">
+        <div class="card-heading"><h2 id="model-heading"><span class="step-number">01</span>选择预测模型</h2><button class="text-button" id="refresh-btn" type="button"><svg class="icon"><use href="#i-refresh"/></svg>刷新模型</button></div>
+        <div class="model-fields">
+          <div class="field"><label for="algorithm-select">算法</label><select id="algorithm-select" disabled><option>正在加载…</option></select></div>
+          <div class="field version-field"><label for="version-select">模型版本</label><select id="version-select" disabled><option>正在加载…</option></select></div>
+          <div class="model-metric"><span>DEV MACRO-F1</span><strong id="model-score">—</strong></div>
+          <div class="model-metric training-metric"><span>训练评论</span><strong id="training-count">—</strong></div>
+        </div>
+        <div class="model-note"><span class="online-dot"></span><span id="model-note">正在扫描已保存的模型</span></div>
+      </section>
+      <div class="workbench">
+        <section class="input-card" aria-labelledby="input-heading">
+          <div class="card-heading"><h2 id="input-heading"><span class="step-number">02</span>输入评论</h2><span class="counter" id="text-count">0 条</span></div>
+          <p class="card-subtitle">每行一条，支持批量分析。</p>
+          <label class="sr-only" for="comments">待预测的评论，一行一条</label>
+          <textarea id="comments" maxlength="50000" placeholder="例如：&#10;这个活动很好玩，下次还想参加！&#10;奖励也太少了吧&#10;今天更新了新版本" spellcheck="false"></textarea>
+          <div class="input-tools"><button class="text-button" type="button" id="sample-btn"><svg class="icon"><use href="#i-spark"/></svg>填入示例</button><button class="text-button quiet" type="button" id="clear-btn">清空内容</button></div>
+          <div class="input-bottom"><span>最多 100 条 · 单条 5000 字</span><span class="shortcut">Ctrl + Enter</span></div>
+          <button type="button" class="predict-button" id="predict-btn" disabled><svg class="icon"><use href="#i-spark"/></svg><span id="predict-label">开始预测</span><svg class="icon button-arrow"><use href="#i-arrow"/></svg></button>
+          <div class="message" id="message" role="status" aria-live="polite"></div>
+        </section>
+        <section class="results-card" aria-labelledby="results-heading" aria-live="polite">
+          <div class="card-heading"><h2 id="results-heading"><span class="step-number">03</span>预测结果</h2><span class="result-timing" id="result-timing">等待分析</span></div>
+          <div id="empty-results" class="empty-results"><div class="empty-illustration"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><svg class="icon"><use href="#i-chat"/></svg><span class="floating-dot dot-green"></span><span class="floating-dot dot-red"></span><span class="floating-dot dot-blue"></span></div><h3>每条评论，都有自己的情绪</h3><p>输入评论并开始预测<br>结果会显示在这里</p><div class="legend"><span><i class="positive-dot"></i>正面</span><span><i class="negative-dot"></i>负面</span><span><i class="neutral-dot"></i>中性</span></div></div>
+          <div id="results-content" hidden><div class="summary" id="summary"></div><div class="result-model" id="result-model"></div><ol class="result-list" id="result-list"></ol></div>
+        </section>
+      </div>
+      <footer class="page-footer"><span>HoYoSense <span class="footer-dot">·</span> 玩家评论情感实验台</span><span id="available-count">正在连接模型库</span></footer>
+    </div>
+  </main>
+</body>
+</html>

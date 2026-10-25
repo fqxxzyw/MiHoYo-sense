@@ -9897,10 +9897,32 @@
       "finished_at": "2026-10-20T10:20:45.193189+00:00",
       "status": "completed",
       "error": null
+    },
+    {
+      "started_at": "2026-10-20T12:08:07.079757+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "retry_unavailable": false,
+      "finished_at": "2026-10-20T12:08:12.102966+00:00",
+      "status": "completed",
+      "error": null
+    },
+    {
+      "started_at": "2026-10-21T04:15:20.656358+00:00",
+      "max_pages": null,
+      "max_sub_pages": null,
+      "max_floors": null,
+      "require_game_id": true,
+      "retry_unavailable": false,
+      "finished_at": "2026-10-21T04:15:24.545587+00:00",
+      "status": "completed",
+      "error": null
     }
   ],
   "seed_run": "D:\\soft\\python\\NLP\\HoYoSense\\data\\raw\\miyoushe\\genshin\\78918177\\20261018_062634_980587_UTC",
-  "updated_at": "2026-10-20T10:20:45.193189+00:00",
+  "updated_at": "2026-10-21T04:15:24.545587+00:00",
   "active_task": null,
   "title": "八强即将出炉！欢迎收看「判测胜券本征」名场面集锦",
   "stop_reason": "正常遍历结束"

@@ -114,7 +114,7 @@ def test_raw_saved_before_discovery_checkpoint_is_recovered_without_refetch(coll
     c = collector
     calls, _ = install_api(c, monkeypatch, {1: home(["800"]), 2: home(["801"]), 3: home([])})
     source = seed(c, tmp_path)
-    import hoyo_sense.miyoushe_discovery as discovery_module
+    import hoyo_sense.collectors.miyoushe.discovery as discovery_module
     original = discovery_module.save_json
     crashed = False
 

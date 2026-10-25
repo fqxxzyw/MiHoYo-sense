@@ -8,12 +8,12 @@ import sys
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from hoyo_sense import video_collection as engine
-from hoyo_sense import video_http as http
+from hoyo_sense.collectors.video import collection as engine
+from hoyo_sense.collectors.video import http
 from hoyo_sense.storage import read_json, digest
-from hoyo_sense.video_config import load_video_config
-from hoyo_sense.video_platforms import VideoPlatform
-from hoyo_sense.video_storage import string_ids
+from hoyo_sense.collectors.video.config import load_video_config
+from hoyo_sense.collectors.video.platforms import VideoPlatform
+from hoyo_sense.collectors.video.storage import string_ids
 
 
 AWEME = "7684640572371488015"
@@ -138,7 +138,7 @@ def test_douyin_limit_resume_and_zero_request_rerun(tmp_path):
 
 @pytest.mark.parametrize("failure_point", ["body", "http", "parsed", "commit"])
 def test_crash_after_response_written_then_resume(tmp_path, monkeypatch, failure_point):
-    from hoyo_sense import video_storage as storage
+    from hoyo_sense.collectors.video import storage
     c, client = collector(tmp_path, "douyin", lambda k, p: dypage([dycomment(replies=0)], more=0))
     crashed = False
     if failure_point in {"body", "http"}:
@@ -309,7 +309,7 @@ def test_known_parent_selection_does_not_collect_other_branches(tmp_path):
 
 
 def test_immutable_archive_never_overwrites(tmp_path):
-    from hoyo_sense.video_storage import immutable_bytes
+    from hoyo_sense.collectors.video.storage import immutable_bytes
     path = tmp_path / "sample.body"
     immutable_bytes(path, b"old")
     with pytest.raises(FileExistsError):
@@ -330,7 +330,7 @@ def test_no_resume_and_changed_identity_rejected(tmp_path):
 
 @pytest.mark.parametrize("platform", ["bilibili", "douyin"])
 def test_cli_from_other_directory_and_zero_limits(tmp_path, monkeypatch, platform):
-    from hoyo_sense.video_cli import main
+    from hoyo_sense.collectors.video.cli import main
     monkeypatch.chdir(tmp_path)
     # 项目默认三游戏目录预先带有空占位文件，不能因此拒绝第一次启动。
     placeholders = []

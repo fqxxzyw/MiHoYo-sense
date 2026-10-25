@@ -3,9 +3,9 @@
 from datetime import datetime, timezone
 from pathlib import Path
 
-from .endpoints import MIYOUSHE_ENDPOINTS
-from .games import MIYOUSHE_GAME_IDS
-from .storage import utc_now, read_json, save_json, digest, check_digest, run_lock
+from ...endpoints import MIYOUSHE_ENDPOINTS
+from ...games import MIYOUSHE_GAME_IDS
+from ...storage import utc_now, read_json, save_json, digest, check_digest, run_lock
 
 
 SOURCE = "getNewsList/list"

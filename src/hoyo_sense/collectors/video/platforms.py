@@ -4,9 +4,9 @@ from dataclasses import dataclass, field
 import json
 import re
 
-from .endpoints import PLATFORM_ENDPOINTS
-from .video_http import CollectionError
-from .video_storage import string_ids
+from ...endpoints import PLATFORM_ENDPOINTS
+from .http import CollectionError
+from .storage import string_ids
 
 
 def identifier(value, *, bvid=False):

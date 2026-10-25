@@ -10,9 +10,9 @@ from uuid import uuid4
 
 import requests
 
-from .config import project_path
-from .endpoints import PLATFORM_ENDPOINTS
-from .storage import utc_now
+from ...config import project_path
+from ...endpoints import PLATFORM_ENDPOINTS
+from ...storage import utc_now
 
 
 PUBLIC_PARAMS = set("mid order ps pn index order_avoided platform web_location type mode plat seek_rpid "
@@ -115,7 +115,7 @@ class VideoHTTP:
         params = {**extras.get("common", {}), **extras.get(kind, {}), **params}
         if self.config.platform == "bilibili" and kind in {"discovery", "comments"}:
             if self.keys is None:
-                from .video_storage import archive_response
+                from .storage import archive_response
                 nav_url = PLATFORM_ENDPOINTS["bilibili"]["nav"]
                 def nav_archive(body, meta):
                     return archive_response(self.game_root, f"_session/{uuid4().hex}", body,

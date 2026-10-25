@@ -85,7 +85,7 @@ def test_cursor_dedup_raw_zero_game_id_and_cumulative_resume(collector, monkeypa
 def test_crash_after_raw_saved_recovers_without_refetch(collector, monkeypatch, tmp_path):
     c = collector
     calls = api(c, monkeypatch, {"": news(["1"]), "20": news(["2"], "40", True)})
-    import hoyo_sense.miyoushe_news_discovery as module
+    import hoyo_sense.collectors.miyoushe.news_discovery as module
     original = module.save_json
     crashed = False
 

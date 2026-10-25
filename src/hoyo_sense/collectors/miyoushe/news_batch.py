@@ -3,9 +3,9 @@
 from copy import deepcopy
 from pathlib import Path
 
-from .games import MIYOUSHE_GAME_IDS
-from .miyoushe_news_discovery import SOURCE, discover_news_pages
-from .storage import utc_now, read_json, save_json, run_lock
+from ...games import MIYOUSHE_GAME_IDS
+from .news_discovery import SOURCE, discover_news_pages
+from ...storage import utc_now, read_json, save_json, run_lock
 
 
 def post_id_string(value):

@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 from uuid import uuid4
 
-from .storage import digest, read_json, check_digest
+from ...storage import digest, read_json, check_digest
 
 
 ID_KEYS = {"id", "aid", "bvid", "mid", "cid", "uid", "oid", "rpid", "rpid_str", "root", "parent", "sec_uid"}

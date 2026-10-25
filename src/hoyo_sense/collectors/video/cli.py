@@ -3,13 +3,13 @@
 import argparse
 import json
 
-from .config import project_path
-from .games import GAME_NAMES
-from .video_collection import VideoCollector
-from .video_config import load_video_config
-from .video_http import CollectionError, VideoHTTP
-from .video_platforms import identifier
-from .video_storage import string_ids
+from ...config import project_path
+from ...games import GAME_NAMES
+from .collection import VideoCollector
+from .config import load_video_config
+from .http import CollectionError, VideoHTTP
+from .platforms import identifier
+from .storage import string_ids
 
 
 def cli_limit(value):

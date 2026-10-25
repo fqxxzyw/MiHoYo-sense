@@ -1,0 +1,7 @@
+# 可选模型依赖；不自动安装，不升级原有基础依赖。
+# 先按 docs/model_compression_learning.md 为 CPU/CUDA 选择 PyTorch。
+torch>=2.6,<2.7
+transformers==4.57.1
+fasttext-wheel==0.9.2; sys_platform == "win32"
+fasttext==0.9.3; sys_platform != "win32"
+numpy>=1.24,<2

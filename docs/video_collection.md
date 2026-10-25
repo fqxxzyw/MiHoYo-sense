@@ -11,17 +11,18 @@
 | `scripts/02_collect_bilibili.py` | B站入口，加载共用 CLI |
 | `scripts/03_collect_douyin.py` | 抖音入口，加载共用 CLI |
 | `configs/bilibili.json`、`configs/douyin.json` | 账号、公共业务参数、路径、请求设置和有限默认上限 |
-| `src/hoyo_sense/video_cli.py` | 游戏、作品、上限、私密上下文等参数解析 |
-| `src/hoyo_sense/video_config.py` | 配置校验，复用 `config.py` 的项目根路径定位 |
-| `src/hoyo_sense/video_http.py` | 串行请求、有限重试、Cookie 环境变量、动态 WBI、参数脱敏 |
-| `src/hoyo_sense/video_platforms.py` | 初始状态 JSON 和两平台响应解析、作品/评论归属校验 |
-| `src/hoyo_sense/video_collection.py` | 任务队列、累计上限、独立分支断点、中断恢复与防循环 |
-| `src/hoyo_sense/video_storage.py` | 不可覆盖的字节原文与完整 JSON 归档，ID 字符串化 |
+| `src/hoyo_sense/collectors/video/cli.py` | 游戏、作品、上限、私密上下文等参数解析 |
+| `src/hoyo_sense/collectors/video/config.py` | 配置校验，复用公共 `hoyo_sense.config` 的项目根路径定位 |
+| `src/hoyo_sense/collectors/video/http.py` | 串行请求、有限重试、Cookie 环境变量、动态 WBI、参数脱敏 |
+| `src/hoyo_sense/collectors/video/platforms.py` | 初始状态 JSON 和两平台响应解析、作品/评论归属校验 |
+| `src/hoyo_sense/collectors/video/collection.py` | 任务队列、累计上限、独立分支断点、中断恢复与防循环 |
+| `src/hoyo_sense/collectors/video/storage.py` | 不可覆盖的字节原文与完整 JSON 归档，ID 字符串化 |
 | `tests/test_video_collectors.py` | 禁止真实网络的解析、分页、失败、恢复和上限测试 |
 | `docs/video_collection_validation_20261021.json` | 本次真实小样本结果；不包含凭据或评论正文 |
 
 共用的接口地址仍在 `endpoints.py`；其地址表现在包括“浏览器样本提供但本地尚未成功”的接口，不能把地址存在理解为验证通过。
-原子断点写入、时间、哈希和目录锁复用已有 `storage.py`，没有更改米游社断点格式。
+`collectors/video/` 是B站和抖音共用的采集代码，不按两个平台再拆分。
+原子断点写入、时间、哈希和目录锁复用公共 `hoyo_sense.storage`，没有更改米游社断点格式。
 
 ## 配置与执行
 

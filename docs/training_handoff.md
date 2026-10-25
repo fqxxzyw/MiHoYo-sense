@@ -2,6 +2,12 @@
 
 ## 用户希望怎样学习
 
+**2026-10-25 当前请求优先：** 用户已明确要求一次补全 fastText、BERT 及量化/蒸馏学习代码，
+压缩操作先复制原模型，所有模型产物统一放 `outputs/models/`。
+已增加独立算法入口和 `scripts/10_model_experiment.py`，具体流程见
+[模型压缩学习说明](model_compression_learning.md)。后面“每轮只写一步”的段落是此前教学偏好，
+不应据此阻止本次已授权的代码补全。代码完成不等于真实模型训练已完成，需分别核对。
+
 用户要另一位智能体带着自己一步一步写训练代码，重点是**在哪里建文件夹、建哪个文件、代码写在哪里、怎样运行和检查**。
 当前不要直接替用户生成整套训练工程或启动训练。每轮只做一个可验证的小步骤：
 
@@ -19,16 +25,19 @@
 
 | 入口 | 已实现的用途 |
 | --- | --- |
-| `scripts/01_collect_miyoushe.py` | 米游社三游戏采集、恢复；原神资讯调度在 `src/hoyo_sense/miyoushe_news_batch.py` |
+| `scripts/01_collect_miyoushe.py` | 米游社三游戏采集、恢复；原神资讯调度在 `src/hoyo_sense/collectors/miyoushe/news_batch.py` |
 | `scripts/02_collect_bilibili.py`、`03_collect_douyin.py` | 已有采集代码，目前暂缓这两个平台，不继续扩展 |
 | `scripts/04_extract_miyoushe.py` | 提取 raw 中已登记的帖子、顶层和楼中楼，保留完整快照 |
 | `scripts/05_prepare_analysis.py` | 生成只有 `post_id,comment` 两列的工作表 |
 | `scripts/06_clean_comments.py` | 去空、同帖相同文本去重、异常审计和前后 EDA |
 | `scripts/07_split_dataset.py` | 按帖子划分 train/dev/test，保存固定归属 |
+| `scripts/08_train_baselines.py` | 兼容入口，转到 `modeling/tfidf_logistic/train.py` |
 
 现有数据已就绪，开始训练教学不需要重跑采集、清洗或划分。
-`miyoushe_news_batch.py` 是采集调度模块，不应把训练代码写进该模块。
-目前没有训练入口、已训练模型或真实性能分数。此次同步前项目全量测试为 223 项通过。
+`collectors/miyoushe/news_batch.py` 是采集调度模块，不应把训练代码写进该模块。
+当前逻辑回归已完成首次训练、保存和 dev 评估：Macro-F1=0.8662、Accuracy=0.9329。
+每个算法目录各自存放模型定义、训练、评估和预测代码，共用代码在 `modeling/common/`。
+原有模型可以直接加载，当前没有运行 test。路径与命令见 [算法目录说明](modeling_structure.md)。
 
 ## 目录约定：沿用现有位置
 
@@ -38,7 +47,13 @@ data/
 ├── processed/    # 提取快照及两列评论表
 ├── annotated/    # 用户标注原件
 └── splits/       # 固定的 train/dev/test 及帖子归属
-src/hoyo_sense/modeling/  # 划分代码已存在；后续模型实现也放这里
+src/hoyo_sense/
+├── collectors/miyoushe/  # 米游社发现与资讯批次调度
+├── collectors/video/     # B站和抖音共用的采集代码
+├── analysis/             # 分析表准备及标注复核
+├── preprocessing/        # 本地提取、清洗
+├── modeling/             # 各算法目录；common/ 放共用代码；保留原有划分代码
+└── recommendation/       # 推荐功能预留目录
 scripts/                 # 可直接运行的入口
 tests/                   # 针对关键行为的测试
 outputs/                 # EDA、校验报告、后续模型和指标
@@ -47,15 +62,25 @@ docs/                    # 学习说明及交接
 
 不要新增 `data` 的同级业务子目录；不要把模型文件、图表或实验日志塞进四种数据目录。
 `analysis`、`modeling`、`preprocessing` 这些源码目录已经存在，不需要再建一套平行工程。
+公共 `config.py`、`storage.py`、`games.py`、`endpoints.py`、`__init__.py` 保持在包根目录。
+用户编写的数据读取代码现位于 `src/hoyo_sense/modeling/common/dataset.py`，内容保留；
+旧的 `modeling/dataset.py` 为兼容入口。`src/hoyo_sense/analysis/annotation_review.py` 保持原样。
+后续教学先阅读并沿用现有文件，不要覆盖或重复创建。
 
 ## 本地数据文件与标签
+
+**2026-10-22 更新：** 表情处理结果已合回原来的三个 `*_labeled.csv`，并过滤纯数字、
+普通符号评论。当前 train/dev/test 为 155,587 / 27,905 / 38,161 条，
+待审核为 2,098 / 466 / 425 条。后续继续读取原文件名；
+下面的导入数量与逐条匹配结论是过滤前记录，最新规则与备份见
+[标注合并说明](annotation_merging.md)。原始 `data/splits/` 未变。
 
 清洗输入是 `data/processed/miyoushe/comments.csv`，275,570 行。
 成品是同目录 `comments_clean.csv`，224,250 行，只保留 `post_id,comment`。
 去除原始空文本 2,649 条、没有可提取文字的图片/表情图片 2,755 条，同帖相同文本合并 45,916 次。
 异常原文和重复次数位于 `outputs/cleaning/miyoushe/`。没有根据广告/抽奖等启发式标记直接删除评论。
 
-人工/外部标注文件已按用户提供的字节原样保存：
+人工/外部标注文件最初按用户提供的字节原样保存；三个评论标注原件现已备份到 `data/annotated/backups/`：
 
 | 文件 | 内容 |
 | --- | --- |
@@ -94,17 +119,18 @@ docs/                    # 学习说明及交接
 
 ## 下一步应该逐个创建哪些文件
 
-以下文件均是**建议后续创建，目前尚未实现**。先从第 1 步开始教，不提前替用户写完。
+下表按当前算法目录组织，路径相对于 `src/hoyo_sense/`。
+先核对已有代码的进度，再逐步教学。
 
 | 顺序 | 建议文件 | 本步要教的代码与运行检查 |
 | --- | --- | --- |
-| 1 | `src/hoyo_sense/modeling/datasets.py` | 用 pandas/csv 读取标注文件；帖子 ID 保持字符串；检查三列、标签范围、缺失值；过滤 -1 并打印前后数量。先只读 train/dev。 |
-| 2 | `tests/test_sentiment_datasets.py` | 用少量虚构样本确认标签映射、-1 排除、长 ID 与空值处理；不依赖真实大数据文件。 |
-| 3 | `src/hoyo_sense/modeling/baselines.py` | 写清楚字符 TF-IDF 和分类器怎样组成 Pipeline；输入只使用 comment，post_id 不作为特征。先完成一个可运行基线。 |
-| 4 | `src/hoyo_sense/modeling/evaluation.py` | 将 y_true、y_pred 转成 Macro-F1、Accuracy、各类 P/R/F1 和混淆矩阵；类别顺序和中文名称使用情感映射表。 |
-| 5 | `scripts/08_train_baselines.py` | 串起读取 train/dev、训练、dev 评分和保存；入口只协调流程，模型实现放 modeling 模块。路径沿用 config.py，暂不另建复杂配置系统。 |
-| 6 | 同一 `baselines.py` 与训练入口 | 在首个模型跑通后逐一增加其余基线，使用可比的特征设置，记录运行时间。依据 dev 选模型和参数。 |
-| 7 | `scripts/09_evaluate_test.py` | 方案冻结后才加载 test，做最终评估；读取已保存模型，不再次在 test 上 fit。 |
+| 1 | `modeling/common/dataset.py` | 已有读取、三列检查、标签校验和 -1 过滤；保持 ID 为字符串。 |
+| 2 | `modeling/tfidf_logistic/model.py` | 已有字符 TF-IDF + 逻辑回归参数，输入只用 comment。 |
+| 3 | `modeling/tfidf_logistic/train.py` | 已有 train 拟合、dev 评估和模型保存。 |
+| 4 | `modeling/tfidf_logistic/evaluate.py` | 加载现有模型独立评估，默认 dev，不重新 fit。 |
+| 5 | `modeling/tfidf_logistic/predict.py` | 用已保存模型对自己的新评论分类。 |
+| 6 | `modeling/tfidf_rf/`、`fasttext/`、`bert/`、`llm/` | 已预留目录，后续逐个编写同样职责的入口，复用公共代码。 |
+| 7 | 各算法的 `evaluate.py` | 方案冻结后明确指定 test，统一做最终评估，不再用 test 调参。 |
 
 建议首轮模型：
 
@@ -115,16 +141,13 @@ docs/                    # 学习说明及交接
 
 字符特征可先用 1–3 gram；单字、表情、否定词不应提前丢弃。
 词表和 IDF 只能在 train 上 fit，dev/test 只 transform。主指标 Macro-F1，辅以分类别召回率和混淆矩阵。
-训练集三分类样本中，中性 101,945、正面 35,156、负面 7,317，不能只看多数类主导的准确率。
+当前训练集三分类样本中，中性 111,016、正面 35,156、负面 7,317，不能只看多数类主导的准确率。
 
-后续实验产物建议统一放 `outputs/baselines/<run_name>/`：
+模型与本次运行指标统一放 `outputs/models/<algorithm>/<run_name>/`，逻辑回归当前保存：
 
 ```text
-metrics.csv               # dev 各模型指标及耗时
-run_config.json           # 本次参数、随机种子、标签映射与数据哈希
-best_pipeline.joblib      # 选定模型及其已拟合的 TF-IDF
-dev_confusion_matrix.png
-test_metrics.json         # 最终阶段才生成
+pipeline.joblib           # 完整 TF-IDF 与分类器
+dev_metrics.json          # dev 指标、训练行数、耗时和混淆矩阵
 ```
 
 目前不需要先搭建网站、调用外部 API 或下载大模型。先让用户掌握完整的本地稀疏文本基线流程。
@@ -141,6 +164,6 @@ Git 同步代码、配置、测试和文档。本地 `data/raw`、`data/processe
 > 请先读 README.md、docs/training_handoff.md 和 docs/sentiment_baselines.md。
 > 我希望自己一步一步学习写训练代码，重点是在哪个目录建什么文件、每段代码做什么、怎样运行验证。
 > 请一次只带我完成一个小步骤，不要直接生成整套训练程序或自动跑全部模型。
-> 从检查 hoyosense 环境、读取 data/annotated/train_labeled.csv 和 dev_labeled.csv 开始，
-> 先解释 label 的 0/1/2/-1 映射以及待审核样本处理，再教我实现 datasets.py。
+> 先阅读 modeling/common/ 和 modeling/tfidf_logistic/ 中的现有代码，
+> 从加载已保存的逻辑回归模型，在 dev 上独立评估和预测新评论继续教学。
 > test 暂时只确认文件存在，不用它选模型或调参。保持 data 下原有四个目录，实验产物放 outputs。
